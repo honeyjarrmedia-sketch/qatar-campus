@@ -22,7 +22,9 @@ came from. Nothing is estimated: a field with no source is left empty.
 1. On GitHub, open **Actions → Refresh data → Run workflow**.
 2. The job downloads the raw files, rebuilds the dataset, checks links and
    pushes everything to a new branch named `data/refresh-<date>`.
-3. Open the compare link in the job summary and review what changed.
+3. Open the compare link in the job summary and review what changed. The
+   summary also shows the figures recomputed from the raw files; if that
+   check fails, do not merge until the difference is explained.
 4. Merge the branch to publish.
 
 To run locally instead:
