@@ -341,13 +341,15 @@ def run() -> int:
                         if e.get("status") == "ok" and e.get("retrieved_at")})
         return dates[-1] if dates else None
 
-    parts = []
-    if fetched("fara"):
-        parts.append(f"The FARA files were downloaded on {fetched('fara')}.")
-    if fetched("lda"):
-        parts.append(f"The lobbying filings were downloaded on {fetched('lda')}.")
-    if fetched("sec117"):
-        parts.append(f"The Department of Education file was downloaded on {fetched('sec117')}.")
+    got = {name: fetched(name) for name in ("fara", "lda", "sec117")}
+    dates = sorted({d for d in got.values() if d})
+    label = {"fara": "the FARA files", "lda": "the lobbying filings",
+             "sec117": "the Department of Education file"}
+    if len(dates) == 1 and all(got.values()):
+        parts = [f"All three were downloaded on {dates[0]}."]
+    else:
+        parts = [f"{label[k][0].upper()}{label[k][1:]} were downloaded on {v}."
+                 for k, v in got.items() if v]
     fara_rows = [r for r in rows if r["t"] == "fara"]
     partial = sum(1 for r in fara_rows if r["conf"] == "partial")
     partial_note = (f"{partial:,} of {len(fara_rows):,} FARA rows are marked partial for this reason."
