@@ -1,16 +1,38 @@
 {
  "country_code": "QA",
- "statements_read": 8,
+ "statements_read": 814,
  "outcomes": {
-  "no text layer (scanned image)": 3,
-  "extracted": 1,
-  "table says: see appendix (not parsed)": 4
+  "no text layer (scanned image)": 5,
+  "extracted": 17,
+  "table says: see appendix (not parsed)": 303,
+  "no payment lines found in the table": 480,
+  "no Item 14(a) section found in the text": 8,
+  "unreadable pdf: Unexpected EOF": 1
  },
- "fee_records": 2,
- "amount_total": 18838.64,
+ "fee_records": 115,
+ "amount_total": 67825243.02,
  "by_country": {
-  "China": 18838.64
+  "Australia": 5515830.81,
+  "British Virgin Islands": 32582045.61,
+  "China": 18838.64,
+  "Congo, Republic of the": 5675.0,
+  "Dominican Republic": 22434211.31,
+  "Germany": 209938.86,
+  "Grenada": 11250.0,
+  "Hong Kong": 76333.33,
+  "India": 60332.0,
+  "Italy": 1346982.16,
+  "Jamaica": 104475.0,
+  "Japan": 13681.39,
+  "Kenya": 135396.63,
+  "Kosova": 1736500.0,
+  "Macau": 2689478.04,
+  "Nicaragua": 67845.15,
+  "Papua New Guinea": 5475.0,
+  "Qatar": 568855.79,
+  "United Arab Emirates": 129400.0,
+  "Vietnam": 112698.3
  },
- "lines_not_matched_to_a_principal": 0,
- "amount_not_matched": 0
+ "lines_not_matched_to_a_principal": 36,
+ "amount_not_matched": 36274009.73
 }
