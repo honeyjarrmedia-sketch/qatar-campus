@@ -126,6 +126,34 @@ def run() -> int:
         r.setdefault("purpose_detail", "")
         r.setdefault("lobbyists", [])
 
+    # Links the checker found dead: the document has gone from the
+    # government site since it was indexed. The record stays, but it is
+    # marked partial and points at the list of everything filed under that
+    # registration, which is the nearest thing that still opens.
+    dead = {d["url"] for d in (read_json(config.REPORTS / "link_check.json", {}) or {}).get("dead", [])
+            if d.get("status") == 404}
+    swapped = []
+    for r in records:
+        if not dead or r["source_url"] not in dead:
+            continue
+        gone = r["source_url"]
+        listing = (config.FARA_DOC_LISTING.format(regnum=r["source_record_id"])
+                   if r["actor_type"] in ("fara_registrant", "fara_fee") else "")
+        if not listing:
+            continue
+        r["source_url"] = listing
+        r["source_urls"] = [u for u in r["source_urls"] if u != gone] or [listing]
+        r["source_type"] = "FARA document listing"
+        r["confidence"] = "partial"
+        r["notes"] = (r["notes"] + " " if r["notes"] else "") + (
+            f"The exhibit this row was indexed from ({gone}) no longer opens on the "
+            "Justice Department site. The link above lists every document filed "
+            "under this registration.")
+        swapped.append({"id": r["id"], "was": gone, "now": listing})
+    if swapped:
+        write_json(config.REPORTS / "dead_links_swapped.json", swapped)
+        print(f"[build] {len(swapped)} record(s) repointed from a dead document link")
+
     errors = validate(records)
     write_json(config.REPORTS / "validation_errors.json", errors)
 

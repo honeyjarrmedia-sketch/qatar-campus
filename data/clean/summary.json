@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-16T15:33:46Z",
+ "generated_at": "2026-11-16T18:53:16Z",
  "sources": {
   "fara": {
    "included": true,
@@ -47,8 +47,8 @@
   }
  },
  "records_by_confidence": {
-  "verified": 129722,
-  "partial": 7698,
+  "verified": 129721,
+  "partial": 7699,
   "derived": 2
  },
  "records_with_amount": 118271,

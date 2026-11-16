@@ -354,6 +354,24 @@ def run() -> int:
     fee_note = " ".join(fee_bits) or ("No statements have been read yet, so no FARA "
                                       "payment figures appear on this page.")
 
+    link_report = read_json(config.REPORTS / "link_check.json", {}) or {}
+    swapped = read_json(config.REPORTS / "dead_links_swapped.json", []) or []
+    checked, ok = link_report.get("distinct_links", 0), link_report.get("links_ok", 0)
+    if checked:
+        dead_note = (f"Every source link was opened to check it on "
+                     f"{link_report.get('generated_at', '')[:10]}: {ok:,} of {checked:,} returned "
+                     "the document.")
+        if len(swapped) == 1:
+            dead_note += (" One document has since been removed from the government "
+                          "site; that row is marked partial and links to its "
+                          "registration's document list instead.")
+        elif swapped:
+            dead_note += (f" {len(swapped):,} documents have since been removed from the "
+                          "government site; those rows are marked partial and link to "
+                          "their registration's document list instead.")
+    else:
+        dead_note = ""
+
     email = (cfg.get("contact_email") or "").strip()
     contact = (f'<a href="mailto:{esc(email)}">{esc(email)}</a>' if email
                else '<span class="mono">[contact address not set]</span>')
@@ -396,7 +414,8 @@ def run() -> int:
         "STATIC_ROWS": static_rows,
         "STATIC_PAGE_INFO": f'Showing 1–{min(STATIC_ROWS, len(qatar))} of {len(qatar):,}' if qatar else "Showing 0 records",
         "CONN_ROWS": conn_rows, "SOURCE_DATES": esc(" ".join(parts)),
-        "PARTIAL_NOTE": esc(partial_note), "FEE_NOTE": esc(fee_note), "CONTACT": contact,
+        "PARTIAL_NOTE": esc(partial_note), "FEE_NOTE": esc(fee_note),
+        "DEAD_NOTE": esc(dead_note), "CONTACT": contact,
         "CHANGELOG": changelog, "COMMENTARY": commentary,
         "CREDIT": esc(cfg.get("footer_credit", "")),
     }.items():
