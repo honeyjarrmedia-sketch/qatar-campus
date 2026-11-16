@@ -1,0 +1,43 @@
+{
+ "generated_at": "2026-11-16T08:29:59Z",
+ "sources": {
+  "fara": {
+   "included": true,
+   "records": 17774
+  },
+  "lda": {
+   "included": true,
+   "records": 2479
+  }
+ },
+ "records_total": 20253,
+ "records_featured": 3611,
+ "featured_records_by_source_and_country": {
+  "fara": {
+   "Turkey": 200,
+   "Saudi Arabia": 275,
+   "China": 278,
+   "Qatar": 131,
+   "Russia": 248
+  },
+  "lda": {
+   "China": 1484,
+   "Turkey": 237,
+   "Russia": 514,
+   "Saudi Arabia": 135,
+   "Qatar": 109
+  }
+ },
+ "records_by_confidence": {
+  "verified": 12558,
+  "partial": 7695
+ },
+ "records_with_amount": 1119,
+ "entities": 7383,
+ "connections": 117,
+ "year_range": [
+  1942,
+  2026
+ ],
+ "validation_errors": 0
+}

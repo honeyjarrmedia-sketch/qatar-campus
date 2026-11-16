@@ -1,0 +1,59 @@
+{
+ "rows_in_foreign_principals_file": 17774,
+ "rows_in_registrants_file": 7108,
+ "rows_in_document_index": 154818,
+ "malformed_rows_skipped": {
+  "registrants": 0,
+  "foreign_principals": 15,
+  "registrant_docs": 0
+ },
+ "unparseable_dates": 0,
+ "records": 17774,
+ "records_with_exhibit_link": 10079,
+ "records_with_fallback_link": 7695,
+ "featured_records_by_country": {
+  "Turkey": 200,
+  "Saudi Arabia": 275,
+  "China": 278,
+  "Qatar": 131,
+  "Russia": 248
+ },
+ "columns_found": {
+  "registrants": [
+   "Registration Number",
+   "Registration Date",
+   "Termination Date",
+   "Name",
+   "Business Name",
+   "Address 1",
+   "Address 2",
+   "City",
+   "State",
+   "Zip"
+  ],
+  "foreign_principals": [
+   "Foreign Principal Termination Date",
+   "Foreign Principal",
+   "Foreign Principal Registration Date",
+   "Country/Location Represented",
+   "Registration Number",
+   "Registrant Date",
+   "Registrant Name",
+   "Address 1",
+   "Address 2",
+   "City",
+   "State",
+   "Zip"
+  ],
+  "registrant_docs": [
+   "Date Stamped",
+   "Registrant Name",
+   "Registration Number",
+   "Document Type",
+   "Short Form Name",
+   "Foreign Principal Name",
+   "Foreign Principal Country",
+   "URL"
+  ]
+ }
+}

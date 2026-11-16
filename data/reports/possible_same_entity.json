@@ -1,0 +1,612 @@
+[
+ {
+  "normalised_name": "ALSTON BIRD LLP",
+  "entity_ids": [
+   "fara-5549",
+   "lda-1182"
+  ]
+ },
+ {
+  "normalised_name": "AND PARTNERS LLC",
+  "entity_ids": [
+   "fara-7377",
+   "lda-401106757"
+  ]
+ },
+ {
+  "normalised_name": "ANDREAE ASSOCIATES",
+  "entity_ids": [
+   "fara-6371",
+   "lda-90897"
+  ]
+ },
+ {
+  "normalised_name": "APCO WORLDWIDE LLC",
+  "entity_ids": [
+   "fara-6582",
+   "lda-4117"
+  ]
+ },
+ {
+  "normalised_name": "ARENTFOX SCHIFF LLP",
+  "entity_ids": [
+   "fara-6952",
+   "lda-4208"
+  ]
+ },
+ {
+  "normalised_name": "ARNOLD PORTER KAYE SCHOLER LLP",
+  "entity_ids": [
+   "fara-1750",
+   "lda-4301"
+  ]
+ },
+ {
+  "normalised_name": "BAKER BOTTS L L P",
+  "entity_ids": [
+   "fara-4293",
+   "lda-5118"
+  ]
+ },
+ {
+  "normalised_name": "BAKER HOSTETLER LLP",
+  "entity_ids": [
+   "fara-5599",
+   "fara-6966",
+   "lda-5131"
+  ]
+ },
+ {
+  "normalised_name": "BAKER MCKENZIE LLP",
+  "entity_ids": [
+   "fara-5547",
+   "lda-5142"
+  ]
+ },
+ {
+  "normalised_name": "BALLARD PARTNERS",
+  "entity_ids": [
+   "fara-6415",
+   "fara-7070",
+   "lda-401104288"
+  ]
+ },
+ {
+  "normalised_name": "BARNES THORNBURG LLP",
+  "entity_ids": [
+   "fara-6247",
+   "fara-6417",
+   "fara-6594",
+   "lda-5404"
+  ]
+ },
+ {
+  "normalised_name": "BKSH ASSOCIATES",
+  "entity_ids": [
+   "fara-5402",
+   "lda-6291"
+  ]
+ },
+ {
+  "normalised_name": "BLANK ROME LLP",
+  "entity_ids": [
+   "fara-4929",
+   "lda-89133"
+  ]
+ },
+ {
+  "normalised_name": "BROWNSTEIN HYATT FARBER SCHRECK LLP",
+  "entity_ids": [
+   "fara-5870",
+   "lda-7257"
+  ]
+ },
+ {
+  "normalised_name": "CAPITOL COUNSEL LLC",
+  "entity_ids": [
+   "fara-6253",
+   "fara-6328",
+   "lda-313715"
+  ]
+ },
+ {
+  "normalised_name": "CARMEN GROUP INCORPORATED",
+  "entity_ids": [
+   "fara-5727",
+   "fara-5903",
+   "lda-8316"
+  ]
+ },
+ {
+  "normalised_name": "CASSIDY ASSOCIATES INC",
+  "entity_ids": [
+   "fara-4259",
+   "fara-5643",
+   "fara-6139",
+   "fara-6179",
+   "fara-6214",
+   "fara-6272",
+   "lda-8453"
+  ]
+ },
+ {
+  "normalised_name": "CLARK HILL PLC",
+  "entity_ids": [
+   "fara-5709",
+   "lda-287771"
+  ]
+ },
+ {
+  "normalised_name": "CLARK HILL PUBLIC STRATEGIES LLC",
+  "entity_ids": [
+   "fara-7672",
+   "lda-401106670"
+  ]
+ },
+ {
+  "normalised_name": "CLARK WEINSTOCK",
+  "entity_ids": [
+   "fara-5457",
+   "fara-5617",
+   "fara-5914",
+   "lda-9443"
+  ]
+ },
+ {
+  "normalised_name": "COGENT STRATEGIES LLC",
+  "entity_ids": [
+   "fara-6502",
+   "fara-6927",
+   "lda-401104684"
+  ]
+ },
+ {
+  "normalised_name": "CONTINENTAL STRATEGY LLC",
+  "entity_ids": [
+   "fara-7545",
+   "lda-401106285"
+  ]
+ },
+ {
+  "normalised_name": "COVINGTON BURLING LLP",
+  "entity_ids": [
+   "fara-5621",
+   "fara-5852",
+   "fara-6876",
+   "lda-11195"
+  ]
+ },
+ {
+  "normalised_name": "CROSSROADS STRATEGIES LLC",
+  "entity_ids": [
+   "fara-6508",
+   "fara-6702",
+   "fara-6891",
+   "lda-400531586"
+  ]
+ },
+ {
+  "normalised_name": "CROWELL GLOBAL ADVISORS",
+  "entity_ids": [
+   "fara-3988",
+   "lda-11388"
+  ]
+ },
+ {
+  "normalised_name": "CROWELL MORING LLP",
+  "entity_ids": [
+   "fara-7129",
+   "lda-11377"
+  ]
+ },
+ {
+  "normalised_name": "DCI GROUP L L C",
+  "entity_ids": [
+   "fara-5497",
+   "lda-61174"
+  ]
+ },
+ {
+  "normalised_name": "DENTONS US LLP",
+  "entity_ids": [
+   "fara-6284",
+   "lda-36105"
+  ]
+ },
+ {
+  "normalised_name": "DICKSTEIN SHAPIRO LLP",
+  "entity_ids": [
+   "fara-3028",
+   "lda-12208"
+  ]
+ },
+ {
+  "normalised_name": "DUTKO WORLDWIDE LLC",
+  "entity_ids": [
+   "fara-5693",
+   "fara-5804",
+   "fara-5904",
+   "fara-6041",
+   "lda-12868"
+  ]
+ },
+ {
+  "normalised_name": "FABIANI COMPANY",
+  "entity_ids": [
+   "fara-6045",
+   "lda-72576"
+  ]
+ },
+ {
+  "normalised_name": "FEDERAL ADVOCATES INC",
+  "entity_ids": [
+   "fara-6623",
+   "lda-308172"
+  ]
+ },
+ {
+  "normalised_name": "FGS GLOBAL US LLC FKA FGH HOLDINGS LLC",
+  "entity_ids": [
+   "fara-5666",
+   "lda-86196"
+  ]
+ },
+ {
+  "normalised_name": "FOLEY LARDNER LLP",
+  "entity_ids": [
+   "fara-6787",
+   "lda-15042"
+  ]
+ },
+ {
+  "normalised_name": "FONTHEIM INTERNATIONAL LLC",
+  "entity_ids": [
+   "fara-5501",
+   "lda-15075"
+  ]
+ },
+ {
+  "normalised_name": "GLOBAL POLICY INITIATIVES",
+  "entity_ids": [
+   "fara-5954",
+   "fara-6314",
+   "lda-40008055"
+  ]
+ },
+ {
+  "normalised_name": "GLOBAL USA INC",
+  "entity_ids": [
+   "fara-5292",
+   "lda-16351"
+  ]
+ },
+ {
+  "normalised_name": "GREENBERG TRAURIG LLP",
+  "entity_ids": [
+   "fara-5384",
+   "fara-5712",
+   "lda-16896"
+  ]
+ },
+ {
+  "normalised_name": "GRIEBOSKI GLOBAL STRATEGIES LLC",
+  "entity_ids": [
+   "fara-6315",
+   "lda-400594814"
+  ]
+ },
+ {
+  "normalised_name": "HARBINGER STRATEGIES LLC",
+  "entity_ids": [
+   "fara-6275",
+   "lda-401103523"
+  ]
+ },
+ {
+  "normalised_name": "HAWKSBILL GROUP LLC",
+  "entity_ids": [
+   "fara-6493",
+   "lda-401104095"
+  ]
+ },
+ {
+  "normalised_name": "HUSCH BLACKWELL LLP",
+  "entity_ids": [
+   "fara-6273",
+   "fara-6362",
+   "lda-6303"
+  ]
+ },
+ {
+  "normalised_name": "JONES DAY",
+  "entity_ids": [
+   "fara-3427",
+   "lda-20868"
+  ]
+ },
+ {
+  "normalised_name": "K L GATES LLP",
+  "entity_ids": [
+   "fara-6331",
+   "fara-7597",
+   "lda-32098"
+  ]
+ },
+ {
+  "normalised_name": "KASOWITZ LLP",
+  "entity_ids": [
+   "fara-7558",
+   "lda-401103221"
+  ]
+ },
+ {
+  "normalised_name": "KING SPALDING LLP",
+  "entity_ids": [
+   "fara-6307",
+   "fara-6501",
+   "lda-21632"
+  ]
+ },
+ {
+  "normalised_name": "LB INTERNATIONAL SOLUTIONS LLC",
+  "entity_ids": [
+   "fara-6210",
+   "lda-401104471"
+  ]
+ },
+ {
+  "normalised_name": "MANATOS MANATOS",
+  "entity_ids": [
+   "fara-3522",
+   "fara-6353",
+   "lda-23634"
+  ]
+ },
+ {
+  "normalised_name": "MAYER BROWN LLP",
+  "entity_ids": [
+   "fara-6236",
+   "lda-24123"
+  ]
+ },
+ {
+  "normalised_name": "MCLARTY INBOUND LLC",
+  "entity_ids": [
+   "fara-6686",
+   "lda-401103585"
+  ]
+ },
+ {
+  "normalised_name": "MERCURY PUBLIC AFFAIRS LLC",
+  "entity_ids": [
+   "fara-6170",
+   "lda-70175"
+  ]
+ },
+ {
+  "normalised_name": "MILLER CHEVALIER CHARTERED",
+  "entity_ids": [
+   "fara-3626",
+   "fara-5365",
+   "fara-6209",
+   "fara-6503",
+   "fara-6533",
+   "lda-25306"
+  ]
+ },
+ {
+  "normalised_name": "MO STRATEGIES INC",
+  "entity_ids": [
+   "fara-7625",
+   "lda-401109283"
+  ]
+ },
+ {
+  "normalised_name": "MWW GROUP",
+  "entity_ids": [
+   "fara-5230",
+   "fara-5353",
+   "fara-5389",
+   "fara-5448",
+   "lda-26318"
+  ]
+ },
+ {
+  "normalised_name": "NESTPOINT ASSOCIATES LLC",
+  "entity_ids": [
+   "fara-7679",
+   "lda-401109225"
+  ]
+ },
+ {
+  "normalised_name": "OGILVY PUBLIC RELATIONS WORLDWIDE",
+  "entity_ids": [
+   "fara-5807",
+   "lda-30063"
+  ]
+ },
+ {
+  "normalised_name": "OTT BIELITZKI O NEILL PLLC",
+  "entity_ids": [
+   "fara-6573",
+   "lda-401103584"
+  ]
+ },
+ {
+  "normalised_name": "PAUL HASTINGS LLP",
+  "entity_ids": [
+   "fara-6743",
+   "lda-30928"
+  ]
+ },
+ {
+  "normalised_name": "PILLSBURY WINTHROP SHAW PITTMAN LLP",
+  "entity_ids": [
+   "fara-5198",
+   "lda-35002"
+  ]
+ },
+ {
+  "normalised_name": "PODESTA GROUP INC",
+  "entity_ids": [
+   "fara-5813",
+   "fara-5926",
+   "lda-31680"
+  ]
+ },
+ {
+  "normalised_name": "POLICY IMPACT COMMUNICATIONS INC",
+  "entity_ids": [
+   "fara-5936",
+   "lda-31758"
+  ]
+ },
+ {
+  "normalised_name": "POWELL GOLDSTEIN LLP",
+  "entity_ids": [
+   "fara-5796",
+   "lda-31942"
+  ]
+ },
+ {
+  "normalised_name": "PRIME POLICY GROUP",
+  "entity_ids": [
+   "fara-6008",
+   "fara-6112",
+   "fara-6192",
+   "fara-6263",
+   "fara-6377",
+   "lda-400532589"
+  ]
+ },
+ {
+  "normalised_name": "REED SMITH LLP",
+  "entity_ids": [
+   "fara-5465",
+   "lda-32932"
+  ]
+ },
+ {
+  "normalised_name": "S 3 GROUP",
+  "entity_ids": [
+   "fara-6422",
+   "lda-400774330"
+  ]
+ },
+ {
+  "normalised_name": "SANDLER TRAVIS ROSENBERG P A",
+  "entity_ids": [
+   "fara-4698",
+   "fara-5303",
+   "fara-5989",
+   "fara-6115",
+   "fara-6244",
+   "fara-6309",
+   "fara-6366",
+   "fara-7674",
+   "lda-34295"
+  ]
+ },
+ {
+  "normalised_name": "SAPRAC INC",
+  "entity_ids": [
+   "fara-6457",
+   "lda-401103984"
+  ]
+ },
+ {
+  "normalised_name": "SIDLEY AUSTIN LLP",
+  "entity_ids": [
+   "fara-3731",
+   "lda-35230"
+  ]
+ },
+ {
+  "normalised_name": "SIGNAL GROUP CONSULTING LLC",
+  "entity_ids": [
+   "fara-6297",
+   "fara-6661",
+   "lda-73271"
+  ]
+ },
+ {
+  "normalised_name": "SQUIRE SANDERS PUBLIC ADVOCACY LLC",
+  "entity_ids": [
+   "fara-5791",
+   "fara-6063",
+   "lda-318072"
+  ]
+ },
+ {
+  "normalised_name": "STEPTOE LLP",
+  "entity_ids": [
+   "fara-6653",
+   "lda-36710"
+  ]
+ },
+ {
+  "normalised_name": "THE ELEVATION ASSOCIATION LLC",
+  "entity_ids": [
+   "fara-7187",
+   "lda-401106711"
+  ]
+ },
+ {
+  "normalised_name": "THE GALLAGHER GROUP LLC",
+  "entity_ids": [
+   "fara-7046",
+   "lda-55256"
+  ]
+ },
+ {
+  "normalised_name": "TSG ADVOCATES DC LLC",
+  "entity_ids": [
+   "fara-7766",
+   "lda-401109292"
+  ]
+ },
+ {
+  "normalised_name": "TWINLOGIC STRATEGIES LLP",
+  "entity_ids": [
+   "fara-6276",
+   "lda-400493431"
+  ]
+ },
+ {
+  "normalised_name": "VALCOUR LLC",
+  "entity_ids": [
+   "fara-7373",
+   "lda-401107294"
+  ]
+ },
+ {
+  "normalised_name": "VENABLE LLP",
+  "entity_ids": [
+   "fara-5435",
+   "fara-5931",
+   "lda-39941"
+  ]
+ },
+ {
+  "normalised_name": "VENN STRATEGIES",
+  "entity_ids": [
+   "fara-7472",
+   "lda-65191"
+  ]
+ },
+ {
+  "normalised_name": "WHITE CASE LLP",
+  "entity_ids": [
+   "fara-2759",
+   "fara-6393",
+   "lda-41192"
+  ]
+ },
+ {
+  "normalised_name": "WILSON GLOBAL COMMUNICATIONS LLC",
+  "entity_ids": [
+   "fara-6584",
+   "lda-400776335"
+  ]
+ }
+]

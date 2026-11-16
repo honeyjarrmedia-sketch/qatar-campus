@@ -1,0 +1,376 @@
+{
+ "fara": [
+  {
+   "key": "registrants",
+   "url": "https://efile.fara.gov/bulk/zip/FARA_All_Registrants.csv.zip",
+   "path": "raw/fara/FARA_All_Registrants.csv.zip",
+   "retrieved_at": "2026-11-16T08:08:53Z",
+   "status": "ok",
+   "bytes": 248388,
+   "sha256": "69aae146a5a3bea5b342c95c049af6e62f28376dd406d6298d79dc3a65d77d99"
+  },
+  {
+   "key": "foreign_principals",
+   "url": "https://efile.fara.gov/bulk/zip/FARA_All_ForeignPrincipals.csv.zip",
+   "path": "raw/fara/FARA_All_ForeignPrincipals.csv.zip",
+   "retrieved_at": "2026-11-16T08:08:53Z",
+   "status": "ok",
+   "bytes": 704082,
+   "sha256": "4282a5f3c4292039e1452cb8020f729110b03ace1ac5668d2f7aa4f8e929aa10"
+  },
+  {
+   "key": "registrant_docs",
+   "url": "https://efile.fara.gov/bulk/zip/FARA_All_RegistrantDocs.csv.zip",
+   "path": "raw/fara/FARA_All_RegistrantDocs.csv.zip",
+   "retrieved_at": "2026-11-16T08:08:53Z",
+   "status": "ok",
+   "bytes": 3250577,
+   "sha256": "1abc5ff3dc50ea9c5e88ccf0cb3a3d3f7cc72612fbcc39d8f3b4584fa5b3572b"
+  },
+  {
+   "key": "short_forms",
+   "url": "https://efile.fara.gov/bulk/zip/FARA_All_ShortForms.csv.zip",
+   "path": "raw/fara/FARA_All_ShortForms.csv.zip",
+   "retrieved_at": "2026-11-16T08:08:53Z",
+   "status": "ok",
+   "bytes": 942065,
+   "sha256": "767c94050c753bcf9aaa2a4cc04c6f6b1a42fbfb8b99a3b2db24df68e5655854"
+  }
+ ],
+ "lda": [
+  {
+   "unfiltered_count": 2004201
+  },
+  {
+   "filter": "client_country",
+   "country_code": "QA",
+   "url": "https://lda.gov/api/v1/filings/?client_country=QA&page_size=25&ordering=dt_posted",
+   "retrieved_at": "2026-11-16T08:08:59Z",
+   "api_count": 90,
+   "status": "ok",
+   "saved": 90,
+   "path": "raw/lda/QA/client_country.jsonl.gz",
+   "sha256": "19427eb48457381c494e9d7d8bd4f449199f7e973a9b2ba06abd4d85e85e6c10"
+  },
+  {
+   "filter": "client_ppb_country",
+   "country_code": "QA",
+   "url": "https://lda.gov/api/v1/filings/?client_ppb_country=QA&page_size=25&ordering=dt_posted",
+   "retrieved_at": "2026-11-16T08:09:18Z",
+   "api_count": 90,
+   "status": "ok",
+   "saved": 90,
+   "path": "raw/lda/QA/client_ppb_country.jsonl.gz",
+   "sha256": "5710f5d0f7b936299a93bdce5f0c9a14eb98606ae0df6861a88115f6bde72714"
+  },
+  {
+   "filter": "foreign_entity_country",
+   "country_code": "QA",
+   "url": "https://lda.gov/api/v1/filings/?foreign_entity_country=QA&page_size=25&ordering=dt_posted",
+   "retrieved_at": "2026-11-16T08:09:40Z",
+   "api_count": 32,
+   "status": "ok",
+   "saved": 32,
+   "path": "raw/lda/QA/foreign_entity_country.jsonl.gz",
+   "sha256": "044a777b7e5786b7944c9f949e599b92b7a4ac2a10e78deff763d4c3d602fbed"
+  },
+  {
+   "filter": "affiliated_organization_country",
+   "country_code": "QA",
+   "url": "https://lda.gov/api/v1/filings/?affiliated_organization_country=QA&page_size=25&ordering=dt_posted",
+   "retrieved_at": "2026-11-16T08:09:49Z",
+   "api_count": 9,
+   "status": "ok",
+   "saved": 9,
+   "path": "raw/lda/QA/affiliated_organization_country.jsonl.gz",
+   "sha256": "d4f670f62cf7c913d1b74487c982a00be55a24e66ee3622e8801b271e4499dd4"
+  },
+  {
+   "filter": "foreign_entity_ppb_country",
+   "country_code": "QA",
+   "url": "https://lda.gov/api/v1/filings/?foreign_entity_ppb_country=QA&page_size=25&ordering=dt_posted",
+   "retrieved_at": "2026-11-16T08:09:54Z",
+   "api_count": 31,
+   "status": "ok",
+   "saved": 31,
+   "path": "raw/lda/QA/foreign_entity_ppb_country.jsonl.gz",
+   "sha256": "34dfde38b87326bd92ab72f79bd94dc1b55bf167b1ea1149f8f6c5a2c1048367"
+  },
+  {
+   "filter": "affiliated_organization_ppb_country",
+   "country_code": "QA",
+   "url": "https://lda.gov/api/v1/filings/?affiliated_organization_ppb_country=QA&page_size=25&ordering=dt_posted",
+   "retrieved_at": "2026-11-16T08:10:03Z",
+   "api_count": 2004201,
+   "status": "skipped",
+   "note": "filter appears to be ignored by the API (count 2004201 vs 2004201 unfiltered)"
+  },
+  {
+   "filter": "client_country",
+   "country_code": "CN",
+   "url": "https://lda.gov/api/v1/filings/?client_country=CN&page_size=25&ordering=dt_posted",
+   "retrieved_at": "2026-11-16T08:10:09Z",
+   "api_count": 1160,
+   "status": "ok",
+   "saved": 1160,
+   "path": "raw/lda/CN/client_country.jsonl.gz",
+   "sha256": "2239359a20af783fde3a0f17fc923bcbe4a50e6cfc7773b7f60201949bf1902b"
+  },
+  {
+   "filter": "client_ppb_country",
+   "country_code": "CN",
+   "url": "https://lda.gov/api/v1/filings/?client_ppb_country=CN&page_size=25&ordering=dt_posted",
+   "retrieved_at": "2026-11-16T08:14:12Z",
+   "api_count": 1147,
+   "status": "ok",
+   "saved": 1147,
+   "path": "raw/lda/CN/client_ppb_country.jsonl.gz",
+   "sha256": "ca9fc6ee05873e7b89af245484ef30ac20ceb6f6c865c504fa488c29bb6a85fb"
+  },
+  {
+   "filter": "foreign_entity_country",
+   "country_code": "CN",
+   "url": "https://lda.gov/api/v1/filings/?foreign_entity_country=CN&page_size=25&ordering=dt_posted",
+   "retrieved_at": "2026-11-16T08:18:05Z",
+   "api_count": 541,
+   "status": "ok",
+   "saved": 541,
+   "path": "raw/lda/CN/foreign_entity_country.jsonl.gz",
+   "sha256": "1ad170c32d375e05b84bd0bd32388855a2e19fbe54b0d3dc5536338e5ab6c88c"
+  },
+  {
+   "filter": "affiliated_organization_country",
+   "country_code": "CN",
+   "url": "https://lda.gov/api/v1/filings/?affiliated_organization_country=CN&page_size=25&ordering=dt_posted",
+   "retrieved_at": "2026-11-16T08:20:01Z",
+   "api_count": 35,
+   "status": "ok",
+   "saved": 35,
+   "path": "raw/lda/CN/affiliated_organization_country.jsonl.gz",
+   "sha256": "75016d903138a7b9652b186baf8ab9585dbe0e8adbf122b6bb76fddb96d4db8b"
+  },
+  {
+   "filter": "foreign_entity_ppb_country",
+   "country_code": "CN",
+   "url": "https://lda.gov/api/v1/filings/?foreign_entity_ppb_country=CN&page_size=25&ordering=dt_posted",
+   "retrieved_at": "2026-11-16T08:20:12Z",
+   "api_count": 562,
+   "status": "ok",
+   "saved": 562,
+   "path": "raw/lda/CN/foreign_entity_ppb_country.jsonl.gz",
+   "sha256": "6fec888ced2acaecf63632360e717c2f0ae80dd61b7863dabfb9d8051d966783"
+  },
+  {
+   "filter": "affiliated_organization_ppb_country",
+   "country_code": "CN",
+   "url": "https://lda.gov/api/v1/filings/?affiliated_organization_ppb_country=CN&page_size=25&ordering=dt_posted",
+   "retrieved_at": "2026-11-16T08:22:17Z",
+   "api_count": 2004201,
+   "status": "skipped",
+   "note": "filter appears to be ignored by the API (count 2004201 vs 2004201 unfiltered)"
+  },
+  {
+   "filter": "client_country",
+   "country_code": "RU",
+   "url": "https://lda.gov/api/v1/filings/?client_country=RU&page_size=25&ordering=dt_posted",
+   "retrieved_at": "2026-11-16T08:22:23Z",
+   "api_count": 438,
+   "status": "ok",
+   "saved": 438,
+   "path": "raw/lda/RU/client_country.jsonl.gz",
+   "sha256": "fdfb51b90d58210f03edc1a5324662f99f7b1642c167ad38bc9cd516647f3f00"
+  },
+  {
+   "filter": "client_ppb_country",
+   "country_code": "RU",
+   "url": "https://lda.gov/api/v1/filings/?client_ppb_country=RU&page_size=25&ordering=dt_posted",
+   "retrieved_at": "2026-11-16T08:23:54Z",
+   "api_count": 427,
+   "status": "ok",
+   "saved": 427,
+   "path": "raw/lda/RU/client_ppb_country.jsonl.gz",
+   "sha256": "8107bc28a9e2ef6dd2934534e9cae90404774f50d96e318cbd917a3b68fa3423"
+  },
+  {
+   "filter": "foreign_entity_country",
+   "country_code": "RU",
+   "url": "https://lda.gov/api/v1/filings/?foreign_entity_country=RU&page_size=25&ordering=dt_posted",
+   "retrieved_at": "2026-11-16T08:25:25Z",
+   "api_count": 133,
+   "status": "ok",
+   "saved": 133,
+   "path": "raw/lda/RU/foreign_entity_country.jsonl.gz",
+   "sha256": "7b37cd1bb0613e663aa5ba8e179c228f4d39a24e62f475a4dfeb04e1e02eb294"
+  },
+  {
+   "filter": "affiliated_organization_country",
+   "country_code": "RU",
+   "url": "https://lda.gov/api/v1/filings/?affiliated_organization_country=RU&page_size=25&ordering=dt_posted",
+   "retrieved_at": "2026-11-16T08:25:57Z",
+   "api_count": 5,
+   "status": "ok",
+   "saved": 5,
+   "path": "raw/lda/RU/affiliated_organization_country.jsonl.gz",
+   "sha256": "22e38cc987bf17c798468642337abf9d63227492429c5df10f0212d5e85d7094"
+  },
+  {
+   "filter": "foreign_entity_ppb_country",
+   "country_code": "RU",
+   "url": "https://lda.gov/api/v1/filings/?foreign_entity_ppb_country=RU&page_size=25&ordering=dt_posted",
+   "retrieved_at": "2026-11-16T08:26:01Z",
+   "api_count": 129,
+   "status": "ok",
+   "saved": 129,
+   "path": "raw/lda/RU/foreign_entity_ppb_country.jsonl.gz",
+   "sha256": "3076346a3e4c52f1d59abb31bd56922903b34acf4f5b29aa0c9aab98b8ef4836"
+  },
+  {
+   "filter": "affiliated_organization_ppb_country",
+   "country_code": "RU",
+   "url": "https://lda.gov/api/v1/filings/?affiliated_organization_ppb_country=RU&page_size=25&ordering=dt_posted",
+   "retrieved_at": "2026-11-16T08:26:32Z",
+   "api_count": 2004201,
+   "status": "skipped",
+   "note": "filter appears to be ignored by the API (count 2004201 vs 2004201 unfiltered)"
+  },
+  {
+   "filter": "client_country",
+   "country_code": "SA",
+   "url": "https://lda.gov/api/v1/filings/?client_country=SA&page_size=25&ordering=dt_posted",
+   "retrieved_at": "2026-11-16T08:26:37Z",
+   "api_count": 115,
+   "status": "ok",
+   "saved": 115,
+   "path": "raw/lda/SA/client_country.jsonl.gz",
+   "sha256": "9d2631065e33ed36ce0cb180ec0eb48c61264aeba8381a873b920e4abf6f528c"
+  },
+  {
+   "filter": "client_ppb_country",
+   "country_code": "SA",
+   "url": "https://lda.gov/api/v1/filings/?client_ppb_country=SA&page_size=25&ordering=dt_posted",
+   "retrieved_at": "2026-11-16T08:27:02Z",
+   "api_count": 115,
+   "status": "ok",
+   "saved": 115,
+   "path": "raw/lda/SA/client_ppb_country.jsonl.gz",
+   "sha256": "65a7bc01b61760e6808c8bb0c3045cfdce35b61ef3be1531acdb135d3f29e340"
+  },
+  {
+   "filter": "foreign_entity_country",
+   "country_code": "SA",
+   "url": "https://lda.gov/api/v1/filings/?foreign_entity_country=SA&page_size=25&ordering=dt_posted",
+   "retrieved_at": "2026-11-16T08:27:26Z",
+   "api_count": 48,
+   "status": "ok",
+   "saved": 48,
+   "path": "raw/lda/SA/foreign_entity_country.jsonl.gz",
+   "sha256": "9a3f13d42e50f5b34f8d0ed857930c2892386d17c2b3c44ba429298549c28249"
+  },
+  {
+   "filter": "affiliated_organization_country",
+   "country_code": "SA",
+   "url": "https://lda.gov/api/v1/filings/?affiliated_organization_country=SA&page_size=25&ordering=dt_posted",
+   "retrieved_at": "2026-11-16T08:27:37Z",
+   "api_count": 0,
+   "status": "ok",
+   "saved": 0,
+   "path": "raw/lda/SA/affiliated_organization_country.jsonl.gz",
+   "sha256": "e6a63b0414f4e6cbed692cd28004b4128310dd29bc4e9abb2f857e3d1fc1e20a"
+  },
+  {
+   "filter": "foreign_entity_ppb_country",
+   "country_code": "SA",
+   "url": "https://lda.gov/api/v1/filings/?foreign_entity_ppb_country=SA&page_size=25&ordering=dt_posted",
+   "retrieved_at": "2026-11-16T08:27:42Z",
+   "api_count": 46,
+   "status": "ok",
+   "saved": 46,
+   "path": "raw/lda/SA/foreign_entity_ppb_country.jsonl.gz",
+   "sha256": "1783230ed0ea812a6d2b98c10f27382bf1f84357356343064f9bb217a995a75c"
+  },
+  {
+   "filter": "affiliated_organization_ppb_country",
+   "country_code": "SA",
+   "url": "https://lda.gov/api/v1/filings/?affiliated_organization_ppb_country=SA&page_size=25&ordering=dt_posted",
+   "retrieved_at": "2026-11-16T08:27:54Z",
+   "api_count": 2004201,
+   "status": "skipped",
+   "note": "filter appears to be ignored by the API (count 2004201 vs 2004201 unfiltered)"
+  },
+  {
+   "filter": "client_country",
+   "country_code": "TR",
+   "url": "https://lda.gov/api/v1/filings/?client_country=TR&page_size=25&ordering=dt_posted",
+   "retrieved_at": "2026-11-16T08:27:59Z",
+   "api_count": 207,
+   "status": "ok",
+   "saved": 207,
+   "path": "raw/lda/TR/client_country.jsonl.gz",
+   "sha256": "6a18060a9fd0df7479df42f2a1e12e67b64a08cb24d855875061968dbfbcfe24"
+  },
+  {
+   "filter": "client_ppb_country",
+   "country_code": "TR",
+   "url": "https://lda.gov/api/v1/filings/?client_ppb_country=TR&page_size=25&ordering=dt_posted",
+   "retrieved_at": "2026-11-16T08:28:45Z",
+   "api_count": 180,
+   "status": "ok",
+   "saved": 180,
+   "path": "raw/lda/TR/client_ppb_country.jsonl.gz",
+   "sha256": "a97444e55020177308e44bf65a01598f393cd33aad37210dcf7683cbeb2fbb79"
+  },
+  {
+   "filter": "foreign_entity_country",
+   "country_code": "TR",
+   "url": "https://lda.gov/api/v1/filings/?foreign_entity_country=TR&page_size=25&ordering=dt_posted",
+   "retrieved_at": "2026-11-16T08:29:24Z",
+   "api_count": 44,
+   "status": "ok",
+   "saved": 44,
+   "path": "raw/lda/TR/foreign_entity_country.jsonl.gz",
+   "sha256": "8b23c1ea836fd3bdde1707eb14b89f2b6cdd2b4738d12de0de5728ab255d695c"
+  },
+  {
+   "filter": "affiliated_organization_country",
+   "country_code": "TR",
+   "url": "https://lda.gov/api/v1/filings/?affiliated_organization_country=TR&page_size=25&ordering=dt_posted",
+   "retrieved_at": "2026-11-16T08:29:34Z",
+   "api_count": 1,
+   "status": "ok",
+   "saved": 1,
+   "path": "raw/lda/TR/affiliated_organization_country.jsonl.gz",
+   "sha256": "d87c2397f5bfeea35ec13c80b2782bfe0d61bf663e272bbb2b0e3a82df803350"
+  },
+  {
+   "filter": "foreign_entity_ppb_country",
+   "country_code": "TR",
+   "url": "https://lda.gov/api/v1/filings/?foreign_entity_ppb_country=TR&page_size=25&ordering=dt_posted",
+   "retrieved_at": "2026-11-16T08:29:38Z",
+   "api_count": 44,
+   "status": "ok",
+   "saved": 44,
+   "path": "raw/lda/TR/foreign_entity_ppb_country.jsonl.gz",
+   "sha256": "c8e55821d63cc0bf77708deae5c061956d339361495b278dc731fdc598d64451"
+  },
+  {
+   "filter": "affiliated_organization_ppb_country",
+   "country_code": "TR",
+   "url": "https://lda.gov/api/v1/filings/?affiliated_organization_ppb_country=TR&page_size=25&ordering=dt_posted",
+   "retrieved_at": "2026-11-16T08:29:49Z",
+   "api_count": 2004201,
+   "status": "skipped",
+   "note": "filter appears to be ignored by the API (count 2004201 vs 2004201 unfiltered)"
+  }
+ ],
+ "sec117": [
+  {
+   "key": "complete_through_2025-02-28",
+   "url": "https://fsapartners.ed.gov/sites/default/files/2025-05/Sec117PublicRecordsCompleteFeb2025.xlsx",
+   "path": "raw/sec117/Sec117PublicRecordsCompleteFeb2025.xlsx",
+   "retrieved_at": "2026-11-16T08:29:50Z",
+   "status": "ok",
+   "bytes": 9337605,
+   "sha256": "a4e70dab99b1e7ab113bf3b701ac9cd00838e490a853d163a7135b46e4402949"
+  }
+ ]
+}

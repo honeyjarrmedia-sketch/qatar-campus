@@ -1,0 +1,73 @@
+{
+ "complete_through_2025-02-28": {
+  "sheets": [
+   {
+    "name": "Sheet1",
+    "max_row": 117154,
+    "max_column": 18,
+    "first_rows": [
+     [
+      "Section 117 of the Higher Education Act - Public Records\nForeign Funding Disclos",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      "OPEID",
+      "School Name",
+      "State",
+      "Transaction Type",
+      "Foreign Government Source",
+      "Attribution Country",
+      "Amount",
+      "Receipt Date",
+      "Contract Start Date",
+      "Contract End Date",
+      "Restricted Transaction Foreign Government Legal Name",
+      "Restricted Transaction Foreign Government Name",
+      "Restricted Transaction Description",
+      "Institution Owned by Foreign Source",
+      "Foreign Source Owner Name",
+      "Foreign Source Ownership Date",
+      "Changes Due to Foreign Source Owner",
+      "Legacy"
+     ],
+     [
+      "00266600",
+      "Adelphi University",
+      "NY",
+      "Gift",
+      "N/A",
+      "FRANCE",
+      "500000",
+      "2017-12-29 00:00:00",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      "Yes"
+     ]
+    ]
+   }
+  ]
+ }
+}
