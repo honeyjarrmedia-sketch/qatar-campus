@@ -1,6 +1,6 @@
 {
- "records": 137422,
- "featured_records": 20083,
+ "records": 137547,
+ "featured_records": 20208,
  "other_records": 117339,
  "countries": 296,
  "year_range": [
@@ -8,11 +8,11 @@
   2026
  ],
  "qatar_default_view": {
-  "fees_total": 0.0,
-  "fees_n": 0,
+  "fees_total": 14403041.68,
+  "fees_n": 127,
   "university_total": 6572557546.35,
   "university_n": 1223,
-  "count": 1461,
+  "count": 1588,
   "registrants": 106,
   "principals": 67,
   "filings": 107,
@@ -20,11 +20,11 @@
   "income_n": 29
  },
  "data_file_bytes": {
-  "connections.json": 33365,
-  "summary.json": 3147,
-  "records-csv.zip": 5183315,
-  "index.json": 17472,
   "entity_countries.json": 169106,
+  "connections.json": 33366,
+  "index.json": 17472,
+  "records-csv.zip": 5112486,
+  "summary.json": 3258,
   "country/ (largest)": "england.json 3,489,919",
   "country/ (files)": 296
  },
