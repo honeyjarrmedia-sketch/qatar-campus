@@ -349,8 +349,16 @@ def run() -> int:
         read_n = fr.get("statements_read", 0)
         got = fr.get("outcomes", {}).get("extracted", 0)
         if read_n:
+            held = fr.get("lines_for_other_countries_not_published", 0)
             fee_bits.append(f"Of {read_n:,} statements read so far, {got:,} had a "
                             f"readable receipts table.")
+            if held:
+                fee_bits.append(f"A further {held:,} payment lines on those statements name "
+                                "principals from other countries and are held back.")
+            missed = fr.get("lines_not_matched_to_a_principal", 0)
+            if missed:
+                fee_bits.append(f"{missed:,} lines could not be tied to a named principal "
+                                "with confidence and are left out rather than guessed at.")
     fee_note = " ".join(fee_bits) or ("No statements have been read yet, so no FARA "
                                       "payment figures appear on this page.")
 

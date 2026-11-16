@@ -6,11 +6,14 @@
   "extracted": 1,
   "table says: see appendix (not parsed)": 4
  },
- "fee_records": 2,
- "amount_total": 18838.64,
- "by_country": {
-  "China": 18838.64
- },
+ "fee_records": 0,
+ "amount_total": 0,
+ "by_country": {},
  "lines_not_matched_to_a_principal": 0,
- "amount_not_matched": 0
+ "amount_not_matched": 0,
+ "lines_for_other_countries_not_published": 2,
+ "amount_for_other_countries": 18838.64,
+ "other_countries_seen": [
+  "China"
+ ]
 }

@@ -147,7 +147,7 @@ def _page_rows(page, page_text: str) -> list:
         if value <= 0:
             continue
         last_named = name
-        rows.append({"principal_as_printed": " ".join(name.split()),
+        rows.append({"principal_as_printed": _tidy_printed(name),
                      "amount_usd": round(value, 2)})
     return rows
 
@@ -201,6 +201,21 @@ FILLER = {"THE", "OF", "AND", "A", "AN", "STATE", "GOVERNMENT", "REPUBLIC",
           "OFFICE", "MISSION", "INC", "LLC", "LTD", "SA", "AG", "GMBH", "CO"}
 
 
+def _tidy_printed(name: str) -> str:
+    """The name as printed, with the artefacts of reading a scan removed.
+
+    Two are common: the cell repeats the name on its continuation line, so
+    the joined text reads "Macao Tourism Office Macao Tourism Office"; and a
+    space is lost between words, giving "GovernmentTourism".
+    """
+    name = re.sub(r"([a-z])([A-Z])", r"\1 \2", " ".join(name.split()))
+    words = name.split()
+    for half in range(len(words) // 2, 1, -1):     # longest repeat first
+        if words[:half] == words[half:half * 2]:
+            return " ".join(words[:half] + words[half * 2:])
+    return name
+
+
 def _significant(name: str) -> set:
     return {w for w in name.split() if w not in FILLER and len(w) > 1}
 
@@ -248,7 +263,7 @@ def run(country_code: str = "QA") -> dict:
         by_reg[r["source_record_id"]][norm_name(r["foreign_principal"])] = r
     reg_name = {r["source_record_id"]: r["entity_or_person_name"] for r in fara}
 
-    outcomes, fee_records, unmatched = Counter(), [], []
+    outcomes, fee_records, unmatched, other_countries = Counter(), [], [], []
     samples, SAMPLE_PER_OUTCOME = defaultdict(list), 6
     for doc in docs:
         path = config.ROOT / doc["path"]
@@ -274,6 +289,19 @@ def run(country_code: str = "QA") -> dict:
             if match is None:  # same significant words, one filler word apart
                 hits = _token_matches(printed, known)
                 match, how = (hits[0], "same significant words") if len(hits) == 1 else (None, "")
+            if match is not None and match["country_code"] != country_code:
+                # The statement covers every principal this registrant acts
+                # for. Lines for other countries are real, but a country's
+                # figure built only from statements gathered for a different
+                # country would read as that country's total when it is a
+                # fragment. They are recorded here and published when that
+                # country's own statements are read.
+                other_countries.append({"country": match["country"],
+                                        "registration_number": regnum,
+                                        "principal": match["foreign_principal"],
+                                        "amount_usd": row["amount_usd"],
+                                        "url": res["url"]})
+                continue
             if match is None:
                 unmatched.append({"registration_number": regnum, "url": res["url"],
                                   "principal_as_printed": row["principal_as_printed"],
@@ -333,16 +361,22 @@ def run(country_code: str = "QA") -> dict:
                        for c in sorted({r["country"] for r in fee_records})},
         "lines_not_matched_to_a_principal": len(unmatched),
         "amount_not_matched": round(sum(u["amount_usd"] for u in unmatched), 2),
+        "lines_for_other_countries_not_published": len(other_countries),
+        "amount_for_other_countries": round(sum(o["amount_usd"] for o in other_countries), 2),
+        "other_countries_seen": sorted({o["country"] for o in other_countries}),
     }
     write_json(config.REPORTS / f"fara_fees_{country_code}.json", report)
     write_json(config.REPORTS / f"fara_fees_unmatched_{country_code}.json", unmatched[:400])
+    write_json(config.REPORTS / f"fara_fees_other_countries_{country_code}.json",
+               sorted(other_countries, key=lambda o: -o["amount_usd"])[:400])
     (config.REPORTS / f"fara_fees_diagnostics_{country_code}.txt").write_text(
         "".join(f"\n\n{'=' * 70}\n{outcome}\n{s['url']}\n{'=' * 70}\n{s['text']}"
                 for outcome, items in sorted(samples.items()) for s in items),
         encoding="utf-8")
     write_json(config.CLEAN / f"fara_fees_{country_code}.json", fee_records)
     print(f"[fees] {country_code}: {len(fee_records)} fee lines, "
-          f"${report['amount_total']:,.2f} | outcomes {dict(outcomes)}")
+          f"${report['amount_total']:,.2f} | {len(other_countries)} lines for other "
+          f"countries held back | {len(unmatched)} unmatched | outcomes {dict(outcomes)}")
     return {"records": fee_records, "report": report}
 
 

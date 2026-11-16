@@ -484,3 +484,21 @@ class FaraFeeScannedHeadings(unittest.TestCase):
             (228, [("Synthetic", 73), ("07/06/2026", 174), ("$1.00", 462)]),
         ])
         self.assertEqual(x._page_rows(page, "14 (c) RECEIPTS-THINGS OF VALUE"), [])
+
+
+class FaraFeePrintedNames(unittest.TestCase):
+    """Cleaning the artefacts of reading a scanned cell. Synthetic names."""
+
+    def test_doubled_name_collapsed_and_run_together_words_split(self):
+        from pipeline.extract_fara_fees import _tidy_printed as tidy
+        self.assertEqual(tidy("Synthetic OfficeTourism Board Synthetic OfficeTourism Board"),
+                         "Synthetic Office Tourism Board")
+        self.assertEqual(tidy("Synthetic Board Synthetic Board Extra"),
+                         "Synthetic Board Extra")
+
+    def test_two_different_names_are_left_alone(self):
+        from pipeline.extract_fara_fees import _tidy_printed as tidy
+        self.assertEqual(tidy("Synthetic Board A Synthetic Office B"),
+                         "Synthetic Board A Synthetic Office B")
+        self.assertEqual(tidy("Embassy of the Synthetic State"),
+                         "Embassy of the Synthetic State")
