@@ -1,0 +1,69 @@
+name: Download FARA statements
+
+# Downloads the supplemental statements that hold the fee figures, for one
+# country's registrations, and pushes them to a review branch.
+on:
+  workflow_dispatch:
+    inputs:
+      country:
+        description: "Country code (QA, CN, RU, SA, TR)"
+        default: "QA"
+      since:
+        description: "Only statements filed on or after this date"
+        default: "2015-01-01"
+      sample:
+        description: "Download only this many (blank = all)"
+        default: "8"
+  push:
+    branches: [main]
+    paths: ["pipeline/.faradocs-trigger"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fara-docs
+  cancel-in-progress: false
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - run: pip install -r requirements.txt
+      - name: Read the trigger file
+        id: cfg
+        run: |
+          COUNTRY="${{ github.event.inputs.country }}"; SINCE="${{ github.event.inputs.since }}"; SAMPLE="${{ github.event.inputs.sample }}"
+          if [ -z "$COUNTRY" ] && [ -f pipeline/.faradocs-trigger ]; then
+            COUNTRY=$(grep -oP 'country=\K\S+' pipeline/.faradocs-trigger || echo QA)
+            SINCE=$(grep -oP 'since=\K\S+' pipeline/.faradocs-trigger || echo 2015-01-01)
+            SAMPLE=$(grep -oP 'sample=\K\S+' pipeline/.faradocs-trigger || echo "")
+          fi
+          echo "country=${COUNTRY:-QA}" >> "$GITHUB_OUTPUT"
+          echo "since=${SINCE:-2015-01-01}" >> "$GITHUB_OUTPUT"
+          echo "sample=${SAMPLE}" >> "$GITHUB_OUTPUT"
+      - name: Download statements
+        continue-on-error: true
+        run: |
+          ARGS="--country ${{ steps.cfg.outputs.country }} --since ${{ steps.cfg.outputs.since }}"
+          if [ -n "${{ steps.cfg.outputs.sample }}" ] && [ "${{ steps.cfg.outputs.sample }}" != "all" ]; then
+            ARGS="$ARGS --sample ${{ steps.cfg.outputs.sample }}"
+          fi
+          python -m pipeline.fetch_fara_docs $ARGS
+      - name: Push to a review branch
+        if: always()
+        run: |
+          BRANCH="docs/fara-$(date -u +%Y%m%d-%H%M)"
+          git config user.name "qatar-campus-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add raw data
+          git commit -m "FARA statements ${{ steps.cfg.outputs.country }} $(date -u +%Y-%m-%d)" || { echo "Nothing changed"; exit 0; }
+          git push origin "$BRANCH"
+          echo "Branch: $BRANCH" >> "$GITHUB_STEP_SUMMARY"
