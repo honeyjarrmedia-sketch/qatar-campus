@@ -1,0 +1,9 @@
+{
+ "country_code": "QA",
+ "since": "2015-01-01",
+ "requested": 8,
+ "downloaded": 8,
+ "errors": [],
+ "with_text_layer": 5,
+ "image_only_no_text": 3
+}
