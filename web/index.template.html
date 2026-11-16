@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>@@BRAND@@: foreign agent registrations and lobbying filings in the United States</title>
+<meta name="description" content="@@META_DESCRIPTION@@">
+@@CANONICAL@@
+<meta property="og:type" content="website">
+<meta property="og:title" content="@@BRAND@@: foreign agent registrations and lobbying filings in the United States">
+<meta property="og:description" content="@@META_DESCRIPTION@@">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%274%27 fill=%27%231E3A8A%27/%3E%3Crect x=%277%27 y=%2717%27 width=%274%27 height=%278%27 fill=%27%23fff%27/%3E%3Crect x=%2714%27 y=%2711%27 width=%274%27 height=%2714%27 fill=%27%23fff%27/%3E%3Crect x=%2721%27 y=%277%27 width=%274%27 height=%2718%27 fill=%27%23fff%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="assets/style.css?v=@@VERSION@@">
+<script type="application/ld+json">@@JSONLD@@</script>
+</head>
+<body>
+<a class="skip" href="#records">Skip to the records</a>
+<header class="site-header">
+<div class="wrap">
+<a class="brand" href="#overview"><span class="brand-name">@@BRAND@@</span><span class="brand-tag">@@TAGLINE@@</span></a>
+<nav class="site-nav" aria-label="Sections">
+<a href="#overview">Overview</a>
+<a href="#records">Records</a>
+<a href="#connections">Connections</a>
+<a href="#methodology">Methodology</a>
+<a href="#corrections">Corrections</a>
+<a href="#commentary">Commentary</a>
+</nav>
+</div>
+</header>
+
+<main class="wrap">
+
+<section id="overview" class="hero">
+<div class="label">United States public records · Qatar first</div>
+<h1 id="heading">Qatar-linked foreign agent registrations and lobbying filings in the United States</h1>
+<p class="lede">Every row and every total on this page links to the government filing it came from. The page reports what each filing states and nothing more.</p>
+<div class="actions">
+<a class="btn btn-primary" href="#records">Go to the records</a>
+<a class="btn btn-secondary" href="data/records.csv" download>Download all records (CSV)</a>
+<span class="small">Last updated <span class="mono">@@LAST_UPDATED@@</span></span>
+</div>
+</section>
+
+<section class="card scope" aria-label="Country and year range">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div class="label" id="country-label">Country</div>
+<div class="row" style="align-items: center">
+<div class="tabs" role="group" aria-labelledby="country-label" id="tabs">@@TABS@@</div>
+<div class="field mid" style="flex: 0 1 240px">
+<label class="label" for="more-countries">Other countries</label>
+<select id="more-countries"><option value="">Choose a country</option></select>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="field"><label class="label" for="y-from">From year</label><input id="y-from" type="number" inputmode="numeric" value="@@YEAR_MIN@@" min="@@YEAR_MIN@@" max="@@YEAR_MAX@@"></div>
+<div class="field"><label class="label" for="y-to">To year</label><input id="y-to" type="number" inputmode="numeric" value="@@YEAR_MAX@@" min="@@YEAR_MIN@@" max="@@YEAR_MAX@@"></div>
+<button type="button" class="btn btn-plain" id="y-reset">All years</button>
+<p class="hint">Choosing a country or a year range updates the totals, the chart and the records below without leaving this page. The default is Qatar, across every year in the source files.</p>
+</div>
+</section>
+
+<section class="section" style="margin-top: 24px; gap: 12px" aria-label="Totals">
+<div class="label">Showing: <span id="scope-label">Qatar, @@YEAR_MIN@@ to @@YEAR_MAX@@</span></div>
+<div class="stats" id="stats">@@STATS@@</div>
+<p class="small" id="stats-note">Totals are marked derived because they are counted from individual records. The Justice Department bulk file carries no dollar amounts, so FARA fees appear only where they have been read from a registrant's supplemental statement. Lobbying filings are included for Qatar, China, Russia, Saudi Arabia and Turkey only.</p>
+</section>
+
+<section class="section" aria-labelledby="chart-title">
+<div class="section-head">
+<h2 id="chart-title">Records by year</h2>
+<div class="field mid" style="flex: 0 1 340px">
+<label class="label" for="measure">Measure</label>
+<select id="measure">
+<option value="fara">FARA registrations active in each year</option>
+<option value="lda">Lobbying filings per year</option>
+<option value="income">Lobbying income reported per year (USD)</option>
+</select>
+</div>
+</div>
+<div class="card chart-card">
+<div id="chart"><p class="chart-empty">The chart needs JavaScript. The same figures are in the records table and the CSV file.</p></div>
+<div class="chart-tip" id="chart-tip" hidden></div>
+<details class="table-view"><summary>View these figures as a table</summary><div id="chart-table"></div></details>
+<p class="small" style="margin-top: 8px">Select a bar to limit the page to that year.</p>
+</div>
+</section>
+
+<section id="records" class="section" aria-labelledby="records-title">
+<div class="section-head">
+<div style="display: flex; flex-direction: column; gap: 8px; flex: 1 1 480px">
+<h2 id="records-title">Records</h2>
+<p class="prose">One row per record, each linked to its government filing. <span class="mono" id="count">@@QATAR_COUNT@@</span> records match the choices above.</p>
+</div>
+<button type="button" class="btn btn-primary" id="csv-view">Download CSV of this view</button>
+</div>
+
+<div class="card filters row" style="padding: 20px" aria-label="Filters">
+<div class="field grow"><label class="label" for="q">Search</label><input id="q" type="search" placeholder="Registrant, principal or client name"></div>
+<div class="field mid"><label class="label" for="f-type">Record type</label><select id="f-type"><option value="">All types</option><option value="fara">FARA registration</option><option value="lda">LDA filing</option></select></div>
+<div class="field" style="flex: 0 1 160px"><label class="label" for="f-min">Minimum amount</label><input id="f-min" type="number" inputmode="numeric" min="0" placeholder="USD"></div>
+<div class="field mid"><label class="label" for="f-conf">Confidence</label><select id="f-conf"><option value="">Any</option><option>verified</option><option>derived</option><option>partial</option></select></div>
+<label class="check"><input type="checkbox" id="f-sup" checked> Hide reports replaced by a later amendment</label>
+</div>
+<div id="entity-chip"></div>
+<div class="status" id="status" role="status" aria-live="polite"></div>
+
+<div class="card table-box">
+<table class="data records">
+<thead>
+<tr>
+<th scope="col" data-sort="country"><button type="button">Country</button></th>
+<th scope="col" data-sort="type"><button type="button">Record type</button></th>
+<th scope="col" data-sort="entity"><button type="button">Registrant</button></th>
+<th scope="col" data-sort="principal"><button type="button">Foreign principal or client</button></th>
+<th scope="col" class="num" data-sort="amount"><button type="button">Amount (USD)</button></th>
+<th scope="col" data-sort="year" aria-sort="descending"><button type="button">Year</button></th>
+<th scope="col">Source</th>
+<th scope="col" data-sort="conf"><button type="button">Confidence</button></th>
+</tr>
+</thead>
+<tbody id="rows">@@STATIC_ROWS@@</tbody>
+</table>
+</div>
+<div class="pager"><span id="page-info">@@STATIC_PAGE_INFO@@</span><div><button type="button" class="btn btn-plain" id="prev">Previous</button><button type="button" class="btn btn-plain" id="next">Next</button></div></div>
+</section>
+
+<section id="connections" class="section" aria-labelledby="conn-title">
+<h2 id="conn-title">Connections</h2>
+<p class="prose">Registrants that have records in more than one of the five countries. This shows overlap in the filings and nothing else. It does not state or imply any relationship between the countries. The third column shows how many countries the registrant has records for in total, so a shared firm can be read in context.</p>
+<div class="card table-box">
+<table class="data conn">
+<thead><tr><th scope="col">Registrant</th><th scope="col">Featured countries on file</th><th scope="col">All countries on file</th><th scope="col">Records behind the overlap</th><th scope="col">Confidence</th></tr></thead>
+<tbody id="conn-rows">@@CONN_ROWS@@</tbody>
+</table>
+</div>
+<div class="pager"><span id="conn-info"></span><div><button type="button" class="btn btn-plain" id="conn-more" hidden>Show more</button></div></div>
+</section>
+
+<section id="methodology" class="section" aria-labelledby="meth-title">
+<h2 id="meth-title">Methodology</h2>
+<div class="flags">
+<div class="card flag"><div><span class="tag tag-verified">verified</span></div><p>The row matches one official document, and the link opens that document.</p></div>
+<div class="card flag"><div><span class="tag tag-derived">derived</span></div><p>The value is computed or read from one or more filings. The method is stated on the row or beside the figure.</p></div>
+<div class="card flag"><div><span class="tag tag-partial">partial</span></div><p>The source has a known gap. The row says what is missing.</p></div>
+</div>
+<div class="card gaps">
+<div class="gap"><h3>Sources</h3><p>Department of Justice FARA eFile bulk data and Lobbying Disclosure Act filings from LDA.gov. @@SOURCE_DATES@@</p></div>
+<div class="gap"><h3>Why Qatar leads</h3><p>Qatar is the lead focus of this site. The database itself covers every country in the Justice Department file, and every country is held to the same rules.</p></div>
+<div class="gap"><h3>FARA dollar amounts</h3><p>The Justice Department bulk file lists who is registered for whom, with dates. It carries no dollar amounts. Amounts are shown only where they have been read from a supplemental statement, and those rows are marked derived.</p></div>
+<div class="gap"><h3>FARA source links</h3><p>A FARA row links to the exhibit that names the foreign principal. Where the Justice Department document index has no exhibit under that exact name, the row is marked partial and links to the list of every document filed under that registration number. @@PARTIAL_NOTE@@</p></div>
+<div class="gap"><h3>What a country means on a lobbying filing</h3><p>On an LDA record, the country is where the client or a listed foreign entity is located, as written on the filing. It does not mean the filing involves that country's government.</p></div>
+<div class="gap"><h3>Countries as filed</h3><p>Country names are kept as the filing gives them. Hong Kong, Macau and Taiwan are listed separately and are not merged into China.</p></div>
+<div class="gap"><h3>Years</h3><p>A FARA registration counts toward every year from its start date to its end date, or to the present if the Justice Department file lists no end date. A lobbying filing counts toward its filing year. Rows with no usable date appear only when all years are selected.</p></div>
+<div class="gap"><h3>Amended reports</h3><p>When a lobbying report is amended, the most recently posted version for the same registrant, client and period is used in totals. Earlier versions stay in the records and are marked as replaced.</p></div>
+<div class="gap"><h3>Individuals</h3><p>People appear only where a filing names them, in the detail of that filing's row. The Justice Department file does not tie an individual to a specific foreign principal, so individuals are not listed by country.</p></div>
+<div class="gap"><h3>Not yet included</h3><p>University foreign gift reports, campaign finance records and nonprofit tax filings are not in this release.</p></div>
+<p class="small" style="margin-top: 16px">Senate Office of Public Records cannot vouch for the data or analyses derived from these data after the data have been retrieved from LDA.gov.</p>
+</div>
+</section>
+
+<section id="corrections" class="section" aria-labelledby="corr-title">
+<h2 id="corr-title">Corrections</h2>
+<div class="two">
+<div class="card pad"><h3>Report an error</h3><p>Send the link to the row and the filing that shows the correct information to @@CONTACT@@. Every correction is checked against the filing and logged here.</p></div>
+<div class="card pad"><h3>Change log</h3>@@CHANGELOG@@</div>
+</div>
+</section>
+
+<section id="commentary" class="section" aria-labelledby="comm-title">
+<div class="commentary">
+<div class="label" id="comm-title">Commentary · separate from the data</div>
+@@COMMENTARY@@
+</div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+<div class="wrap">
+<div><div class="name">@@BRAND@@</div><div class="meta">Last updated <span class="mono">@@LAST_UPDATED@@</span></div></div>
+<div class="credit">@@CREDIT@@</div>
+</div>
+</footer>
+<script src="assets/app.js?v=@@VERSION@@" defer></script>
+</body>
+</html>

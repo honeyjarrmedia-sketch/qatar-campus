@@ -11,7 +11,10 @@ came from. Nothing is estimated: a field with no source is left empty.
 | `raw/` | Files exactly as downloaded, plus `MANIFEST.json` (address, time, SHA-256 of each) |
 | `data/clean/` | The published dataset, regenerated from `raw/` |
 | `data/reports/` | Review reports: skipped rows, country spellings, link check, validation |
-| `pipeline/` | Download, cleaning, validation and link-check code |
+| `pipeline/` | Download, cleaning, validation, link-check and site-build code |
+| `web/` | The page template, stylesheet and script |
+| `site/` | The finished one-page site, rebuilt from `data/clean/`. This is the folder Cloudflare Pages serves |
+| `site.config.json` | Brand name, site address, corrections contact, change log and commentary text |
 | `tests/` | Tests. Their fixtures are synthetic and never enter `data/` |
 
 ## Quarterly update
@@ -28,6 +31,7 @@ To run locally instead:
 pip install -r requirements.txt
 python -m pipeline.run fetch
 python -m pipeline.run clean
+python -m pipeline.run site
 python -m pipeline.run check-links
 ```
 
@@ -81,3 +85,20 @@ from these data after the data have been retrieved from LDA.gov.
   records in two or more featured countries. Names are never matched across
   sources automatically; identical names are listed for review in
   `data/reports/possible_same_entity.json`.
+
+## The site
+
+One static page, no build tooling: `python -m pipeline.run site` writes
+`site/` from `data/clean/` and `web/`. The default view (Qatar, all years) is
+written into the HTML; the script loads `site/data/featured.json` for the five
+featured countries and `site/data/other.json` only when another country is
+chosen.
+
+Cloudflare Pages settings: build command empty, output directory `site`.
+
+To preview the layout with invented data (never written into this repository):
+
+```
+QC_ROOT=/tmp/qc-demo python tests/make_demo_site.py
+python -m http.server --directory /tmp/qc-demo/site 8000
+```

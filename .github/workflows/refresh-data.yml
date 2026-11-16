@@ -40,6 +40,9 @@ jobs:
         id: build
         continue-on-error: true
         run: python -m pipeline.run clean
+      - name: Build the site
+        continue-on-error: true
+        run: python -m pipeline.run site
       - name: Push results to a review branch
         if: always()
         run: |
@@ -48,7 +51,7 @@ jobs:
           git config user.name "qatar-campus-data-bot"
           git config user.email "actions@users.noreply.github.com"
           git checkout -b "$BRANCH"
-          git add raw data
+          git add raw data site
           git commit -m "Data refresh $(date -u +%Y-%m-%d)" || echo "Nothing changed"
           git push origin "$BRANCH"
           echo "Review: https://github.com/${GITHUB_REPOSITORY}/compare/main...${BRANCH}" >> "$GITHUB_STEP_SUMMARY"
