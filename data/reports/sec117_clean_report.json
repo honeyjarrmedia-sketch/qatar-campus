@@ -1,0 +1,44 @@
+{
+ "rows_in_file": 117152,
+ "records": 16469,
+ "records_by_country": {
+  "China": 6818,
+  "Saudi Arabia": 7890,
+  "Qatar": 1223,
+  "Turkey": 432,
+  "Russia": 106
+ },
+ "amount_total_by_country": {
+  "China": 4055470976.95,
+  "Qatar": 6572557546.35,
+  "Russia": 157157424.0,
+  "Saudi Arabia": 3916047714.47,
+  "Turkey": 163863287.69
+ },
+ "rows_with_unreadable_amount": 0,
+ "rows_with_no_date": 1,
+ "rows_with_named_source": 2622,
+ "negative_amount_rows": 1,
+ "institutions": 343,
+ "records_through": "2025-02-28",
+ "columns_found": [
+  "OPEID",
+  "School Name",
+  "State",
+  "Transaction Type",
+  "Foreign Government Source",
+  "Attribution Country",
+  "Amount",
+  "Receipt Date",
+  "Contract Start Date",
+  "Contract End Date",
+  "Restricted Transaction Foreign Government Legal Name",
+  "Restricted Transaction Foreign Government Name",
+  "Restricted Transaction Description",
+  "Institution Owned by Foreign Source",
+  "Foreign Source Owner Name",
+  "Foreign Source Ownership Date",
+  "Changes Due to Foreign Source Owner",
+  "Legacy"
+ ]
+}

@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Qatar Campus: Qatar and other foreign principals in United States disclosure records</title>
+<meta name="description" content="A searchable record of foreign agent registrations, lobbying filings and university gift and contract reports in the United States, drawn from Justice Department, Lobbying Disclosure Act and Department of Education records. Every row links to its government source.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Qatar Campus: Qatar and other foreign principals in United States disclosure records">
+<meta property="og:description" content="A searchable record of foreign agent registrations, lobbying filings and university gift and contract reports in the United States, drawn from Justice Department, Lobbying Disclosure Act and Department of Education records. Every row links to its government source.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%274%27 fill=%27%231E3A8A%27/%3E%3Crect x=%277%27 y=%2717%27 width=%274%27 height=%278%27 fill=%27%23fff%27/%3E%3Crect x=%2714%27 y=%2711%27 width=%274%27 height=%2714%27 fill=%27%23fff%27/%3E%3Crect x=%2721%27 y=%277%27 width=%274%27 height=%2718%27 fill=%27%23fff%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="assets/style.css?v=6cc8b30d">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "Qatar Campus: foreign principals in United States disclosure records", "description": "A searchable record of foreign agent registrations, lobbying filings and university gift and contract reports in the United States, drawn from Justice Department, Lobbying Disclosure Act and Department of Education records. Every row links to its government source.", "dateModified": "2026-11-16", "isAccessibleForFree": true, "isBasedOn": ["https://efile.fara.gov/", "https://lda.gov/", "https://fsapartners.ed.gov/"], "creator": {"@type": "Organization", "name": "Qatar Campus"}}</script>
+</head>
+<body>
+<a class="skip" href="#records">Skip to the records</a>
+<header class="site-header">
+<div class="wrap">
+<a class="brand" href="#overview"><span class="brand-name">Qatar Campus</span><span class="brand-tag">Public records tracker</span></a>
+<nav class="site-nav" aria-label="Sections">
+<a href="#overview">Overview</a>
+<a href="#records">Records</a>
+<a href="#connections">Connections</a>
+<a href="#methodology">Methodology</a>
+<a href="#corrections">Corrections</a>
+<a href="#commentary">Commentary</a>
+</nav>
+</div>
+</header>
+
+<main class="wrap">
+
+<section id="overview" class="hero">
+<div class="label">United States public records · Qatar first</div>
+<h1 id="heading">Qatar in United States disclosure records</h1>
+<p class="lede">Foreign agent registrations, lobbying filings and university gift and contract reports. Every row and every total links to the government record it came from. The page reports what each record states and nothing more.</p>
+<div class="actions">
+<a class="btn btn-primary" href="#records">Go to the records</a>
+<a class="btn btn-secondary" href="data/records-csv.zip" download>Download all records (CSV, zipped)</a>
+<span class="small">Last updated <span class="mono">2026-11-16</span></span>
+</div>
+</section>
+
+<section class="card scope" aria-label="Country and year range">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div class="label" id="country-label">Country</div>
+<div class="row" style="align-items: center">
+<div class="tabs" role="group" aria-labelledby="country-label" id="tabs"><button type="button" class="tab" data-c="QA" aria-pressed="true">Qatar</button><button type="button" class="tab" data-c="CN" aria-pressed="false">China</button><button type="button" class="tab" data-c="RU" aria-pressed="false">Russia</button><button type="button" class="tab" data-c="SA" aria-pressed="false">Saudi Arabia</button><button type="button" class="tab" data-c="TR" aria-pressed="false">Turkey</button><button type="button" class="tab" data-c="ALL" aria-pressed="false">All countries</button></div>
+<div class="field mid" style="flex: 0 1 240px">
+<label class="label" for="more-countries">Other countries</label>
+<select id="more-countries"><option value="">Choose a country</option></select>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="field"><label class="label" for="y-from">From year</label><input id="y-from" type="number" inputmode="numeric" value="1942" min="1942" max="2026"></div>
+<div class="field"><label class="label" for="y-to">To year</label><input id="y-to" type="number" inputmode="numeric" value="2026" min="1942" max="2026"></div>
+<button type="button" class="btn btn-plain" id="y-reset">All years</button>
+<p class="hint">Choosing a country or a year range updates the totals, the chart and the records below without leaving this page. The default is Qatar, across every year in the source files.</p>
+</div>
+</section>
+
+<section class="section" style="margin-top: 24px; gap: 12px" aria-label="Totals">
+<div class="label">Showing: <span id="scope-label">Qatar, 1942 to 2026</span></div>
+<div class="stats" id="stats"><div class="card stat"><div class="label">University gifts and contracts reported</div><div class="stat-value">$6.57 billion</div><div class="stat-exact">$6,572,557,546 exactly</div><div class="stat-foot"><span>from 1,223 reports</span><span class="tag tag-derived">derived</span></div></div><div class="card stat"><div class="label">FARA registrants</div><div class="stat-value">106</div><div class="stat-foot"><span>Qatar, all years</span><span class="tag tag-derived">derived</span></div></div><div class="card stat"><div class="label">Foreign principals</div><div class="stat-value">67</div><div class="stat-foot"><span>Qatar, all years</span><span class="tag tag-derived">derived</span></div></div><div class="card stat"><div class="label">Lobbying filings</div><div class="stat-value">107</div><div class="stat-foot"><span>Qatar, all years</span><span class="tag tag-derived">derived</span></div></div><div class="card stat"><div class="label">Lobbying income reported</div><div class="stat-value">$3.3 million</div><div class="stat-exact">$3,285,100 exactly</div><div class="stat-foot"><span>from 29 filings</span><span class="tag tag-derived">derived</span></div></div></div>
+<p class="small" id="stats-note">Totals are marked derived because they are counted from individual records. The Justice Department bulk file carries no dollar amounts, so FARA fees appear only where they have been read from a registrant's supplemental statement. Lobbying filings and university reports are included for Qatar, China, Russia, Saudi Arabia and Turkey only. University reports cover gifts and contracts that institutions reported to the Department of Education through February 28, 2025.</p>
+</section>
+
+<section class="section" aria-labelledby="chart-title">
+<div class="section-head">
+<h2 id="chart-title">Records by year</h2>
+<div class="field mid" style="flex: 0 1 340px">
+<label class="label" for="measure">Measure</label>
+<select id="measure">
+<option value="uni">University gifts and contracts reported per year (USD)</option>
+<option value="fara">FARA registrations active in each year</option>
+<option value="lda">Lobbying filings per year</option>
+<option value="income">Lobbying income reported per year (USD)</option>
+</select>
+</div>
+</div>
+<div class="card chart-card">
+<div id="chart"><p class="chart-empty">The chart needs JavaScript. The same figures are in the records table and the CSV file.</p></div>
+<div class="chart-tip" id="chart-tip" hidden></div>
+<details class="table-view"><summary>View these figures as a table</summary><div id="chart-table"></div></details>
+<p class="small" style="margin-top: 8px">Select a bar to limit the page to that year.</p>
+</div>
+</section>
+
+<section id="records" class="section" aria-labelledby="records-title">
+<div class="section-head">
+<div style="display: flex; flex-direction: column; gap: 8px; flex: 1 1 480px">
+<h2 id="records-title">Records</h2>
+<p class="prose">One row per record, each linked to its government filing. <span class="mono" id="count">1,461</span> records match the choices above.</p>
+</div>
+<button type="button" class="btn btn-primary" id="csv-view">Download CSV of this view</button>
+</div>
+
+<div class="card filters row" style="padding: 20px" aria-label="Filters">
+<div class="field grow"><label class="label" for="q">Search</label><input id="q" type="search" placeholder="Registrant, principal or client name"></div>
+<div class="field mid"><label class="label" for="f-type">Record type</label><select id="f-type"><option value="">All types</option><option value="fara">FARA registration</option><option value="lda">LDA filing</option><option value="sec117">University report</option></select></div>
+<div class="field" style="flex: 0 1 160px"><label class="label" for="f-min">Minimum amount</label><input id="f-min" type="number" inputmode="numeric" min="0" placeholder="USD"></div>
+<div class="field mid"><label class="label" for="f-conf">Confidence</label><select id="f-conf"><option value="">Any</option><option>verified</option><option>derived</option><option>partial</option></select></div>
+<label class="check"><input type="checkbox" id="f-sup" checked> Hide reports replaced by a later amendment</label>
+</div>
+<div id="entity-chip"></div>
+<div class="status" id="status" role="status" aria-live="polite"></div>
+
+<div class="card table-box">
+<table class="data records">
+<thead>
+<tr>
+<th scope="col" data-sort="country"><button type="button">Country</button></th>
+<th scope="col" data-sort="type"><button type="button">Record type</button></th>
+<th scope="col" data-sort="entity"><button type="button">Registrant or institution</button></th>
+<th scope="col" data-sort="principal"><button type="button">Foreign principal, client or source</button></th>
+<th scope="col" class="num" data-sort="amount"><button type="button">Amount (USD)</button></th>
+<th scope="col" data-sort="year" aria-sort="descending"><button type="button">Year</button></th>
+<th scope="col">Source</th>
+<th scope="col" data-sort="conf"><button type="button">Confidence</button></th>
+</tr>
+</thead>
+<tbody id="rows"><tr><td>Qatar</td><td style="font-size: 14px">FARA registration</td><td>Venable, LLP</td><td>Qatar Foundation for Education, Science and Community Development</td><td class="num">not in bulk data</td><td class="yr">2026–present</td><td><a href="https://efile.fara.gov/docs/5931-Exhibit-AB-20260331-19.pdf" rel="noopener" style="font-size: 14px; white-space: nowrap">Open filing</a></td><td><span class="tag tag-verified">verified</span></td></tr><tr><td>Qatar</td><td style="font-size: 14px">FARA registration</td><td>Washington Media Group</td><td>Qatar Foundation for Education, Science and Community Development</td><td class="num">not in bulk data</td><td class="yr">2026–present</td><td><a href="https://efile.fara.gov/docs/7407-Exhibit-AB-20260330-2.pdf" rel="noopener" style="font-size: 14px; white-space: nowrap">Open filing</a></td><td><span class="tag tag-verified">verified</span></td></tr><tr><td>Qatar</td><td style="font-size: 14px">FARA registration</td><td>O&#x27;Brien Global Advisors, LLC</td><td>Embassy of the State of Qatar</td><td class="num">not in bulk data</td><td class="yr">2026–present</td><td><a href="https://efile.fara.gov/docs/7718-Exhibit-AB-20260420-1.pdf" rel="noopener" style="font-size: 14px; white-space: nowrap">Open filing</a></td><td><span class="tag tag-verified">verified</span></td></tr><tr><td>Qatar</td><td style="font-size: 14px">LDA filing</td><td>KRASNIEFT LTD</td><td>AL JAZEERA INTERNATIONAL GROUP INC.</td><td class="num">none stated</td><td class="yr">2026</td><td><a href="https://lda.gov/filings/public/filing/7e81b036-be6c-4fea-808d-36090a0869f0/print/" rel="noopener" style="font-size: 14px; white-space: nowrap">Open filing</a></td><td><span class="tag tag-verified">verified</span></td></tr><tr><td>Qatar</td><td style="font-size: 14px">FARA registration</td><td>Finn Partners, Inc.</td><td>Qatar Foundation</td><td class="num">not in bulk data</td><td class="yr">2025–2025</td><td><a href="https://efile.fara.gov/docs/6212-Exhibit-AB-20250430-73.pdf" rel="noopener" style="font-size: 14px; white-space: nowrap">Open filing</a></td><td><span class="tag tag-verified">verified</span></td></tr><tr><td>Qatar</td><td style="font-size: 14px">FARA registration</td><td>Cornerstone Government Affairs</td><td>Embassy of the State of Qatar</td><td class="num">not in bulk data</td><td class="yr">2025–present</td><td><a href="https://efile.fara.gov/docs/6401-Exhibit-AB-20250310-51.pdf" rel="noopener" style="font-size: 14px; white-space: nowrap">Open filing</a></td><td><span class="tag tag-verified">verified</span></td></tr><tr><td>Qatar</td><td style="font-size: 14px">FARA registration</td><td>Prosek LLC d/b/a Prosek Partners</td><td>Qatar Investment Authority</td><td class="num">not in bulk data</td><td class="yr">2025–present</td><td><a href="https://efile.fara.gov/docs/7435-Exhibit-AB-20251031-7.pdf" rel="noopener" style="font-size: 14px; white-space: nowrap">Open filing</a></td><td><span class="tag tag-verified">verified</span></td></tr><tr><td>Qatar</td><td style="font-size: 14px">FARA registration</td><td>QatarEnergy U.S. Holding Corporation, Inc.</td><td>QatarEnergy</td><td class="num">not in bulk data</td><td class="yr">2025–present</td><td><a href="https://efile.fara.gov/docs/7519-Exhibit-AB-20250116-1.pdf" rel="noopener" style="font-size: 14px; white-space: nowrap">Open filing</a></td><td><span class="tag tag-verified">verified</span></td></tr><tr><td>Qatar</td><td style="font-size: 14px">FARA registration</td><td>Green River Public Affairs LLC</td><td>Embassy of the State of Qatar</td><td class="num">not in bulk data</td><td class="yr">2025–present</td><td><a href="https://efile.fara.gov/docs/7523-Exhibit-AB-20250120-1.pdf" rel="noopener" style="font-size: 14px; white-space: nowrap">Open filing</a></td><td><span class="tag tag-verified">verified</span></td></tr><tr><td>Qatar</td><td style="font-size: 14px">FARA registration</td><td>The Kerik Group LLC</td><td>Embassy of the State of Qatar in Washington, DC</td><td class="num">not in bulk data</td><td class="yr">2025–2025</td><td><a href="https://efile.fara.gov/docs/7571-Exhibit-AB-20250410-1.pdf" rel="noopener" style="font-size: 14px; white-space: nowrap">Open filing</a></td><td><span class="tag tag-verified">verified</span></td></tr><tr><td>Qatar</td><td style="font-size: 14px">FARA registration</td><td>Lighthouse Strategies LLC</td><td>Qatar</td><td class="num">not in bulk data</td><td class="yr">2025–present</td><td><a href="https://efile.fara.gov/docs/7583-Exhibit-AB-20250503-1.pdf" rel="noopener" style="font-size: 14px; white-space: nowrap">Open filing</a></td><td><span class="tag tag-verified">verified</span></td></tr><tr><td>Qatar</td><td style="font-size: 14px">FARA registration</td><td>IPG DXTRA Entertainment, Inc. d/b/a Rogers &amp; Cowan PMK</td><td>Film Committee Qatar</td><td class="num">not in bulk data</td><td class="yr">2025–2025</td><td><a href="https://efile.fara.gov/docs/7588-Exhibit-AB-20250509-1.pdf" rel="noopener" style="font-size: 14px; white-space: nowrap">Open filing</a></td><td><span class="tag tag-verified">verified</span></td></tr><tr><td>Qatar</td><td style="font-size: 14px">FARA registration</td><td>Bennett, William</td><td>Embassy of the State of Qatar</td><td class="num">not in bulk data</td><td class="yr">2025–present</td><td><a href="https://efile.fara.gov/docs/7620-Exhibit-AB-20250703-1.pdf" rel="noopener" style="font-size: 14px; white-space: nowrap">Open filing</a></td><td><span class="tag tag-verified">verified</span></td></tr><tr><td>Qatar</td><td style="font-size: 14px">LDA filing</td><td>KAMINS CONSULTING</td><td>TFA &amp; COMPANY; TFA &amp; COMPANY</td><td class="num">none stated</td><td class="yr">2025</td><td><a href="https://lda.gov/filings/public/filing/5d08314f-01ab-430d-9947-e094ad0ed343/print/" rel="noopener" style="font-size: 14px; white-space: nowrap">Open filing</a></td><td><span class="tag tag-verified">verified</span></td></tr><tr><td>Qatar</td><td style="font-size: 14px">University report</td><td>Cornell University</td><td><span class="muted" style="font-size: 14px">not named in the file</span></td><td class="num">$163,575,804<div class="sub">contract reported by the institution</div></td><td class="yr">2025</td><td><a href="https://fsapartners.ed.gov/sites/default/files/2025-05/Sec117PublicRecordsCompleteFeb2025.xlsx" rel="noopener" style="font-size: 14px; white-space: nowrap">Open filing</a></td><td><span class="tag tag-verified">verified</span></td></tr><tr><td>Qatar</td><td style="font-size: 14px">University report</td><td>Carnegie Mellon University</td><td><span class="muted" style="font-size: 14px">not named in the file</span></td><td class="num">$74,130,684<div class="sub">contract reported by the institution</div></td><td class="yr">2025</td><td><a href="https://fsapartners.ed.gov/sites/default/files/2025-05/Sec117PublicRecordsCompleteFeb2025.xlsx" rel="noopener" style="font-size: 14px; white-space: nowrap">Open filing</a></td><td><span class="tag tag-verified">verified</span></td></tr><tr><td>Qatar</td><td style="font-size: 14px">FARA registration</td><td>Washington Media Group</td><td>International Media Office of the State of Qatar</td><td class="num">not in bulk data</td><td class="yr">2024–present</td><td><a href="https://efile.fara.gov/docs/7407-Exhibit-AB-20240513-1.pdf" rel="noopener" style="font-size: 14px; white-space: nowrap">Open filing</a></td><td><span class="tag tag-verified">verified</span></td></tr><tr><td>Qatar</td><td style="font-size: 14px">FARA registration</td><td>Yemen Watch, LLC</td><td>The Embassy of the State of Qatar through the Foreign Agent Avenue Strategies Global, LLC and its principal officer Barry Bennett</td><td class="num">not in bulk data</td><td class="yr">2024–2024</td><td><a href="https://efile.fara.gov/docs/7414-Exhibit-AB-20240524-1.pdf" rel="noopener" style="font-size: 14px; white-space: nowrap">Open filing</a></td><td><span class="tag tag-verified">verified</span></td></tr><tr><td>Qatar</td><td style="font-size: 14px">FARA registration</td><td>MAS Advisory Inc. dba Montfort Advisory</td><td>Embassy of the State of Qatar</td><td class="num">not in bulk data</td><td class="yr">2024–present</td><td><a href="https://efile.fara.gov/docs/7426-Exhibit-AB-20240624-1.pdf" rel="noopener" style="font-size: 14px; white-space: nowrap">Open filing</a></td><td><span class="tag tag-verified">verified</span></td></tr><tr><td>Qatar</td><td style="font-size: 14px">FARA registration</td><td>The Aloft Group, LLC</td><td>Essa Abdulla Al-Malki</td><td class="num">not in bulk data</td><td class="yr">2024–2005</td><td><a href="https://efile.fara.gov/docs/7447-Exhibit-AB-20240821-1.pdf" rel="noopener" style="font-size: 14px; white-space: nowrap">Open filing</a></td><td><span class="tag tag-verified">verified</span></td></tr><tr><td>Qatar</td><td style="font-size: 14px">FARA registration</td><td>GRV Strategies LLC</td><td>International Media Office of State of Qatar</td><td class="num">not in bulk data</td><td class="yr">2024–present</td><td><a href="https://efile.fara.gov/docs/7458-Exhibit-AB-20240906-1.pdf" rel="noopener" style="font-size: 14px; white-space: nowrap">Open filing</a></td><td><span class="tag tag-verified">verified</span></td></tr><tr><td>Qatar</td><td style="font-size: 14px">LDA filing</td><td>SIDLEY AUSTIN LLP</td><td>BEIN MEDIA GROUP LLC</td><td class="num">none stated</td><td class="yr">2024</td><td><a href="https://lda.gov/filings/public/filing/42450a1e-112e-4678-8dae-eb5c271c356a/print/" rel="noopener" style="font-size: 14px; white-space: nowrap">Open filing</a></td><td><span class="tag tag-verified">verified</span></td></tr><tr><td>Qatar</td><td style="font-size: 14px">LDA filing</td><td>SIDLEY AUSTIN LLP</td><td>BEIN MEDIA GROUP LLC</td><td class="num">none stated</td><td class="yr">2024</td><td><a href="https://lda.gov/filings/public/filing/96eb9418-0674-4456-9997-a1986aac5f9f/print/" rel="noopener" style="font-size: 14px; white-space: nowrap">Open filing</a></td><td><span class="tag tag-verified">verified</span></td></tr><tr><td>Qatar</td><td style="font-size: 14px">University report</td><td>University of California, Los Angeles</td><td><span class="muted" style="font-size: 14px">not named in the file</span></td><td class="num">$1<div class="sub">contract reported by the institution</div></td><td class="yr">2024</td><td><a href="https://fsapartners.ed.gov/sites/default/files/2025-05/Sec117PublicRecordsCompleteFeb2025.xlsx" rel="noopener" style="font-size: 14px; white-space: nowrap">Open filing</a></td><td><span class="tag tag-verified">verified</span></td></tr><tr><td>Qatar</td><td style="font-size: 14px">University report</td><td>William Marsh Rice University</td><td><span class="muted" style="font-size: 14px">not named in the file</span></td><td class="num">$456,466<div class="sub">gift reported by the institution</div></td><td class="yr">2024</td><td><a href="https://fsapartners.ed.gov/sites/default/files/2025-05/Sec117PublicRecordsCompleteFeb2025.xlsx" rel="noopener" style="font-size: 14px; white-space: nowrap">Open filing</a></td><td><span class="tag tag-verified">verified</span></td></tr></tbody>
+</table>
+</div>
+<div class="pager"><span id="page-info">Showing 1–25 of 1,461</span><div><button type="button" class="btn btn-plain" id="prev">Previous</button><button type="button" class="btn btn-plain" id="next">Next</button></div></div>
+</section>
+
+<section id="connections" class="section" aria-labelledby="conn-title">
+<h2 id="conn-title">Connections</h2>
+<p class="prose">Registrants and institutions that have records in more than one of the five countries. This shows overlap in the filings and nothing else. It does not state or imply any relationship between the countries. The third column shows how many countries the registrant or institution has records for in the whole source file, so an overlap can be read in context.</p>
+<div class="card table-box">
+<table class="data conn">
+<thead><tr><th scope="col">Registrant or institution</th><th scope="col">Featured countries on file</th><th scope="col">All countries on file</th><th scope="col">Records behind the overlap</th><th scope="col">Confidence</th></tr></thead>
+<tbody id="conn-rows"><tr><td>Babson College<div class="sub">Institution reporting under Section 117</div></td><td>China, Qatar, Russia, Saudi Arabia, Turkey</td><td class="yr">5 of 32</td><td>69 records</td><td><span class="tag tag-derived">derived</span></td></tr><tr><td>Harvard University<div class="sub">Institution reporting under Section 117</div></td><td>China, Qatar, Russia, Saudi Arabia, Turkey</td><td class="yr">5 of 96</td><td>622 records</td><td><span class="tag tag-derived">derived</span></td></tr><tr><td>Hill and Knowlton Strategies, LLC<div class="sub">FARA registrant</div></td><td>China, Qatar, Russia, Saudi Arabia, Turkey</td><td class="yr">5 of 76</td><td>24 records</td><td><span class="tag tag-derived">derived</span></td></tr><tr><td>Johns Hopkins University<div class="sub">Institution reporting under Section 117</div></td><td>China, Qatar, Russia, Saudi Arabia, Turkey</td><td class="yr">5 of 118</td><td>126 records</td><td><span class="tag tag-derived">derived</span></td></tr><tr><td>Mercury Public Affairs, LLC<div class="sub">FARA registrant</div></td><td>China, Qatar, Russia, Saudi Arabia, Turkey</td><td class="yr">5 of 44</td><td>16 records</td><td><span class="tag tag-derived">derived</span></td></tr><tr><td>New York University<div class="sub">Institution reporting under Section 117</div></td><td>China, Qatar, Russia, Saudi Arabia, Turkey</td><td class="yr">5 of 68</td><td>274 records</td><td><span class="tag tag-derived">derived</span></td></tr><tr><td>Pennsylvania State University (The)<div class="sub">Institution reporting under Section 117</div></td><td>China, Qatar, Russia, Saudi Arabia, Turkey</td><td class="yr">5 of 46</td><td>135 records</td><td><span class="tag tag-derived">derived</span></td></tr><tr><td>Rutgers, the State University of New Jersey<div class="sub">Institution reporting under Section 117</div></td><td>China, Qatar, Russia, Saudi Arabia, Turkey</td><td class="yr">5 of 43</td><td>37 records</td><td><span class="tag tag-derived">derived</span></td></tr><tr><td>Stanford University<div class="sub">Institution reporting under Section 117</div></td><td>China, Qatar, Russia, Saudi Arabia, Turkey</td><td class="yr">5 of 76</td><td>630 records</td><td><span class="tag tag-derived">derived</span></td></tr><tr><td>University of California, Los Angeles<div class="sub">Institution reporting under Section 117</div></td><td>China, Qatar, Russia, Saudi Arabia, Turkey</td><td class="yr">5 of 64</td><td>618 records</td><td><span class="tag tag-derived">derived</span></td></tr></tbody>
+</table>
+</div>
+<div class="pager"><span id="conn-info"></span><div><button type="button" class="btn btn-plain" id="conn-more" hidden>Show more</button></div></div>
+</section>
+
+<section id="methodology" class="section" aria-labelledby="meth-title">
+<h2 id="meth-title">Methodology</h2>
+<div class="flags">
+<div class="card flag"><div><span class="tag tag-verified">verified</span></div><p>The row matches one official document, and the link opens that document.</p></div>
+<div class="card flag"><div><span class="tag tag-derived">derived</span></div><p>The value is computed or read from one or more filings. The method is stated on the row or beside the figure.</p></div>
+<div class="card flag"><div><span class="tag tag-partial">partial</span></div><p>The source has a known gap. The row says what is missing.</p></div>
+</div>
+<div class="card gaps">
+<div class="gap"><h3>Sources</h3><p>Department of Justice FARA eFile bulk data, Lobbying Disclosure Act filings from LDA.gov, and the Department of Education file of Section 117 public records. The FARA files were downloaded on 2026-11-16. The lobbying filings were downloaded on 2026-11-16. The Department of Education file was downloaded on 2026-11-16.</p></div>
+<div class="gap"><h3>Why Qatar leads</h3><p>Qatar is the lead focus of this site. The database itself covers every country in the Justice Department file, and every country is held to the same rules.</p></div>
+<div class="gap"><h3>FARA dollar amounts</h3><p>The Justice Department bulk file lists who is registered for whom, with dates. It carries no dollar amounts. Amounts are shown only where they have been read from a supplemental statement, and those rows are marked derived.</p></div>
+<div class="gap"><h3>FARA source links</h3><p>A FARA row links to the exhibit that names the foreign principal. Where the Justice Department document index has no exhibit under that exact name, the row is marked partial and links to the list of every document filed under that registration number. 7,698 of 17,789 FARA rows are marked partial for this reason.</p></div>
+<div class="gap"><h3>What a country means on a lobbying filing</h3><p>On an LDA record, the country is where the client or a listed foreign entity is located, as written on the filing. It does not mean the filing involves that country's government.</p></div>
+<div class="gap"><h3>Countries as filed</h3><p>Country names are kept as the filing gives them. Hong Kong, Macau and Taiwan are listed separately and are not merged into China.</p></div>
+<div class="gap"><h3>Years</h3><p>A FARA registration counts toward every year from its start date to its end date, or to the present if the Justice Department file lists no end date. A lobbying filing counts toward its filing year. Rows with no usable date appear only when all years are selected.</p></div>
+<div class="gap"><h3>Amended reports</h3><p>When a lobbying report is amended, the most recently posted version for the same registrant, client and period is used in totals. Earlier versions stay in the records and are marked as replaced.</p></div>
+<div class="gap"><h3>Individuals</h3><p>People appear only where a filing names them, in the detail of that filing's row. The Justice Department file does not tie an individual to a specific foreign principal, so individuals are not listed by country.</p></div>
+<div class="gap"><h3>University gifts and contracts</h3><p>Under Section 117 of the Higher Education Act, institutions report foreign gifts and contracts worth $250,000 or more in a year. The figures are self-reported by the institutions. The Department of Education file does not name the foreign source for most transactions, so that column is usually empty. These records run through February 28, 2025; later reports are published on the Department&rsquo;s newer portal and are not yet included. A university row links to the Department&rsquo;s spreadsheet, which holds every record, and not to a document for that single transaction.</p></div>
+<div class="gap"><h3>Not yet included</h3><p>Campaign finance records and nonprofit tax filings are not in this release. University reports for countries other than the five featured ones are also not included.</p></div>
+<p class="small" style="margin-top: 16px">Senate Office of Public Records cannot vouch for the data or analyses derived from these data after the data have been retrieved from LDA.gov.</p>
+</div>
+</section>
+
+<section id="corrections" class="section" aria-labelledby="corr-title">
+<h2 id="corr-title">Corrections</h2>
+<div class="two">
+<div class="card pad"><h3>Report an error</h3><p>Send the link to the row and the filing that shows the correct information to <span class="mono">[contact address not set]</span>. Every correction is checked against the filing and logged here.</p></div>
+<div class="card pad"><h3>Change log</h3><p>No changes have been logged yet.</p></div>
+</div>
+</section>
+
+<section id="commentary" class="section" aria-labelledby="comm-title">
+<div class="commentary">
+<div class="label" id="comm-title">Commentary · separate from the data</div>
+<p>No commentary has been published. Opinion and argument, when added, appear only in this section and never in the totals, tables or methodology above.</p>
+</div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+<div class="wrap">
+<div><div class="name">Qatar Campus</div><div class="meta">Last updated <span class="mono">2026-11-16</span></div></div>
+<div class="credit">Built by the team behind ZionismRevival</div>
+</div>
+</footer>
+<script src="assets/app.js?v=6cc8b30d" defer></script>
+</body>
+</html>

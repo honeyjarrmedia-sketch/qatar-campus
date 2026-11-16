@@ -1,0 +1,47 @@
+[
+ {
+  "country_as_filed": "CHINA",
+  "rows": 6818,
+  "mapped_to": "CN"
+ },
+ {
+  "country_as_filed": "HONG KONG",
+  "rows": 2939,
+  "mapped_to": ""
+ },
+ {
+  "country_as_filed": "MACAO",
+  "rows": 2,
+  "mapped_to": ""
+ },
+ {
+  "country_as_filed": "QATAR",
+  "rows": 1223,
+  "mapped_to": "QA"
+ },
+ {
+  "country_as_filed": "RUSSIA",
+  "rows": 106,
+  "mapped_to": "RU"
+ },
+ {
+  "country_as_filed": "SAUDI ARABIA",
+  "rows": 7890,
+  "mapped_to": "SA"
+ },
+ {
+  "country_as_filed": "TAIWAN",
+  "rows": 1494,
+  "mapped_to": ""
+ },
+ {
+  "country_as_filed": "TURKEY (TURKIYE)",
+  "rows": 432,
+  "mapped_to": "TR"
+ },
+ {
+  "country_as_filed": "TURKS AND CAICOS ISLANDS",
+  "rows": 4,
+  "mapped_to": ""
+ }
+]
