@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-16T15:17:56Z",
+ "generated_at": "2026-11-16T15:33:46Z",
  "sources": {
   "fara": {
    "included": true,
@@ -11,14 +11,14 @@
   },
   "sec117": {
    "included": true,
-   "records": 16469
+   "records": 117152
   },
   "fara_fees_QA": {
    "included": true,
    "records": 2
   }
  },
- "records_total": 36739,
+ "records_total": 137422,
  "records_featured": 20083,
  "featured_records_by_source_and_country": {
   "fara": {
@@ -47,16 +47,16 @@
   }
  },
  "records_by_confidence": {
-  "verified": 29039,
+  "verified": 129722,
   "partial": 7698,
   "derived": 2
  },
- "records_with_amount": 17590,
- "entities": 7729,
+ "records_with_amount": 118271,
+ "entities": 7914,
  "connections": 287,
  "year_range": [
   1942,
-  2026
+  3030
  ],
  "validation_errors": 0
 }

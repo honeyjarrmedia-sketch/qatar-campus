@@ -1,0 +1,74 @@
+[
+ {
+  "id": "sec117-e034ed74ee",
+  "country": "United Kingdom",
+  "entity": "Northwestern University",
+  "date_as_filed": "2027-09-30",
+  "year": 2027,
+  "amount_usd": 633122.0,
+  "source_url": "https://fsapartners.ed.gov/sites/default/files/2025-05/Sec117PublicRecordsCompleteFeb2025.xlsx"
+ },
+ {
+  "id": "sec117-8929bc1746",
+  "country": "Japan",
+  "entity": "Stanford University",
+  "date_as_filed": "3030-06-30",
+  "year": 3030,
+  "amount_usd": 1000.0,
+  "source_url": "https://fsapartners.ed.gov/sites/default/files/2025-05/Sec117PublicRecordsCompleteFeb2025.xlsx"
+ },
+ {
+  "id": "sec117-a9dd2678f1",
+  "country": "Germany",
+  "entity": "University of California, Los Angeles",
+  "date_as_filed": "2027-04-23",
+  "year": 2027,
+  "amount_usd": 243893.0,
+  "source_url": "https://fsapartners.ed.gov/sites/default/files/2025-05/Sec117PublicRecordsCompleteFeb2025.xlsx"
+ },
+ {
+  "id": "sec117-387cea8829",
+  "country": "France",
+  "entity": "University of California, San Francisco",
+  "date_as_filed": "2027-06-30",
+  "year": 2027,
+  "amount_usd": 190000.0,
+  "source_url": "https://fsapartners.ed.gov/sites/default/files/2025-05/Sec117PublicRecordsCompleteFeb2025.xlsx"
+ },
+ {
+  "id": "sec117-4cdab95a31",
+  "country": "Malaysia",
+  "entity": "University of Illinois at Urbana-Champaign",
+  "date_as_filed": "2049-03-07",
+  "year": 2049,
+  "amount_usd": 98945.0,
+  "source_url": "https://fsapartners.ed.gov/sites/default/files/2025-05/Sec117PublicRecordsCompleteFeb2025.xlsx"
+ },
+ {
+  "id": "sec117-8b5e1da497",
+  "country": "Singapore",
+  "entity": "University of Illinois at Urbana-Champaign",
+  "date_as_filed": "2049-08-07",
+  "year": 2049,
+  "amount_usd": 5019.0,
+  "source_url": "https://fsapartners.ed.gov/sites/default/files/2025-05/Sec117PublicRecordsCompleteFeb2025.xlsx"
+ },
+ {
+  "id": "sec117-5c38d5009d",
+  "country": "India",
+  "entity": "University of Missouri - Columbia",
+  "date_as_filed": "2999-04-06",
+  "year": 2999,
+  "amount_usd": 600000.0,
+  "source_url": "https://fsapartners.ed.gov/sites/default/files/2025-05/Sec117PublicRecordsCompleteFeb2025.xlsx"
+ },
+ {
+  "id": "sec117-ef36f23b3d",
+  "country": "Finland",
+  "entity": "Yale University",
+  "date_as_filed": "2027-05-10",
+  "year": 2027,
+  "amount_usd": 248000.0,
+  "source_url": "https://fsapartners.ed.gov/sites/default/files/2025-05/Sec117PublicRecordsCompleteFeb2025.xlsx"
+ }
+]

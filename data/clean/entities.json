@@ -920,6 +920,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00266600",
+  "slug": "adelphi-university-sec117-00266600",
+  "name": "Adelphi University",
+  "source": "Section 117",
+  "registration_number": "00266600",
+  "city": "",
+  "state": "NY",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-1217",
   "slug": "adkins-jr-elmer-h-fara-1217",
   "name": "Adkins Jr., Elmer H.",
@@ -2720,6 +2730,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-03088900",
+  "slug": "ambassador-university-sec117-03088900",
+  "name": "Ambassador University",
+  "source": "Section 117",
+  "registration_number": "03088900",
+  "city": "",
+  "state": "TX",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-5655",
   "slug": "ambazonia-liberation-party-alip-fara-5655",
   "name": "Ambazonia Liberation Party (ALIP)",
@@ -4068,6 +4088,16 @@
   "city": "Valley Forge",
   "state": "PA",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00323500",
+  "slug": "arcadia-university-sec117-00323500",
+  "name": "Arcadia University",
+  "source": "Section 117",
+  "registration_number": "00323500",
+  "city": "",
+  "state": "PA",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-2762",
@@ -5736,6 +5766,16 @@
   "city": "New York",
   "state": "NY",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00111700",
+  "slug": "azusa-pacific-university-sec117-00111700",
+  "name": "Azusa Pacific University",
+  "source": "Section 117",
+  "registration_number": "00111700",
+  "city": "",
+  "state": "CA",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-3142",
@@ -7736,6 +7776,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00239700",
+  "slug": "belhaven-university-sec117-00239700",
+  "name": "Belhaven University",
+  "source": "Section 117",
+  "registration_number": "00239700",
+  "city": "",
+  "state": "MS",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-2142",
   "slug": "beliaev-anatoli-a-fara-2142",
   "name": "Beliaev, Anatoli A.",
@@ -8212,6 +8262,26 @@
   "city": "Chevy Chase",
   "state": "MD",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00368200",
+  "slug": "bennington-college-sec117-00368200",
+  "name": "Bennington College",
+  "source": "Section 117",
+  "registration_number": "00368200",
+  "city": "",
+  "state": "VT",
+  "countries_in_source": 1
+ },
+ {
+  "entity_id": "sec117-00212400",
+  "slug": "bentley-university-sec117-00212400",
+  "name": "Bentley University",
+  "source": "Section 117",
+  "registration_number": "00212400",
+  "city": "",
+  "state": "MA",
+  "countries_in_source": 2
  },
  {
   "entity_id": "fara-3127",
@@ -8726,6 +8796,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00155400",
+  "slug": "berry-college-sec117-00155400",
+  "name": "Berry College",
+  "source": "Section 117",
+  "registration_number": "00155400",
+  "city": "",
+  "state": "GA",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-2216",
   "slug": "berry-max-n-fara-2216",
   "name": "Berry, Max N.",
@@ -8796,6 +8876,16 @@
   "city": "Washington",
   "state": "DC",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00794700",
+  "slug": "beth-medrash-govoha-of-america-sec117-00794700",
+  "name": "Beth Medrash Govoha of America",
+  "source": "Section 117",
+  "registration_number": "00794700",
+  "city": "",
+  "state": "NJ",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-3772",
@@ -9151,6 +9241,16 @@
   "registration_number": "00283600",
   "city": "",
   "state": "NY",
+  "countries_in_source": 2
+ },
+ {
+  "entity_id": "sec117-00112200",
+  "slug": "biola-university-sec117-00112200",
+  "name": "Biola University",
+  "source": "Section 117",
+  "registration_number": "00112200",
+  "city": "",
+  "state": "CA",
   "countries_in_source": 2
  },
  {
@@ -10740,6 +10840,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00213300",
+  "slug": "brandeis-university-sec117-00213300",
+  "name": "Brandeis University",
+  "source": "Section 117",
+  "registration_number": "00213300",
+  "city": "",
+  "state": "MA",
+  "countries_in_source": 7
+ },
+ {
   "entity_id": "fara-1944",
   "slug": "brandel-arthur-meyer-fara-1944",
   "name": "Brandel, Arthur Meyer",
@@ -10750,6 +10860,16 @@
   "city": "Washington",
   "state": "DC",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-04161800",
+  "slug": "brandman-university-sec117-04161800",
+  "name": "Brandman University",
+  "source": "Section 117",
+  "registration_number": "04161800",
+  "city": "",
+  "state": "CA",
+  "countries_in_source": 2
  },
  {
   "entity_id": "fara-2730",
@@ -11180,6 +11300,26 @@
   "countries_in_source": 15
  },
  {
+  "entity_id": "sec117-00160600",
+  "slug": "brigham-young-university-hawaii-sec117-00160600",
+  "name": "Brigham Young University - Hawaii",
+  "source": "Section 117",
+  "registration_number": "00160600",
+  "city": "",
+  "state": "HI",
+  "countries_in_source": 2
+ },
+ {
+  "entity_id": "sec117-00162500",
+  "slug": "brigham-young-university-idaho-sec117-00162500",
+  "name": "Brigham Young University - Idaho",
+  "source": "Section 117",
+  "registration_number": "00162500",
+  "city": "",
+  "state": "ID",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-7438",
   "slug": "brighthead-consulting-llc-fara-7438",
   "name": "BrightHead Consulting LLC",
@@ -11514,6 +11654,16 @@
   "city": "Washington",
   "state": "DC",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00112300",
+  "slug": "brooks-institute-sec117-00112300",
+  "name": "Brooks Institute",
+  "source": "Section 117",
+  "registration_number": "00112300",
+  "city": "",
+  "state": "CA",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-1373",
@@ -12016,6 +12166,66 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-01247000",
+  "slug": "bryant-stratton-business-institute-rochester-sec117-01247000",
+  "name": "Bryant & Stratton Business Institute - Rochester",
+  "source": "Section 117",
+  "registration_number": "01247000",
+  "city": "",
+  "state": "NY",
+  "countries_in_source": 1
+ },
+ {
+  "entity_id": "sec117-00827600",
+  "slug": "bryant-stratton-business-institute-syracuse-sec117-00827600",
+  "name": "Bryant & Stratton Business Institute - Syracuse",
+  "source": "Section 117",
+  "registration_number": "00827600",
+  "city": "",
+  "state": "NY",
+  "countries_in_source": 1
+ },
+ {
+  "entity_id": "sec117-00474900",
+  "slug": "bryant-stratton-business-institute-albany-sec117-00474900",
+  "name": "Bryant & Stratton Business Institute-Albany",
+  "source": "Section 117",
+  "registration_number": "00474900",
+  "city": "",
+  "state": "NY",
+  "countries_in_source": 1
+ },
+ {
+  "entity_id": "sec117-00267800",
+  "slug": "bryant-stratton-college-sec117-00267800",
+  "name": "Bryant & Stratton College",
+  "source": "Section 117",
+  "registration_number": "00267800",
+  "city": "",
+  "state": "NY",
+  "countries_in_source": 1
+ },
+ {
+  "entity_id": "sec117-00934300",
+  "slug": "bryant-stratton-college-sec117-00934300",
+  "name": "Bryant & Stratton College",
+  "source": "Section 117",
+  "registration_number": "00934300",
+  "city": "",
+  "state": "OH",
+  "countries_in_source": 1
+ },
+ {
+  "entity_id": "sec117-02274400",
+  "slug": "bryant-stratton-college-sec117-02274400",
+  "name": "Bryant & Stratton College",
+  "source": "Section 117",
+  "registration_number": "02274400",
+  "city": "",
+  "state": "OH",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "sec117-00340200",
   "slug": "bryant-university-sec117-00340200",
   "name": "Bryant University",
@@ -12023,6 +12233,16 @@
   "registration_number": "00340200",
   "city": "",
   "state": "RI",
+  "countries_in_source": 1
+ },
+ {
+  "entity_id": "sec117-00323700",
+  "slug": "bryn-mawr-college-sec117-00323700",
+  "name": "Bryn Mawr College",
+  "source": "Section 117",
+  "registration_number": "00323700",
+  "city": "",
+  "state": "PA",
   "countries_in_source": 1
  },
  {
@@ -12130,6 +12350,16 @@
   "city": "New York",
   "state": "NY",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00323800",
+  "slug": "bucknell-university-sec117-00323800",
+  "name": "Bucknell University",
+  "source": "Section 117",
+  "registration_number": "00323800",
+  "city": "",
+  "state": "PA",
+  "countries_in_source": 3
  },
  {
   "entity_id": "fara-3985",
@@ -13010,6 +13240,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-04250600",
+  "slug": "california-institute-of-advanced-management-sec117-04250600",
+  "name": "California Institute of Advanced Management",
+  "source": "Section 117",
+  "registration_number": "04250600",
+  "city": "",
+  "state": "CA",
+  "countries_in_source": 2
+ },
+ {
   "entity_id": "sec117-00113100",
   "slug": "california-institute-of-technology-sec117-00113100",
   "name": "California Institute of Technology",
@@ -13050,6 +13290,16 @@
   "countries_in_source": 2
  },
  {
+  "entity_id": "sec117-00113400",
+  "slug": "california-state-university-maritime-academy-sec117-00113400",
+  "name": "California State University Maritime Academy",
+  "source": "Section 117",
+  "registration_number": "00113400",
+  "city": "",
+  "state": "CA",
+  "countries_in_source": 3
+ },
+ {
   "entity_id": "sec117-00799300",
   "slug": "california-state-university-bakersfield-sec117-00799300",
   "name": "California State University, Bakersfield",
@@ -13058,6 +13308,16 @@
   "city": "",
   "state": "CA",
   "countries_in_source": 3
+ },
+ {
+  "entity_id": "sec117-00114600",
+  "slug": "california-state-university-chico-sec117-00114600",
+  "name": "California State University, Chico",
+  "source": "Section 117",
+  "registration_number": "00114600",
+  "city": "",
+  "state": "CA",
+  "countries_in_source": 2
  },
  {
   "entity_id": "sec117-00114100",
@@ -13378,6 +13638,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00291300",
+  "slug": "campbell-university-sec117-00291300",
+  "name": "Campbell University",
+  "source": "Section 117",
+  "registration_number": "00291300",
+  "city": "",
+  "state": "NC",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-4700",
   "slug": "campbell-falk-selby-fara-4700",
   "name": "Campbell, Falk & Selby",
@@ -13412,6 +13682,16 @@
   "city": "Mineapolis",
   "state": "MN",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00195900",
+  "slug": "campbellsville-university-sec117-00195900",
+  "name": "Campbellsville University",
+  "source": "Section 117",
+  "registration_number": "00195900",
+  "city": "",
+  "state": "KY",
+  "countries_in_source": 2
  },
  {
   "entity_id": "fara-4609",
@@ -14144,6 +14424,16 @@
   "city": "Houston",
   "state": "TX",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00234000",
+  "slug": "carleton-college-sec117-00234000",
+  "name": "Carleton College",
+  "source": "Section 117",
+  "registration_number": "00234000",
+  "city": "",
+  "state": "MN",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-5249",
@@ -15116,6 +15406,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00302600",
+  "slug": "central-state-university-sec117-00302600",
+  "name": "Central State University",
+  "source": "Section 117",
+  "registration_number": "00302600",
+  "city": "",
+  "state": "OH",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-3284",
   "slug": "centron-corporation-inc-fara-3284",
   "name": "Centron Corporation, Inc.",
@@ -15296,6 +15596,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00638500",
+  "slug": "chamberlain-university-sec117-00638500",
+  "name": "Chamberlain University",
+  "source": "Section 117",
+  "registration_number": "00638500",
+  "city": "",
+  "state": "IL",
+  "countries_in_source": 11
+ },
+ {
   "entity_id": "fara-2043",
   "slug": "chambers-justice-m-fara-2043",
   "name": "Chambers, Justice M.",
@@ -15306,6 +15616,16 @@
   "city": "Washington",
   "state": "DC",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00160500",
+  "slug": "chaminade-university-of-honolulu-sec117-00160500",
+  "name": "Chaminade University of Honolulu",
+  "source": "Section 117",
+  "registration_number": "00160500",
+  "city": "",
+  "state": "HI",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-1638",
@@ -15818,6 +16138,16 @@
   "city": "Northridge",
   "state": "CA",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-04181100",
+  "slug": "china-medical-university-sec117-04181100",
+  "name": "China Medical University",
+  "source": "Section 117",
+  "registration_number": "04181100",
+  "city": "",
+  "state": "",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-3318",
@@ -16442,6 +16772,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00268800",
+  "slug": "city-college-of-new-york-cuny-sec117-00268800",
+  "name": "City College of New York - CUNY",
+  "source": "Section 117",
+  "registration_number": "00268800",
+  "city": "",
+  "state": "NY",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-7410",
   "slug": "city-of-london-usa-llc-fara-7410",
   "name": "City of London USA LLC",
@@ -16464,6 +16804,16 @@
   "city": "Chicago",
   "state": "IL",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-01302200",
+  "slug": "city-university-of-seattle-sec117-01302200",
+  "name": "City University of Seattle",
+  "source": "Section 117",
+  "registration_number": "01302200",
+  "city": "",
+  "state": "WA",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-3385",
@@ -16512,6 +16862,16 @@
   "city": "Washington",
   "state": "DC",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00117000",
+  "slug": "claremont-mckenna-college-sec117-00117000",
+  "name": "Claremont McKenna College",
+  "source": "Section 117",
+  "registration_number": "00117000",
+  "city": "",
+  "state": "CA",
+  "countries_in_source": 3
  },
  {
   "entity_id": "fara-5457",
@@ -16758,6 +17118,16 @@
   "city": "Boston",
   "state": "MA",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00269900",
+  "slug": "clarkson-university-sec117-00269900",
+  "name": "Clarkson University",
+  "source": "Section 117",
+  "registration_number": "00269900",
+  "city": "",
+  "state": "NY",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-1171",
@@ -17550,6 +17920,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-03022400",
+  "slug": "college-of-the-marshall-islands-sec117-03022400",
+  "name": "College of the Marshall Islands",
+  "source": "Section 117",
+  "registration_number": "03022400",
+  "city": "",
+  "state": "MH",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "sec117-00370500",
   "slug": "college-of-william-mary-sec117-00370500",
   "name": "College of William & Mary",
@@ -17770,6 +18150,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00245600",
+  "slug": "columbia-college-sec117-00245600",
+  "name": "Columbia College",
+  "source": "Section 117",
+  "registration_number": "00245600",
+  "city": "",
+  "state": "MO",
+  "countries_in_source": 3
+ },
+ {
   "entity_id": "sec117-00166500",
   "slug": "columbia-college-chicago-sec117-00166500",
   "name": "Columbia College Chicago",
@@ -17777,6 +18167,16 @@
   "registration_number": "00166500",
   "city": "",
   "state": "IL",
+  "countries_in_source": 1
+ },
+ {
+  "entity_id": "sec117-04121500",
+  "slug": "columbia-southern-university-sec117-04121500",
+  "name": "Columbia Southern University",
+  "source": "Section 117",
+  "registration_number": "04121500",
+  "city": "",
+  "state": "AL",
   "countries_in_source": 1
  },
  {
@@ -18866,6 +19266,16 @@
   "city": "Alexandria",
   "state": "VA",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00133900",
+  "slug": "corban-university-sec117-00133900",
+  "name": "Corban University",
+  "source": "Section 117",
+  "registration_number": "00133900",
+  "city": "",
+  "state": "OR",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-7670",
@@ -20280,6 +20690,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00730400",
+  "slug": "culinary-institute-of-america-sec117-00730400",
+  "name": "Culinary Institute of America",
+  "source": "Section 117",
+  "registration_number": "00730400",
+  "city": "",
+  "state": "NY",
+  "countries_in_source": 2
+ },
+ {
   "entity_id": "fara-2582",
   "slug": "culver-advertising-inc-a-california-corporation-fara-2582",
   "name": "Culver Advertising, Inc., a California Corporation",
@@ -20348,6 +20768,26 @@
   "city": "",
   "state": "NY",
   "countries_in_source": 3
+ },
+ {
+  "entity_id": "sec117-00269300",
+  "slug": "cuny-john-jay-college-of-criminal-justice-sec117-00269300",
+  "name": "CUNY John Jay College of Criminal Justice",
+  "source": "Section 117",
+  "registration_number": "00269300",
+  "city": "",
+  "state": "NY",
+  "countries_in_source": 4
+ },
+ {
+  "entity_id": "sec117-00702200",
+  "slug": "cuny-lehman-college-sec117-00702200",
+  "name": "CUNY Lehman College",
+  "source": "Section 117",
+  "registration_number": "00702200",
+  "city": "",
+  "state": "NY",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-2325",
@@ -20444,6 +20884,16 @@
   "city": "Miami",
   "state": "FL",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00325100",
+  "slug": "curtis-institute-of-music-sec117-00325100",
+  "name": "Curtis Institute of Music",
+  "source": "Section 117",
+  "registration_number": "00325100",
+  "city": "",
+  "state": "PA",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-1111",
@@ -22822,6 +23272,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00304200",
+  "slug": "denison-university-sec117-00304200",
+  "name": "Denison University",
+  "source": "Section 117",
+  "registration_number": "00304200",
+  "city": "",
+  "state": "OH",
+  "countries_in_source": 2
+ },
+ {
   "entity_id": "fara-4502",
   "slug": "denison-george-h-fara-4502",
   "name": "Denison, George H.",
@@ -23008,6 +23468,16 @@
   "city": "Alexandria",
   "state": "VA",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00712000",
+  "slug": "des-moines-area-community-college-sec117-00712000",
+  "name": "Des Moines Area Community College",
+  "source": "Section 117",
+  "registration_number": "00712000",
+  "city": "",
+  "state": "IA",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-3811",
@@ -23824,6 +24294,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00254400",
+  "slug": "doane-university-sec117-00254400",
+  "name": "Doane University",
+  "source": "Section 117",
+  "registration_number": "00254400",
+  "city": "",
+  "state": "NE",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-2581",
   "slug": "documentation-services-inc-fara-2581",
   "name": "Documentation Services, Inc.",
@@ -23990,6 +24470,16 @@
   "city": "New York",
   "state": "NY",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00119600",
+  "slug": "dominican-university-of-california-sec117-00119600",
+  "name": "Dominican University of California",
+  "source": "Section 117",
+  "registration_number": "00119600",
+  "city": "",
+  "state": "CA",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-2600",
@@ -24182,6 +24672,16 @@
   "city": "Arlington",
   "state": "VA",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00185900",
+  "slug": "dordt-university-sec117-00185900",
+  "name": "Dordt University",
+  "source": "Section 117",
+  "registration_number": "00185900",
+  "city": "",
+  "state": "IA",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-134",
@@ -25658,6 +26158,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00292300",
+  "slug": "east-carolina-university-sec117-00292300",
+  "name": "East Carolina University",
+  "source": "Section 117",
+  "registration_number": "00292300",
+  "city": "",
+  "state": "NC",
+  "countries_in_source": 3
+ },
+ {
   "entity_id": "fara-1965",
   "slug": "east-european-trade-enterprise-inc-fara-1965",
   "name": "East European Trade Enterprise, Inc.",
@@ -25770,6 +26280,16 @@
   "city": "",
   "state": "WA",
   "countries_in_source": 4
+ },
+ {
+  "entity_id": "sec117-00271500",
+  "slug": "eastman-dental-center-sec117-00271500",
+  "name": "Eastman Dental Center",
+  "source": "Section 117",
+  "registration_number": "00271500",
+  "city": "",
+  "state": "NY",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-5284",
@@ -26526,6 +27046,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00292700",
+  "slug": "elon-university-sec117-00292700",
+  "name": "Elon University",
+  "source": "Section 117",
+  "registration_number": "00292700",
+  "city": "",
+  "state": "NC",
+  "countries_in_source": 6
+ },
+ {
   "entity_id": "fara-1270",
   "slug": "emb-ltd-fara-1270",
   "name": "EMB, Ltd.",
@@ -26536,6 +27066,16 @@
   "city": "Washington",
   "state": "DC",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00147900",
+  "slug": "embry-riddle-aeronautical-university-sec117-00147900",
+  "name": "Embry-Riddle Aeronautical University",
+  "source": "Section 117",
+  "registration_number": "00147900",
+  "city": "",
+  "state": "FL",
+  "countries_in_source": 1
  },
  {
   "entity_id": "lda-48736",
@@ -26558,6 +27098,16 @@
   "city": "Washington",
   "state": "DC",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00214600",
+  "slug": "emerson-college-sec117-00214600",
+  "name": "Emerson College",
+  "source": "Section 117",
+  "registration_number": "00214600",
+  "city": "",
+  "state": "MA",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-3979",
@@ -27284,6 +27834,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00167800",
+  "slug": "eureka-college-sec117-00167800",
+  "name": "Eureka College",
+  "source": "Section 117",
+  "registration_number": "00167800",
+  "city": "",
+  "state": "IL",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-5704",
   "slug": "euroasian-financial-corporation-fara-5704",
   "name": "EuroAsian Financial Corporation",
@@ -27536,6 +28096,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00283400",
+  "slug": "excelsior-college-sec117-00283400",
+  "name": "Excelsior College",
+  "source": "Section 117",
+  "registration_number": "00283400",
+  "city": "",
+  "state": "NY",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-5055",
   "slug": "exclusively-finland-marketing-services-fara-5055",
   "name": "Exclusively Finland Marketing Services",
@@ -27695,6 +28265,16 @@
   "registration_number": "00138500",
   "city": "",
   "state": "CT",
+  "countries_in_source": 1
+ },
+ {
+  "entity_id": "sec117-00260700",
+  "slug": "fairleigh-dickinson-university-sec117-00260700",
+  "name": "Fairleigh Dickinson University",
+  "source": "Section 117",
+  "registration_number": "00260700",
+  "city": "",
+  "state": "NJ",
   "countries_in_source": 1
  },
  {
@@ -30236,6 +30816,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00303600",
+  "slug": "franciscan-university-of-steubenville-sec117-00303600",
+  "name": "Franciscan University of Steubenville",
+  "source": "Section 117",
+  "registration_number": "00303600",
+  "city": "",
+  "state": "OH",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-7316",
   "slug": "francisco-villagran-de-leon-fara-7316",
   "name": "Francisco Villagran de Leon",
@@ -31858,6 +32448,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00144300",
+  "slug": "gallaudet-university-sec117-00144300",
+  "name": "Gallaudet University",
+  "source": "Section 117",
+  "registration_number": "00144300",
+  "city": "",
+  "state": "DC",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-6151",
   "slug": "galletto-giacomo-fara-6151",
   "name": "Galletto, Giacomo",
@@ -32468,6 +33068,16 @@
   "city": "New York",
   "state": "NY",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-02231900",
+  "slug": "gemological-institute-of-america-sec117-02231900",
+  "name": "Gemological Institute of America",
+  "source": "Section 117",
+  "registration_number": "02231900",
+  "city": "",
+  "state": "CA",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-6706",
@@ -33368,6 +33978,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-02494300",
+  "slug": "gill-tech-academy-of-hair-design-sec117-02494300",
+  "name": "Gill-Tech Academy of Hair Design",
+  "source": "Section 117",
+  "registration_number": "02494300",
+  "city": "",
+  "state": "WI",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-7608",
   "slug": "gilley-s-fastener-sales-and-consulting-llc-fara-7608",
   "name": "Gilley's Fastener Sales and Consulting LLC",
@@ -33534,6 +34154,16 @@
   "city": "New York",
   "state": "NY",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-04282800",
+  "slug": "glasgow-caledonian-new-york-college-sec117-04282800",
+  "name": "Glasgow Caledonian New York College",
+  "source": "Section 117",
+  "registration_number": "04282800",
+  "city": "",
+  "state": "NY",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-7069",
@@ -34406,6 +35036,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00377800",
+  "slug": "gonzaga-university-sec117-00377800",
+  "name": "Gonzaga University",
+  "source": "Section 117",
+  "registration_number": "00377800",
+  "city": "",
+  "state": "WA",
+  "countries_in_source": 4
+ },
+ {
   "entity_id": "fara-6424",
   "slug": "gonzalez-jason-brent-fara-6424",
   "name": "Gonzalez, Jason Brent",
@@ -34906,6 +35546,16 @@
   "city": "Oklahoma City",
   "state": "OK",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00186600",
+  "slug": "graceland-university-sec117-00186600",
+  "name": "Graceland University",
+  "source": "Section 117",
+  "registration_number": "00186600",
+  "city": "",
+  "state": "IA",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-3212",
@@ -36198,6 +36848,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00235300",
+  "slug": "gustavus-adolphus-college-sec117-00235300",
+  "name": "Gustavus Adolphus College",
+  "source": "Section 117",
+  "registration_number": "00235300",
+  "city": "",
+  "state": "MN",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-1361",
   "slug": "guterma-alexander-l-fara-1361",
   "name": "Guterma, Alexander L.",
@@ -36400,6 +37060,16 @@
   "city": "New York",
   "state": "NY",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-04293300",
+  "slug": "hackensack-meridian-school-of-medicine-sec117-04293300",
+  "name": "Hackensack Meridian School of Medicine",
+  "source": "Section 117",
+  "registration_number": "04293300",
+  "city": "",
+  "state": "NJ",
+  "countries_in_source": 2
  },
  {
   "entity_id": "fara-6696",
@@ -36926,6 +37596,16 @@
   "city": "Washington",
   "state": "DC",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00272800",
+  "slug": "hamilton-college-sec117-00272800",
+  "name": "Hamilton College",
+  "source": "Section 117",
+  "registration_number": "00272800",
+  "city": "",
+  "state": "NY",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-6526",
@@ -37490,6 +38170,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00272900",
+  "slug": "hartwick-college-sec117-00272900",
+  "name": "Hartwick College",
+  "source": "Section 117",
+  "registration_number": "00272900",
+  "city": "",
+  "state": "NY",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-4427",
   "slug": "harty-richard-j-fara-4427",
   "name": "Harty, Richard J.",
@@ -37618,6 +38308,16 @@
   "city": "New York",
   "state": "NY",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00327400",
+  "slug": "haverford-college-sec117-00327400",
+  "name": "Haverford College",
+  "source": "Section 117",
+  "registration_number": "00327400",
+  "city": "",
+  "state": "PA",
+  "countries_in_source": 5
  },
  {
   "entity_id": "sec117-00727900",
@@ -39688,6 +40388,16 @@
   "state": "VA"
  },
  {
+  "entity_id": "sec117-00168800",
+  "slug": "illinois-college-sec117-00168800",
+  "name": "Illinois College",
+  "source": "Section 117",
+  "registration_number": "00168800",
+  "city": "",
+  "state": "IL",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "sec117-00169100",
   "slug": "illinois-institute-of-technology-sec117-00169100",
   "name": "Illinois Institute of Technology",
@@ -39696,6 +40406,16 @@
   "city": "",
   "state": "IL",
   "countries_in_source": 7
+ },
+ {
+  "entity_id": "sec117-00169200",
+  "slug": "illinois-state-university-sec117-00169200",
+  "name": "Illinois State University",
+  "source": "Section 117",
+  "registration_number": "00169200",
+  "city": "",
+  "state": "IL",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-2643",
@@ -39950,6 +40670,26 @@
   "city": "",
   "state": "IN",
   "countries_in_source": 30
+ },
+ {
+  "entity_id": "sec117-00181600",
+  "slug": "indiana-university-south-bend-sec117-00181600",
+  "name": "Indiana University - South Bend",
+  "source": "Section 117",
+  "registration_number": "00181600",
+  "city": "",
+  "state": "IN",
+  "countries_in_source": 1
+ },
+ {
+  "entity_id": "sec117-00327700",
+  "slug": "indiana-university-of-pennsylvania-sec117-00327700",
+  "name": "Indiana University of Pennsylvania",
+  "source": "Section 117",
+  "registration_number": "00327700",
+  "city": "",
+  "state": "PA",
+  "countries_in_source": 2
  },
  {
   "entity_id": "fara-4489",
@@ -42278,6 +43018,16 @@
   "city": "Chickamauga",
   "state": "GA",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00372100",
+  "slug": "james-madison-university-sec117-00372100",
+  "name": "James Madison University",
+  "source": "Section 117",
+  "registration_number": "00372100",
+  "city": "",
+  "state": "VA",
+  "countries_in_source": 2
  },
  {
   "entity_id": "fara-2083",
@@ -45122,6 +45872,16 @@
   "city": "Washington",
   "state": "DC",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-03853300",
+  "slug": "keck-graduate-institute-of-applied-life-sciences-sec117-03853300",
+  "name": "Keck Graduate Institute of Applied Life Sciences",
+  "source": "Section 117",
+  "registration_number": "03853300",
+  "city": "",
+  "state": "CA",
+  "countries_in_source": 3
  },
  {
   "entity_id": "fara-5032",
@@ -48768,6 +49528,26 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00227900",
+  "slug": "lawrence-technological-university-sec117-00227900",
+  "name": "Lawrence Technological University",
+  "source": "Section 117",
+  "registration_number": "00227900",
+  "city": "",
+  "state": "MI",
+  "countries_in_source": 1
+ },
+ {
+  "entity_id": "sec117-00385600",
+  "slug": "lawrence-university-of-wisconsin-sec117-00385600",
+  "name": "Lawrence University of Wisconsin",
+  "source": "Section 117",
+  "registration_number": "00385600",
+  "city": "",
+  "state": "WI",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-4194",
   "slug": "lawrence-w-n-murray-fara-4194",
   "name": "Lawrence, W.N. Murray",
@@ -50094,6 +50874,16 @@
   "state": "DC"
  },
  {
+  "entity_id": "sec117-02053000",
+  "slug": "liberty-university-sec117-02053000",
+  "name": "Liberty University",
+  "source": "Section 117",
+  "registration_number": "02053000",
+  "city": "",
+  "state": "VA",
+  "countries_in_source": 6
+ },
+ {
   "entity_id": "fara-461",
   "slug": "library-of-the-polish-embassy-publishing-office-fara-461",
   "name": "Library of the Polish Embassy, Publishing Office",
@@ -50258,6 +51048,16 @@
   "city": "Washington",
   "state": "DC",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00329000",
+  "slug": "lincoln-university-sec117-00329000",
+  "name": "Lincoln University",
+  "source": "Section 117",
+  "registration_number": "00329000",
+  "city": "",
+  "state": "PA",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-331",
@@ -51014,6 +51814,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00121800",
+  "slug": "loma-linda-university-sec117-00121800",
+  "name": "Loma Linda University",
+  "source": "Section 117",
+  "registration_number": "00121800",
+  "city": "",
+  "state": "CA",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-3898",
   "slug": "london-chamber-of-commerce-industry-lcci-fara-3898",
   "name": "London Chamber of Commerce & Industry (LCCI)",
@@ -51036,6 +51846,16 @@
   "city": "Delray Beach",
   "state": "FL",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00275100",
+  "slug": "long-island-university-sec117-00275100",
+  "name": "Long Island University",
+  "source": "Section 117",
+  "registration_number": "00275100",
+  "city": "",
+  "state": "NY",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-6695",
@@ -51180,6 +52000,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-04278800",
+  "slug": "los-angeles-pacific-university-sec117-04278800",
+  "name": "Los Angeles Pacific University",
+  "source": "Section 117",
+  "registration_number": "04278800",
+  "city": "",
+  "state": "CA",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-3682",
   "slug": "lou-hammond-associates-inc-fara-3682",
   "name": "Lou Hammond & Associates, Inc.",
@@ -51238,6 +52068,16 @@
   "city": "New York",
   "state": "NY",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00201000",
+  "slug": "louisiana-state-university-agricultural-mechanical-college-sec117-00201000",
+  "name": "Louisiana State University & Agricultural & Mechanical College",
+  "source": "Section 117",
+  "registration_number": "00201000",
+  "city": "",
+  "state": "LA",
+  "countries_in_source": 6
  },
  {
   "entity_id": "fara-236",
@@ -51344,6 +52184,26 @@
   "city": "",
   "state": "CA",
   "countries_in_source": 5
+ },
+ {
+  "entity_id": "sec117-00171000",
+  "slug": "loyola-university-chicago-sec117-00171000",
+  "name": "Loyola University Chicago",
+  "source": "Section 117",
+  "registration_number": "00171000",
+  "city": "",
+  "state": "IL",
+  "countries_in_source": 5
+ },
+ {
+  "entity_id": "sec117-00207800",
+  "slug": "loyola-university-maryland-sec117-00207800",
+  "name": "Loyola University Maryland",
+  "source": "Section 117",
+  "registration_number": "00207800",
+  "city": "",
+  "state": "MD",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-5434",
@@ -52086,6 +52946,16 @@
   "city": "Flowery Branch",
   "state": "GA",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00228200",
+  "slug": "madonna-university-sec117-00228200",
+  "name": "Madonna University",
+  "source": "Section 117",
+  "registration_number": "00228200",
+  "city": "",
+  "state": "MI",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-2108",
@@ -53188,6 +54058,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00386100",
+  "slug": "marian-university-sec117-00386100",
+  "name": "Marian University",
+  "source": "Section 117",
+  "registration_number": "00386100",
+  "city": "",
+  "state": "WI",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-563",
   "slug": "marias-joseph-francis-fara-563",
   "name": "Marias, Joseph Francis",
@@ -53532,6 +54412,16 @@
   "city": "New York",
   "state": "NY",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00123000",
+  "slug": "marshall-b-ketchum-university-sec117-00123000",
+  "name": "Marshall B. Ketchum University",
+  "source": "Section 117",
+  "registration_number": "00123000",
+  "city": "",
+  "state": "CA",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-4428",
@@ -54558,6 +55448,16 @@
   "city": "Brooklyn",
   "state": "NY",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00922300",
+  "slug": "mbti-business-training-institute-sec117-00922300",
+  "name": "MBTI Business Training Institute",
+  "source": "Section 117",
+  "registration_number": "00922300",
+  "city": "",
+  "state": "WI",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-3980",
@@ -55782,6 +56682,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-02453500",
+  "slug": "medical-college-of-wisconsin-sec117-02453500",
+  "name": "Medical College of Wisconsin",
+  "source": "Section 117",
+  "registration_number": "02453500",
+  "city": "",
+  "state": "WI",
+  "countries_in_source": 11
+ },
+ {
   "entity_id": "sec117-00343800",
   "slug": "medical-university-of-south-carolina-sec117-00343800",
   "name": "Medical University of South Carolina",
@@ -56268,6 +57178,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-01037400",
+  "slug": "metropolitan-state-university-sec117-01037400",
+  "name": "Metropolitan State University",
+  "source": "Section 117",
+  "registration_number": "01037400",
+  "city": "",
+  "state": "MN",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-2861",
   "slug": "metzger-shadyac-schwarz-fara-2861",
   "name": "Metzger, Shadyac & Schwarz",
@@ -56652,6 +57572,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00307700",
+  "slug": "miami-university-sec117-00307700",
+  "name": "Miami University",
+  "source": "Section 117",
+  "registration_number": "00307700",
+  "city": "",
+  "state": "OH",
+  "countries_in_source": 3
+ },
+ {
   "entity_id": "fara-1386",
   "slug": "michael-b-deane-associates-fara-1386",
   "name": "Michael B. Deane Associates",
@@ -56772,6 +57702,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-03284300",
+  "slug": "michigan-jewish-institute-sec117-03284300",
+  "name": "Michigan Jewish Institute",
+  "source": "Section 117",
+  "registration_number": "03284300",
+  "city": "",
+  "state": "MI",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "sec117-00229000",
   "slug": "michigan-state-university-sec117-00229000",
   "name": "Michigan State University",
@@ -56846,6 +57786,36 @@
   "city": "London",
   "state": "",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00197500",
+  "slug": "midway-university-sec117-00197500",
+  "name": "Midway University",
+  "source": "Section 117",
+  "registration_number": "00197500",
+  "city": "",
+  "state": "KY",
+  "countries_in_source": 1
+ },
+ {
+  "entity_id": "sec117-00248500",
+  "slug": "midwestern-baptist-theological-seminary-sec117-00248500",
+  "name": "Midwestern Baptist Theological Seminary",
+  "source": "Section 117",
+  "registration_number": "00248500",
+  "city": "",
+  "state": "MO",
+  "countries_in_source": 1
+ },
+ {
+  "entity_id": "sec117-00359200",
+  "slug": "midwestern-state-university-sec117-00359200",
+  "name": "Midwestern State University",
+  "source": "Section 117",
+  "registration_number": "00359200",
+  "city": "",
+  "state": "TX",
+  "countries_in_source": 2
  },
  {
   "entity_id": "fara-1604",
@@ -57926,6 +58896,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00253000",
+  "slug": "montana-state-university-billings-sec117-00253000",
+  "name": "Montana State University - Billings",
+  "source": "Section 117",
+  "registration_number": "00253000",
+  "city": "",
+  "state": "MT",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "sec117-00253200",
   "slug": "montana-state-university-bozeman-sec117-00253200",
   "name": "Montana State University Bozeman",
@@ -58244,6 +59224,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00187900",
+  "slug": "morningside-university-sec117-00187900",
+  "name": "Morningside University",
+  "source": "Section 117",
+  "registration_number": "00187900",
+  "city": "",
+  "state": "IA",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-1793",
   "slug": "moroccan-national-tourist-office-fara-1793",
   "name": "Moroccan National Tourist Office",
@@ -58506,6 +59496,16 @@
   "city": "Washington",
   "state": "DC",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00219200",
+  "slug": "mount-holyoke-college-sec117-00219200",
+  "name": "Mount Holyoke College",
+  "source": "Section 117",
+  "registration_number": "00219200",
+  "city": "",
+  "state": "MA",
+  "countries_in_source": 2
  },
  {
   "entity_id": "fara-6562",
@@ -58848,6 +59848,16 @@
   "city": "Islamabad",
   "state": "",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00330400",
+  "slug": "muhlenberg-college-sec117-00330400",
+  "name": "Muhlenberg College",
+  "source": "Section 117",
+  "registration_number": "00330400",
+  "city": "",
+  "state": "PA",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-917",
@@ -60740,6 +61750,16 @@
   "countries_in_source": 10
  },
  {
+  "entity_id": "sec117-00265800",
+  "slug": "new-mexico-state-university-alamogordo-sec117-00265800",
+  "name": "New Mexico State University Alamogordo",
+  "source": "Section 117",
+  "registration_number": "00265800",
+  "city": "",
+  "state": "NM",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-6330",
   "slug": "new-partners-consulting-inc-fara-6330",
   "name": "New Partners Consulting, Inc.",
@@ -60750,6 +61770,16 @@
   "city": "Washington",
   "state": "DC",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-02066200",
+  "slug": "new-school-the-sec117-02066200",
+  "name": "New School, The",
+  "source": "Section 117",
+  "registration_number": "02066200",
+  "city": "",
+  "state": "NY",
+  "countries_in_source": 5
  },
  {
   "entity_id": "fara-1276",
@@ -60928,6 +61958,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-03043900",
+  "slug": "newschool-of-architecture-and-design-sec117-03043900",
+  "name": "NewSchool of Architecture and Design",
+  "source": "Section 117",
+  "registration_number": "03043900",
+  "city": "",
+  "state": "CA",
+  "countries_in_source": 2
+ },
+ {
   "entity_id": "fara-3189",
   "slug": "newsome-company-inc-fara-3189",
   "name": "Newsome & Company, Inc.",
@@ -61044,6 +62084,16 @@
   "city": "New York",
   "state": "NY",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00278800",
+  "slug": "niagara-university-sec117-00278800",
+  "name": "Niagara University",
+  "source": "Section 117",
+  "registration_number": "00278800",
+  "city": "",
+  "state": "NY",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-1341",
@@ -62514,6 +63564,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00308600",
+  "slug": "oberlin-college-sec117-00308600",
+  "name": "Oberlin College",
+  "source": "Section 117",
+  "registration_number": "00308600",
+  "city": "",
+  "state": "OH",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-5921",
   "slug": "obi-chukwuma-bob-fara-5921",
   "name": "Obi, Chukwuma Bob",
@@ -63480,6 +64540,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00398500",
+  "slug": "oral-roberts-university-sec117-00398500",
+  "name": "Oral Roberts University",
+  "source": "Section 117",
+  "registration_number": "00398500",
+  "city": "",
+  "state": "OK",
+  "countries_in_source": 2
+ },
+ {
   "entity_id": "fara-2312",
   "slug": "oram-international-corporation-fara-2312",
   "name": "Oram International Corporation",
@@ -63804,6 +64874,16 @@
   "city": "Washington",
   "state": "DC",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00193700",
+  "slug": "ottawa-university-sec117-00193700",
+  "name": "Ottawa University",
+  "source": "Section 117",
+  "registration_number": "00193700",
+  "city": "",
+  "state": "KS",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-6235",
@@ -66256,6 +67336,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-02188300",
+  "slug": "pentecostal-theological-seminary-sec117-02188300",
+  "name": "Pentecostal Theological Seminary",
+  "source": "Section 117",
+  "registration_number": "02188300",
+  "city": "",
+  "state": "TN",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-559",
   "slug": "penueli-alisa-fara-559",
   "name": "Penueli, Alisa",
@@ -67824,6 +68914,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00279600",
+  "slug": "polytechnic-institute-of-new-york-university-sec117-00279600",
+  "name": "Polytechnic Institute of New York University",
+  "source": "Section 117",
+  "registration_number": "00279600",
+  "city": "",
+  "state": "NY",
+  "countries_in_source": 5
+ },
+ {
   "entity_id": "sec117-00117300",
   "slug": "pomona-college-sec117-00117300",
   "name": "Pomona College",
@@ -68058,6 +69158,16 @@
   "city": "Boston",
   "state": "MA",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00140100",
+  "slug": "post-university-sec117-00140100",
+  "name": "Post University",
+  "source": "Section 117",
+  "registration_number": "00140100",
+  "city": "",
+  "state": "CT",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-3859",
@@ -68486,6 +69596,16 @@
   "city": "New York",
   "state": "NY",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-04235500",
+  "slug": "presidio-graduate-school-sec117-04235500",
+  "name": "Presidio Graduate School",
+  "source": "Section 117",
+  "registration_number": "04235500",
+  "city": "",
+  "state": "CA",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-7557",
@@ -70110,6 +71230,16 @@
   "state": "VA"
  },
  {
+  "entity_id": "sec117-00861400",
+  "slug": "rabbinical-college-bobover-yeshiva-bnei-zion-sec117-00861400",
+  "name": "Rabbinical College Bobover Yeshiva Bnei Zion",
+  "source": "Section 117",
+  "registration_number": "00861400",
+  "city": "",
+  "state": "NY",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-806",
   "slug": "rabelo-ricardo-artigas-fara-806",
   "name": "Rabelo, Ricardo Artigas",
@@ -70902,6 +72032,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00321700",
+  "slug": "reed-college-sec117-00321700",
+  "name": "Reed College",
+  "source": "Section 117",
+  "registration_number": "00321700",
+  "city": "",
+  "state": "OR",
+  "countries_in_source": 2
+ },
+ {
   "entity_id": "fara-6004",
   "slug": "reed-international-law-consulting-llc-fara-6004",
   "name": "Reed International Law & Consulting LLC",
@@ -71066,6 +72206,16 @@
   "city": "Elizabeth",
   "state": "NJ",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00220600",
+  "slug": "regis-college-sec117-00220600",
+  "name": "Regis College",
+  "source": "Section 117",
+  "registration_number": "00220600",
+  "city": "",
+  "state": "MA",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-652",
@@ -71556,6 +72706,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00340900",
+  "slug": "rhode-island-school-of-design-sec117-00340900",
+  "name": "Rhode Island School of Design",
+  "source": "Section 117",
+  "registration_number": "00340900",
+  "city": "",
+  "state": "RI",
+  "countries_in_source": 4
+ },
+ {
   "entity_id": "fara-4188",
   "slug": "rhone-poulenc-inc-fara-4188",
   "name": "Rhone-Poulenc, Inc.",
@@ -71682,6 +72842,16 @@
   "city": "Washington",
   "state": "DC",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00164900",
+  "slug": "richard-j-daley-college-city-colleges-of-chicago-sec117-00164900",
+  "name": "Richard J Daley College-City Colleges of Chicago",
+  "source": "Section 117",
+  "registration_number": "00164900",
+  "city": "",
+  "state": "IL",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-5537",
@@ -74076,6 +75246,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00980000",
+  "slug": "rush-university-sec117-00980000",
+  "name": "Rush University",
+  "source": "Section 117",
+  "registration_number": "00980000",
+  "city": "",
+  "state": "IL",
+  "countries_in_source": 6
+ },
+ {
   "entity_id": "fara-5140",
   "slug": "russian-american-partnership-center-washington-d-c-fara-5140",
   "name": "Russian-American Partnership Center, Washington, D.C.",
@@ -74550,6 +75730,16 @@
   "countries_in_source": 1
  },
  {
+  "entity_id": "sec117-00318300",
+  "slug": "saint-gregory-s-university-sec117-00318300",
+  "name": "Saint Gregory's University",
+  "source": "Section 117",
+  "registration_number": "00318300",
+  "city": "",
+  "state": "OK",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "sec117-00282300",
   "slug": "saint-john-s-university-sec117-00282300",
   "name": "Saint John's University",
@@ -74558,6 +75748,16 @@
   "city": "",
   "state": "NY",
   "countries_in_source": 13
+ },
+ {
+  "entity_id": "sec117-00237900",
+  "slug": "saint-john-s-university-sec117-00237900",
+  "name": "Saint John's University",
+  "source": "Section 117",
+  "registration_number": "00237900",
+  "city": "",
+  "state": "MN",
+  "countries_in_source": 2
  },
  {
   "entity_id": "sec117-00336700",
@@ -74578,6 +75778,16 @@
   "city": "",
   "state": "MO",
   "countries_in_source": 10
+ },
+ {
+  "entity_id": "sec117-00183600",
+  "slug": "saint-mary-s-college-sec117-00183600",
+  "name": "Saint Mary's College",
+  "source": "Section 117",
+  "registration_number": "00183600",
+  "city": "",
+  "state": "IN",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-5717",
@@ -74724,6 +75934,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00341100",
+  "slug": "salve-regina-university-sec117-00341100",
+  "name": "Salve Regina University",
+  "source": "Section 117",
+  "registration_number": "00341100",
+  "city": "",
+  "state": "RI",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-4715",
   "slug": "samancor-foundation-u-s-a-fara-4715",
   "name": "Samancor Foundation, U.S.A.",
@@ -74746,6 +75966,16 @@
   "city": "Columbus",
   "state": "OH",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00103600",
+  "slug": "samford-university-sec117-00103600",
+  "name": "Samford University",
+  "source": "Section 117",
+  "registration_number": "00103600",
+  "city": "",
+  "state": "AL",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-5248",
@@ -74830,6 +76060,16 @@
   "city": "Washington",
   "state": "DC",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00701200",
+  "slug": "samuel-merritt-university-sec117-00701200",
+  "name": "Samuel Merritt University",
+  "source": "Section 117",
+  "registration_number": "00701200",
+  "city": "",
+  "state": "CA",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-4563",
@@ -75774,6 +77014,16 @@
   "city": "Washington",
   "state": "DC",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-02314100",
+  "slug": "schiller-international-university-sec117-02314100",
+  "name": "Schiller International University",
+  "source": "Section 117",
+  "registration_number": "02314100",
+  "city": "",
+  "state": "FL",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-1119",
@@ -77076,6 +78326,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00296200",
+  "slug": "shaw-university-sec117-00296200",
+  "name": "Shaw University",
+  "source": "Section 117",
+  "registration_number": "00296200",
+  "city": "",
+  "state": "NC",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-1876",
   "slug": "shaw-arnold-f-fara-1876",
   "name": "Shaw, Arnold F.",
@@ -77266,6 +78526,16 @@
   "city": "McLean",
   "state": "VA",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00373700",
+  "slug": "shenandoah-university-sec117-00373700",
+  "name": "Shenandoah University",
+  "source": "Section 117",
+  "registration_number": "00373700",
+  "city": "",
+  "state": "VA",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-5335",
@@ -79384,6 +80654,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-02075800",
+  "slug": "southern-california-institute-of-architecture-the-sec117-02075800",
+  "name": "Southern California Institute of Architecture (The)",
+  "source": "Section 117",
+  "registration_number": "02075800",
+  "city": "",
+  "state": "CA",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-5295",
   "slug": "southern-energy-resources-inc-fara-5295",
   "name": "Southern Energy Resources, Inc.",
@@ -79394,6 +80674,16 @@
   "city": "Atlanta",
   "state": "GA",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00175800",
+  "slug": "southern-illinois-university-at-carbondale-sec117-00175800",
+  "name": "Southern Illinois University at Carbondale",
+  "source": "Section 117",
+  "registration_number": "00175800",
+  "city": "",
+  "state": "IL",
+  "countries_in_source": 7
  },
  {
   "entity_id": "sec117-00361300",
@@ -79978,6 +81268,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00221100",
+  "slug": "springfield-college-sec117-00221100",
+  "name": "Springfield College",
+  "source": "Section 117",
+  "registration_number": "00221100",
+  "city": "",
+  "state": "MA",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-1864",
   "slug": "spurga-ronald-fara-1864",
   "name": "Spurga, Ronald",
@@ -80172,6 +81472,16 @@
   "city": "Houston",
   "state": "TX",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00282900",
+  "slug": "st-lawrence-university-sec117-00282900",
+  "name": "St. Lawrence University",
+  "source": "Section 117",
+  "registration_number": "00282900",
+  "city": "",
+  "state": "NY",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-2796",
@@ -80430,6 +81740,26 @@
   "countries_in_source": 9
  },
  {
+  "entity_id": "sec117-01167800",
+  "slug": "state-university-of-new-york-polytechnic-institute-sec117-01167800",
+  "name": "State University of New York Polytechnic Institute",
+  "source": "Section 117",
+  "registration_number": "01167800",
+  "city": "",
+  "state": "NY",
+  "countries_in_source": 2
+ },
+ {
+  "entity_id": "sec117-02455500",
+  "slug": "state-university-of-new-york-research-foundation-sec117-02455500",
+  "name": "State University of New York Research Foundation",
+  "source": "Section 117",
+  "registration_number": "02455500",
+  "city": "",
+  "state": "NY",
+  "countries_in_source": 2
+ },
+ {
   "entity_id": "fara-5002",
   "slug": "staton-david-michael-fara-5002",
   "name": "Staton, David Michael",
@@ -80616,6 +81946,16 @@
   "city": "Leonia",
   "state": "NJ",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00153100",
+  "slug": "stetson-university-sec117-00153100",
+  "name": "Stetson University",
+  "source": "Section 117",
+  "registration_number": "00153100",
+  "city": "",
+  "state": "FL",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-1753",
@@ -81486,6 +82826,26 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00285100",
+  "slug": "suny-college-of-environment-science-forestry-sec117-00285100",
+  "name": "SUNY College of Environment Science & Forestry",
+  "source": "Section 117",
+  "registration_number": "00285100",
+  "city": "",
+  "state": "NY",
+  "countries_in_source": 1
+ },
+ {
+  "entity_id": "sec117-01028600",
+  "slug": "suny-empire-state-college-sec117-01028600",
+  "name": "SUNY Empire State College",
+  "source": "Section 117",
+  "registration_number": "01028600",
+  "city": "",
+  "state": "NY",
+  "countries_in_source": 3
+ },
+ {
   "entity_id": "fara-227",
   "slug": "super-paul-fara-227",
   "name": "Super, Paul",
@@ -81782,6 +83142,16 @@
   "city": "Washington",
   "state": "DC",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00337000",
+  "slug": "swarthmore-college-sec117-00337000",
+  "name": "Swarthmore College",
+  "source": "Section 117",
+  "registration_number": "00337000",
+  "city": "",
+  "state": "PA",
+  "countries_in_source": 3
  },
  {
   "entity_id": "fara-5983",
@@ -82374,6 +83744,16 @@
   "city": "Alexandria",
   "state": "VA",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00363100",
+  "slug": "tarleton-state-university-sec117-00363100",
+  "name": "Tarleton State University",
+  "source": "Section 117",
+  "registration_number": "00363100",
+  "city": "",
+  "state": "TX",
+  "countries_in_source": 3
  },
  {
   "entity_id": "fara-7363",
@@ -83644,6 +85024,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00312100",
+  "slug": "tiffin-university-sec117-00312100",
+  "name": "Tiffin University",
+  "source": "Section 117",
+  "registration_number": "00312100",
+  "city": "",
+  "state": "OH",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-7629",
   "slug": "tiger-hill-partners-llc-fara-7629",
   "name": "Tiger Hill Partners LLC",
@@ -83780,6 +85170,16 @@
   "city": "Arlington",
   "state": "VA",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00678800",
+  "slug": "tompkins-cortland-community-college-sec117-00678800",
+  "name": "Tompkins Cortland Community College",
+  "source": "Section 117",
+  "registration_number": "00678800",
+  "city": "",
+  "state": "NY",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-2622",
@@ -84338,6 +85738,16 @@
   "city": "New York",
   "state": "NY",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00364700",
+  "slug": "trinity-university-sec117-00364700",
+  "name": "Trinity University",
+  "source": "Section 117",
+  "registration_number": "00364700",
+  "city": "",
+  "state": "TX",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-4724",
@@ -85414,6 +86824,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-02170600",
+  "slug": "united-states-sports-academy-sec117-02170600",
+  "name": "United States Sports Academy",
+  "source": "Section 117",
+  "registration_number": "02170600",
+  "city": "",
+  "state": "AL",
+  "countries_in_source": 2
+ },
+ {
   "entity_id": "fara-1952",
   "slug": "united-world-films-inc-fara-1952",
   "name": "United World Films, Inc.",
@@ -85526,6 +86946,26 @@
   "countries_in_source": 31
  },
  {
+  "entity_id": "sec117-00105500",
+  "slug": "university-of-alabama-in-huntsville-sec117-00105500",
+  "name": "University of Alabama in Huntsville",
+  "source": "Section 117",
+  "registration_number": "00105500",
+  "city": "",
+  "state": "AL",
+  "countries_in_source": 2
+ },
+ {
+  "entity_id": "sec117-00106500",
+  "slug": "university-of-alaska-southeast-sec117-00106500",
+  "name": "University of Alaska Southeast",
+  "source": "Section 117",
+  "registration_number": "00106500",
+  "city": "",
+  "state": "AK",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "sec117-00108300",
   "slug": "university-of-arizona-the-sec117-00108300",
   "name": "University of Arizona (The)",
@@ -85563,6 +87003,26 @@
   "registration_number": "00108600",
   "city": "",
   "state": "AR",
+  "countries_in_source": 1
+ },
+ {
+  "entity_id": "sec117-00110900",
+  "slug": "university-of-arkansas-for-medical-sciences-sec117-00110900",
+  "name": "University of Arkansas for Medical Sciences",
+  "source": "Section 117",
+  "registration_number": "00110900",
+  "city": "",
+  "state": "AR",
+  "countries_in_source": 8
+ },
+ {
+  "entity_id": "sec117-00141600",
+  "slug": "university-of-bridgeport-sec117-00141600",
+  "name": "University of Bridgeport",
+  "source": "Section 117",
+  "registration_number": "00141600",
+  "city": "",
+  "state": "CT",
   "countries_in_source": 1
  },
  {
@@ -85746,6 +87206,16 @@
   "countries_in_source": 12
  },
  {
+  "entity_id": "sec117-00365100",
+  "slug": "university-of-dallas-sec117-00365100",
+  "name": "University of Dallas",
+  "source": "Section 117",
+  "registration_number": "00365100",
+  "city": "",
+  "state": "TX",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "sec117-00312700",
   "slug": "university-of-dayton-sec117-00312700",
   "name": "University of Dayton",
@@ -85836,6 +87306,16 @@
   "countries_in_source": 16
  },
  {
+  "entity_id": "sec117-01171100",
+  "slug": "university-of-houston-clear-lake-sec117-01171100",
+  "name": "University of Houston - Clear Lake",
+  "source": "Section 117",
+  "registration_number": "01171100",
+  "city": "",
+  "state": "TX",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "sec117-00162600",
   "slug": "university-of-idaho-sec117-00162600",
   "name": "University of Idaho",
@@ -85886,6 +87366,16 @@
   "countries_in_source": 28
  },
  {
+  "entity_id": "sec117-00299000",
+  "slug": "university-of-jamestown-sec117-00299000",
+  "name": "University of Jamestown",
+  "source": "Section 117",
+  "registration_number": "00299000",
+  "city": "",
+  "state": "ND",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "sec117-00194800",
   "slug": "university-of-kansas-sec117-00194800",
   "name": "University of Kansas",
@@ -85916,6 +87406,16 @@
   "countries_in_source": 39
  },
  {
+  "entity_id": "sec117-00205300",
+  "slug": "university-of-maine-sec117-00205300",
+  "name": "University of Maine",
+  "source": "Section 117",
+  "registration_number": "00205300",
+  "city": "",
+  "state": "ME",
+  "countries_in_source": 5
+ },
+ {
   "entity_id": "sec117-00210500",
   "slug": "university-of-maryland-baltimore-county-sec117-00210500",
   "name": "University of Maryland - Baltimore County",
@@ -85944,6 +87444,26 @@
   "city": "",
   "state": "MD",
   "countries_in_source": 32
+ },
+ {
+  "entity_id": "sec117-00222100",
+  "slug": "university-of-massachusetts-amherst-sec117-00222100",
+  "name": "University of Massachusetts - Amherst",
+  "source": "Section 117",
+  "registration_number": "00222100",
+  "city": "",
+  "state": "MA",
+  "countries_in_source": 8
+ },
+ {
+  "entity_id": "sec117-00221000",
+  "slug": "university-of-massachusetts-dartmouth-sec117-00221000",
+  "name": "University of Massachusetts - Dartmouth",
+  "source": "Section 117",
+  "registration_number": "00221000",
+  "city": "",
+  "state": "MA",
+  "countries_in_source": 1
  },
  {
   "entity_id": "sec117-00216100",
@@ -85986,6 +87506,36 @@
   "countries_in_source": 59
  },
  {
+  "entity_id": "sec117-00909100",
+  "slug": "university-of-michigan-all-campuses-sec117-00909100",
+  "name": "University of Michigan all Campuses",
+  "source": "Section 117",
+  "registration_number": "00909100",
+  "city": "",
+  "state": "MI",
+  "countries_in_source": 3
+ },
+ {
+  "entity_id": "sec117-00406900",
+  "slug": "university-of-minnesota-crookston-sec117-00406900",
+  "name": "University of Minnesota - Crookston",
+  "source": "Section 117",
+  "registration_number": "00406900",
+  "city": "",
+  "state": "MN",
+  "countries_in_source": 2
+ },
+ {
+  "entity_id": "sec117-00238900",
+  "slug": "university-of-minnesota-morris-sec117-00238900",
+  "name": "University of Minnesota - Morris",
+  "source": "Section 117",
+  "registration_number": "00238900",
+  "city": "",
+  "state": "MN",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "sec117-00396900",
   "slug": "university-of-minnesota-twin-cities-sec117-00396900",
   "name": "University of Minnesota - Twin Cities",
@@ -85994,6 +87544,26 @@
   "city": "",
   "state": "MN",
   "countries_in_source": 44
+ },
+ {
+  "entity_id": "sec117-00238800",
+  "slug": "university-of-minnesota-duluth-sec117-00238800",
+  "name": "University of Minnesota Duluth",
+  "source": "Section 117",
+  "registration_number": "00238800",
+  "city": "",
+  "state": "MN",
+  "countries_in_source": 3
+ },
+ {
+  "entity_id": "sec117-00244000",
+  "slug": "university-of-mississippi-sec117-00244000",
+  "name": "University of Mississippi",
+  "source": "Section 117",
+  "registration_number": "00244000",
+  "city": "",
+  "state": "MS",
+  "countries_in_source": 1
  },
  {
   "entity_id": "sec117-00251600",
@@ -86024,6 +87594,16 @@
   "city": "",
   "state": "MO",
   "countries_in_source": 3
+ },
+ {
+  "entity_id": "sec117-00253600",
+  "slug": "university-of-montana-the-sec117-00253600",
+  "name": "University of Montana (The)",
+  "source": "Section 117",
+  "registration_number": "00253600",
+  "city": "",
+  "state": "MT",
+  "countries_in_source": 2
  },
  {
   "entity_id": "sec117-00256500",
@@ -86074,6 +87654,26 @@
   "city": "",
   "state": "NV",
   "countries_in_source": 8
+ },
+ {
+  "entity_id": "sec117-00668500",
+  "slug": "university-of-new-brunswick-the-sec117-00668500",
+  "name": "University of New Brunswick (The)",
+  "source": "Section 117",
+  "registration_number": "00668500",
+  "city": "",
+  "state": "",
+  "countries_in_source": 1
+ },
+ {
+  "entity_id": "sec117-00205000",
+  "slug": "university-of-new-england-sec117-00205000",
+  "name": "University of New England",
+  "source": "Section 117",
+  "registration_number": "00205000",
+  "city": "",
+  "state": "ME",
+  "countries_in_source": 2
  },
  {
   "entity_id": "sec117-00258900",
@@ -86156,6 +87756,26 @@
   "countries_in_source": 13
  },
  {
+  "entity_id": "sec117-04242100",
+  "slug": "university-of-north-texas-at-dallas-sec117-04242100",
+  "name": "University of North Texas at Dallas",
+  "source": "Section 117",
+  "registration_number": "04242100",
+  "city": "",
+  "state": "TX",
+  "countries_in_source": 1
+ },
+ {
+  "entity_id": "sec117-00976800",
+  "slug": "university-of-north-texas-health-science-center-at-fort-worth-sec117-00976800",
+  "name": "University of North Texas Health Science Center at Fort Worth",
+  "source": "Section 117",
+  "registration_number": "00976800",
+  "city": "",
+  "state": "TX",
+  "countries_in_source": 4
+ },
+ {
   "entity_id": "sec117-00134900",
   "slug": "university-of-northern-colorado-sec117-00134900",
   "name": "University of Northern Colorado",
@@ -86216,6 +87836,16 @@
   "countries_in_source": 59
  },
  {
+  "entity_id": "sec117-02098800",
+  "slug": "university-of-phoenix-sec117-02098800",
+  "name": "University of Phoenix",
+  "source": "Section 117",
+  "registration_number": "02098800",
+  "city": "",
+  "state": "AZ",
+  "countries_in_source": 9
+ },
+ {
   "entity_id": "sec117-00337900",
   "slug": "university-of-pittsburgh-sec117-00337900",
   "name": "University of Pittsburgh",
@@ -86226,6 +87856,26 @@
   "countries_in_source": 38
  },
  {
+  "entity_id": "sec117-00322400",
+  "slug": "university-of-portland-sec117-00322400",
+  "name": "University of Portland",
+  "source": "Section 117",
+  "registration_number": "00322400",
+  "city": "",
+  "state": "OR",
+  "countries_in_source": 1
+ },
+ {
+  "entity_id": "sec117-00379700",
+  "slug": "university-of-puget-sound-sec117-00379700",
+  "name": "University of Puget Sound",
+  "source": "Section 117",
+  "registration_number": "00379700",
+  "city": "",
+  "state": "WA",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "sec117-00132200",
   "slug": "university-of-redlands-sec117-00132200",
   "name": "University of Redlands",
@@ -86234,6 +87884,16 @@
   "city": "",
   "state": "CA",
   "countries_in_source": 1
+ },
+ {
+  "entity_id": "sec117-00341400",
+  "slug": "university-of-rhode-island-sec117-00341400",
+  "name": "University of Rhode Island",
+  "source": "Section 117",
+  "registration_number": "00341400",
+  "city": "",
+  "state": "RI",
+  "countries_in_source": 7
  },
  {
   "entity_id": "sec117-00289400",
@@ -86274,6 +87934,16 @@
   "city": "",
   "state": "SC",
   "countries_in_source": 59
+ },
+ {
+  "entity_id": "sec117-00347400",
+  "slug": "university-of-south-dakota-sec117-00347400",
+  "name": "University of South Dakota",
+  "source": "Section 117",
+  "registration_number": "00347400",
+  "city": "",
+  "state": "SD",
+  "countries_in_source": 1
  },
  {
   "entity_id": "sec117-00153700",
@@ -86336,6 +88006,26 @@
   "countries_in_source": 2
  },
  {
+  "entity_id": "sec117-00805100",
+  "slug": "university-of-tennessee-university-wide-administration-central-office-sec117-00805100",
+  "name": "University of Tennessee University-Wide Administration Central Office",
+  "source": "Section 117",
+  "registration_number": "00805100",
+  "city": "",
+  "state": "TN",
+  "countries_in_source": 2
+ },
+ {
+  "entity_id": "sec117-00955800",
+  "slug": "university-of-texas-sec117-00955800",
+  "name": "University of Texas",
+  "source": "Section 117",
+  "registration_number": "00955800",
+  "city": "",
+  "state": "TX",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "sec117-00365600",
   "slug": "university-of-texas-at-arlington-sec117-00365600",
   "name": "University of Texas at Arlington",
@@ -86386,6 +88076,16 @@
   "countries_in_source": 10
  },
  {
+  "entity_id": "sec117-01116300",
+  "slug": "university-of-texas-at-tyler-sec117-01116300",
+  "name": "University of Texas at Tyler",
+  "source": "Section 117",
+  "registration_number": "01116300",
+  "city": "",
+  "state": "TX",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "sec117-00495100",
   "slug": "university-of-texas-health-science-center-at-houston-sec117-00495100",
   "name": "University of Texas Health Science Center at Houston",
@@ -86404,6 +88104,16 @@
   "city": "",
   "state": "TX",
   "countries_in_source": 17
+ },
+ {
+  "entity_id": "sec117-02468500",
+  "slug": "university-of-texas-health-science-center-dent-school-sec117-02468500",
+  "name": "University of Texas Health Science Center/Dent School",
+  "source": "Section 117",
+  "registration_number": "02468500",
+  "city": "",
+  "state": "TX",
+  "countries_in_source": 1
  },
  {
   "entity_id": "sec117-02555400",
@@ -86444,6 +88154,26 @@
   "city": "",
   "state": "TX",
   "countries_in_source": 20
+ },
+ {
+  "entity_id": "sec117-00335300",
+  "slug": "university-of-the-sciences-in-philadelphia-sec117-00335300",
+  "name": "University of the Sciences in Philadelphia",
+  "source": "Section 117",
+  "registration_number": "00335300",
+  "city": "",
+  "state": "PA",
+  "countries_in_source": 1
+ },
+ {
+  "entity_id": "sec117-00353400",
+  "slug": "university-of-the-south-the-sec117-00353400",
+  "name": "University of the South (The)",
+  "source": "Section 117",
+  "registration_number": "00353400",
+  "city": "",
+  "state": "TN",
+  "countries_in_source": 1
  },
  {
   "entity_id": "sec117-00313100",
@@ -88166,6 +89896,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-02504200",
+  "slug": "walden-university-sec117-02504200",
+  "name": "Walden University",
+  "source": "Section 117",
+  "registration_number": "02504200",
+  "city": "",
+  "state": "MN",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-3132",
   "slug": "waldman-raymond-j-fara-3132",
   "name": "Waldman, Raymond J.",
@@ -88176,6 +89916,16 @@
   "city": "Washington",
   "state": "DC",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00189500",
+  "slug": "waldorf-university-sec117-00189500",
+  "name": "Waldorf University",
+  "source": "Section 117",
+  "registration_number": "00189500",
+  "city": "",
+  "state": "IA",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-3494",
@@ -88460,6 +90210,16 @@
   "city": "Poetry",
   "state": "TX",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00338900",
+  "slug": "washington-and-jefferson-college-sec117-00338900",
+  "name": "Washington and Jefferson College",
+  "source": "Section 117",
+  "registration_number": "00338900",
+  "city": "",
+  "state": "PA",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-6135",
@@ -89162,6 +90922,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00222400",
+  "slug": "wellesley-college-sec117-00222400",
+  "name": "Wellesley College",
+  "source": "Section 117",
+  "registration_number": "00222400",
+  "city": "",
+  "state": "MA",
+  "countries_in_source": 6
+ },
+ {
   "entity_id": "fara-3278",
   "slug": "wellford-wegman-hoff-fara-3278",
   "name": "Wellford, Wegman & Hoff",
@@ -89386,6 +91156,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-02171500",
+  "slug": "western-international-university-sec117-02171500",
+  "name": "Western International University",
+  "source": "Section 117",
+  "registration_number": "02171500",
+  "city": "",
+  "state": "AZ",
+  "countries_in_source": 3
+ },
+ {
   "entity_id": "sec117-00233000",
   "slug": "western-michigan-university-sec117-00233000",
   "name": "Western Michigan University",
@@ -89426,6 +91206,16 @@
   "city": "",
   "state": "PA",
   "countries_in_source": 22
+ },
+ {
+  "entity_id": "sec117-00134100",
+  "slug": "westmont-college-sec117-00134100",
+  "name": "Westmont College",
+  "source": "Section 117",
+  "registration_number": "00134100",
+  "city": "",
+  "state": "CA",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-5265",
@@ -89484,6 +91274,16 @@
   "city": "Washington",
   "state": "DC",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-00222800",
+  "slug": "wheelock-college-sec117-00222800",
+  "name": "Wheelock College",
+  "source": "Section 117",
+  "registration_number": "00222800",
+  "city": "",
+  "state": "MA",
+  "countries_in_source": 2
  },
  {
   "entity_id": "fara-5539",
@@ -89790,6 +91590,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00339400",
+  "slug": "wilkes-university-sec117-00339400",
+  "name": "Wilkes University",
+  "source": "Section 117",
+  "registration_number": "00339400",
+  "city": "",
+  "state": "PA",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-4075",
   "slug": "wilkinson-barker-knauer-quinn-fara-4075",
   "name": "Wilkinson, Barker, Knauer & Quinn",
@@ -90086,6 +91896,16 @@
   "house_registrant_id": 30771,
   "city": "Washington",
   "state": "DC"
+ },
+ {
+  "entity_id": "sec117-00222900",
+  "slug": "williams-college-sec117-00222900",
+  "name": "Williams College",
+  "source": "Section 117",
+  "registration_number": "00222900",
+  "city": "",
+  "state": "MA",
+  "countries_in_source": 6
  },
  {
   "entity_id": "fara-6790",
@@ -90694,6 +92514,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-03949300",
+  "slug": "won-institute-of-graduate-studies-sec117-03949300",
+  "name": "Won Institute of Graduate Studies",
+  "source": "Section 117",
+  "registration_number": "03949300",
+  "city": "",
+  "state": "PA",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-5550",
   "slug": "wood-james-c-fara-5550",
   "name": "Wood, James C.",
@@ -91018,6 +92848,16 @@
   "in_registrants_file": true
  },
  {
+  "entity_id": "sec117-00290300",
+  "slug": "yeshiva-university-sec117-00290300",
+  "name": "Yeshiva University",
+  "source": "Section 117",
+  "registration_number": "00290300",
+  "city": "",
+  "state": "NY",
+  "countries_in_source": 1
+ },
+ {
   "entity_id": "fara-4421",
   "slug": "yhda-international-fara-4421",
   "name": "YHDA International",
@@ -91136,6 +92976,16 @@
   "city": "Mexico, D.F.",
   "state": "",
   "in_registrants_file": true
+ },
+ {
+  "entity_id": "sec117-04277100",
+  "slug": "young-americans-college-of-the-performing-arts-the-sec117-04277100",
+  "name": "Young Americans College of the Performing Arts (The)",
+  "source": "Section 117",
+  "registration_number": "04277100",
+  "city": "",
+  "state": "CA",
+  "countries_in_source": 1
  },
  {
   "entity_id": "fara-6138",

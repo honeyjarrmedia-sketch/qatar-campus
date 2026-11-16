@@ -226,10 +226,15 @@ class Sec117(unittest.TestCase):
     def setUpClass(cls):
         cls.res = clean_sec117.run()
 
-    def test_only_featured_countries_and_exact_values(self):
+    def test_every_country_kept_featured_ones_flagged(self):
         recs = self.res["records"]
-        self.assertEqual(len(recs), 6)  # FRANCE row is not a featured country
-        self.assertEqual(sorted({r["country_code"] for r in recs}), ["CN", "QA", "RU", "SA", "TR"])
+        self.assertEqual(len(recs), 7)  # every country in the file, France included
+        self.assertEqual(sorted({r["country_code"] for r in recs}), ["", "CN", "QA", "RU", "SA", "TR"])
+        france = [r for r in recs if r["country"] == "France"]
+        self.assertEqual(len(france), 1)
+        self.assertFalse(france[0]["featured"])
+        self.assertEqual(france[0]["country_code"], "")
+        self.assertTrue(all(r["featured"] for r in recs if r["country_code"]))
         q = [r for r in recs if r["country_code"] == "QA"]
         self.assertEqual(sorted(r["amount_usd"] for r in q), [-25000.0, 500000.0])
         named = [r for r in q if r["foreign_principal"]][0]
@@ -248,8 +253,9 @@ class Build(unittest.TestCase):
     def test_full_build_validates_and_finds_overlap(self):
         self.assertEqual(build_dataset.run(), 0)
         clean = Path(_TMP) / "data" / "clean"
-        records = json.loads((clean / "records.json").read_text())
-        self.assertEqual(len(records), 16)
+        from pipeline.common import read_records
+        records = read_records(clean / "records.json.gz")
+        self.assertEqual(len(records), 17)
         conns = json.loads((clean / "connections.json").read_text())
         names = {c["entity_id"]: c["featured_countries"] for c in conns}
         self.assertEqual(names["fara-9001"], ["CN", "QA"])
@@ -257,9 +263,9 @@ class Build(unittest.TestCase):
         self.assertEqual(names["lda-501"], ["CN", "RU"])
         self.assertEqual(names["sec117-00900100"], ["CN", "QA"])
         self.assertEqual(names["sec117-00900200"], ["RU", "SA", "TR"])
-        with open(clean / "records.csv", newline="", encoding="utf-8") as f:
+        with gzip.open(clean / "records.csv.gz", "rt", newline="", encoding="utf-8") as f:
             rows = list(csv.DictReader(f))
-        self.assertEqual(len(rows), 16)
+        self.assertEqual(len(rows), 17)
         self.assertEqual(list(rows[0])[:14], build_dataset.CSV_COLUMNS[:14])
 
     def test_bad_source_link_fails_validation(self):

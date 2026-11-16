@@ -11,7 +11,7 @@ import datetime as dt
 from collections import Counter, defaultdict
 
 from . import config
-from .common import read_json, short_hash, slugify, write_json
+from .common import read_json, short_hash, slugify, title_country, write_json
 
 REQUIRED = ["OPEID", "School Name", "State", "Transaction Type",
             "Foreign Government Source", "Attribution Country", "Amount",
@@ -77,8 +77,6 @@ def run() -> dict:
         country_counts[raw_country] += 1
         countries_by_school[opeid].add(raw_country.upper())
         cc = featured.get(raw_country.upper())
-        if not cc:
-            continue
         try:
             amount = round(float(g("Amount")), 2)
         except (TypeError, ValueError):
@@ -112,10 +110,10 @@ def run() -> dict:
         date = receipt or start
         records.append({
             "id": rec_id,
-            "country": config.FEATURED[cc]["name"],
-            "country_code": cc,
+            "country": config.FEATURED[cc]["name"] if cc else title_country(raw_country),
+            "country_code": cc or "",
             "country_as_filed": raw_country,
-            "featured": True,
+            "featured": bool(cc),
             "actor_type": "university",
             "entity_or_person_name": school,
             "entity_id": f"sec117-{opeid}",
@@ -164,6 +162,8 @@ def run() -> dict:
                           "Check data/reports/sec117_country_review.json against config.FEATURED.")
     report = {
         "rows_in_file": total_rows, "records": len(records),
+        "countries": len({r["country"] for r in records}),
+        "featured_records": sum(1 for r in records if r["featured"]),
         "records_by_country": dict(Counter(r["country"] for r in records)),
         "amount_total_by_country": {c: round(sum(r["amount_usd"] or 0 for r in records if r["country"] == c), 2)
                                     for c in sorted({r["country"] for r in records})},

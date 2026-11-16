@@ -1,7 +1,7 @@
 """Merge the cleaned sources into the published dataset and validate it.
 
 Outputs (data/clean/):
-  records.json / records.csv   one row per record
+  records.json.gz / records.csv.gz  one record per line, gzipped
   entities.json                one entry per registrant
   connections.json             registrants with records in 2+ featured countries
   fara_documents.json          DOJ document links for featured FARA registrants
@@ -15,7 +15,7 @@ from collections import Counter, defaultdict
 from urllib.parse import urlparse
 
 from . import clean_fara, clean_lda, clean_sec117, config
-from .common import norm_name, now_utc, read_json, write_json, write_json_rows
+from .common import norm_name, now_utc, read_json, write_json, write_json_rows, write_records
 
 # The fourteen columns from the project brief come first, in its order.
 CSV_COLUMNS = [
@@ -142,13 +142,17 @@ def run() -> int:
     write_json(config.REPORTS / "possible_same_entity.json", possible)
 
     config.CLEAN.mkdir(parents=True, exist_ok=True)
-    write_json_rows(config.CLEAN / "records.json", records)
+    write_records(config.CLEAN / "records.json.gz", records)
     write_json(config.CLEAN / "entities.json",
                sorted(entities.values(), key=lambda e: e["name"].upper()))
     write_json_rows(config.CLEAN / "connections.json", connections)
     write_json_rows(config.CLEAN / "fara_documents.json",
                     [{"registration_number": k, "documents": v} for k, v in documents.items()])
-    with open(config.CLEAN / "records.csv", "w", newline="", encoding="utf-8") as f:
+    import gzip as _gzip
+    import io as _io
+    with open(config.CLEAN / "records.csv.gz", "wb") as _raw, \
+            _gzip.GzipFile(fileobj=_raw, mode="wb", compresslevel=6, mtime=0) as _gz, \
+            _io.TextIOWrapper(_gz, newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=CSV_COLUMNS, extrasaction="ignore")
         w.writeheader()
         for r in records:

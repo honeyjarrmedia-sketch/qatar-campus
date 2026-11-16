@@ -25,7 +25,7 @@ import re
 from collections import Counter, defaultdict
 
 from . import config
-from .common import norm_name, read_json, short_hash, write_json
+from .common import norm_name, read_json, read_records, short_hash, write_json
 
 MONEY = re.compile(r"^\$?\s?([0-9][0-9,]*(?:\.[0-9]{2})?)$")
 PERIOD = re.compile(r"Period\s+Ending\s+([0-9]{1,2}/[0-9]{1,2}/[0-9]{4})", re.I)
@@ -164,9 +164,7 @@ def run(country_code: str = "QA") -> dict:
     if not docs:
         raise RuntimeError(f"No downloaded statements for {country_code}")
 
-    records = [__import__("json").loads(line.rstrip(",\n"))
-               for line in open(config.CLEAN / "records.json", encoding="utf-8")
-               if line.strip() not in "[]"]
+    records = read_records(config.CLEAN / "records.json.gz")
     fara = [r for r in records if r["actor_type"] == "fara_registrant"]
     # Every principal the Justice Department lists under each registration,
     # with the country it is filed under.

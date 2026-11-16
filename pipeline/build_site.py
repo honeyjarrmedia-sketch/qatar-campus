@@ -3,17 +3,17 @@
 The page is plain HTML, CSS and JavaScript with no build tooling. The
 default view (Qatar, all years) is written into the HTML itself so the page
 has real content before any script runs; the script then takes over for
-filtering. Every number written here is computed from data/clean/records.json.
+filtering. Every number written here is computed from data/clean/records.json.gz.
 """
 import html
 import json
 import shutil
 import sys
 import zipfile
-from collections import Counter
+from collections import Counter, defaultdict
 
 from . import config
-from .common import read_json, short_hash, write_json
+from .common import read_json, read_records, short_hash, slugify, write_json
 
 WEB = config.ROOT / "web"
 SITE = config.ROOT / "site"
@@ -146,8 +146,16 @@ def row_html(r: dict, year_max: int) -> str:
             f'<td><span class="tag tag-{esc(r["conf"])}">{esc(r["conf"])}</span></td></tr>')
 
 
+def year_series_income(filings):
+    out = defaultdict(float)
+    for r in filings:
+        if r["year"] is not None and r["amount"] is not None and (r["amtType"] or "").startswith("income"):
+            out[r["year"]] += r["amount"]
+    return {str(k): round(v, 2) for k, v in sorted(out.items())}
+
+
 def run() -> int:
-    records = read_json(config.CLEAN / "records.json")
+    records = read_records(config.CLEAN / "records.json.gz")
     if not records:
         print("[site] no records; run the clean step first", file=sys.stderr)
         return 1
@@ -158,8 +166,26 @@ def run() -> int:
 
     rows = [compact_row(r) for r in records]
     retrieved = max(r["retrieved"] for r in rows)
-    years = [r["year"] for r in rows if r["year"] is not None]
-    year_min, year_max = min(years), max(max(years), int(retrieved[:4]))
+    # The year range the page offers stops at the day the data was fetched.
+    # A handful of filings carry a date typed years in the future (3030, 2999);
+    # those are kept, shown with the date as filed, and treated as undated so
+    # they can still be found instead of silently falling outside the range.
+    year_max = int(retrieved[:4])
+    years = [r["year"] for r in rows if r["year"] is not None and r["year"] <= year_max]
+    year_min = min(years)
+    impossible = []
+    for r in rows:
+        if r["year"] is not None and not (year_min <= r["year"] <= year_max):
+            impossible.append({"id": r["id"], "country": r["country"], "entity": r["entity"],
+                               "date_as_filed": r["dStart"], "year": r["year"],
+                               "amount_usd": r["amount"], "source_url": r["url"]})
+            r["notes"] = ((r["notes"] + " ") if r["notes"] else "") + (
+                f"The date on this record is {r['dStart']}, which is outside the period "
+                "the records cover. It is shown here as filed and left undated, so the "
+                "year filter does not hide it.")
+            r["year"] = None
+            r["yearEnd"] = None
+    write_json(config.REPORTS / "dates_outside_the_range.json", impossible)
     featured = [r for r in rows if r["cc"]]
     other = [r for r in rows if not r["cc"]]
     other_countries = sorted(Counter(r["country"] for r in other).items())
@@ -172,22 +198,100 @@ def run() -> int:
         shutil.copyfile(WEB / name, SITE / "assets" / name)
     # The full CSV is too large for a single file on Cloudflare Pages (25 MB
     # limit), so it is served zipped. The zip holds records.csv unchanged.
-    with zipfile.ZipFile(SITE / "data" / "records-csv.zip", "w", zipfile.ZIP_DEFLATED, compresslevel=9) as z:
-        z.write(config.CLEAN / "records.csv", "records.csv")
+    import gzip as _gzip
+    with zipfile.ZipFile(SITE / "data" / "records-csv.zip", "w", zipfile.ZIP_DEFLATED,
+                         compresslevel=9) as z:
+        with _gzip.open(config.CLEAN / "records.csv.gz", "rb") as f:
+            z.writestr("records.csv", f.read())
 
     def dump(path, obj):
         with open(path, "w", encoding="utf-8") as f:
             json.dump(obj, f, ensure_ascii=False, separators=(",", ":"))
 
-    dump(SITE / "data" / "featured.json", pack(featured, {
+    # Every country is its own file, fetched when that country is chosen, so
+    # the page opens with Qatar alone however large the dataset grows.
+    by_country = defaultdict(list)
+    for r in rows:
+        by_country[r["country"]].append(r)
+    slugs, used = {}, set()
+    for name in sorted(by_country):
+        slug = slugify(name) or "country"
+        while slug in used:
+            slug += "-x"
+        used.add(slug)
+        slugs[name] = slug
+    featured_names = {m["name"]: cc for cc, m in config.FEATURED.items()}
+    index = [{"name": n, "slug": slugs[n], "n": len(by_country[n]),
+              "cc": featured_names.get(n, "")}
+             for n in sorted(by_country)]
+
+    (SITE / "data" / "country").mkdir()
+    for name, rows_for in by_country.items():
+        dump(SITE / "data" / "country" / f"{slugs[name]}.json", pack(rows_for, {}))
+    dump(SITE / "data" / "index.json", {
         "generated": summary.get("generated_at", ""), "year_min": year_min,
-        "year_max": year_max, "other_countries": other_countries}))
-    dump(SITE / "data" / "other.json", pack(other, {}))
+        "year_max": year_max, "countries": index,
+        "featured": [[cc, m["name"], slugs.get(m["name"], "")]
+                     for cc, m in config.FEATURED.items()]})
+
+    # Which country files hold a given organisation's records, so "show all
+    # records for this registrant" can fetch just those.
+    ent_countries = defaultdict(set)
+    for r in rows:
+        ent_countries[r["eid"]].add(slugs[r["country"]])
+    dump(SITE / "data" / "entity_countries.json",
+         {k: sorted(v) for k, v in sorted(ent_countries.items()) if len(v) > 1})
+
     conn_small = [{"eid": c["entity_id"], "name": c["name"], "source": c["source"],
                    "cc": c["featured_countries"], "all": c["all_countries_in_dataset"],
                    "n": sum(len(v) for v in c["records_by_country"].values())}
                   for c in conns]
     dump(SITE / "data" / "connections.json", conn_small)
+
+    # Totals and the year series for the "All countries" view, so it needs no
+    # record-level download. Computed the same way as the page computes them.
+    def year_series(rows_in, kind):
+        out = defaultdict(float)
+        for r in rows_in:
+            if r["t"] != kind or r["year"] is None:
+                continue
+            if kind == "fara":
+                end = year_max if r["yearEnd"] is None else r["yearEnd"]
+                for y in range(max(r["year"], year_min), min(end, year_max) + 1):
+                    out[y] += 1
+            elif kind == "lda":
+                if not r["sup"]:
+                    out[r["year"]] += 1
+            elif r["amount"] is not None:
+                out[r["year"]] += r["amount"]
+        return {str(k): round(v, 2) for k, v in sorted(out.items())}
+
+    all_fara = [r for r in rows if r["t"] == "fara"]
+    all_uni = [r for r in rows if r["t"] == "sec117"]
+    all_fee = [r for r in rows if r["t"] == "farafee"]
+    all_filings = {}
+    for r in rows:
+        if r["t"] == "lda" and not r["sup"]:
+            all_filings.setdefault(r["id"][4:r["id"].rfind("-")], r)
+    income = [r for r in all_filings.values()
+              if r["amount"] is not None and r["amtType"].startswith("income")]
+    dump(SITE / "data" / "summary.json", {
+        "records": len(rows),
+        "tiles": {
+            "registrants": len({r["eid"] for r in all_fara}),
+            "principals": len({(r["principal"] or "").upper() for r in all_fara}),
+            "filings": len(all_filings),
+            "income": round(sum(r["amount"] for r in income), 2),
+            "income_n": len(income),
+            "university_total": round(sum(r["amount"] or 0 for r in all_uni), 2),
+            "university_n": len(all_uni),
+            "fees_total": round(sum(r["amount"] or 0 for r in all_fee), 2),
+            "fees_n": len(all_fee),
+        },
+        "series": {"fara": year_series(rows, "fara"), "lda": year_series(rows, "lda"),
+                   "income": year_series_income(all_filings.values()),
+                   "uni": year_series(rows, "sec117"), "fee": year_series(rows, "farafee")},
+    })
 
     # ---- Static (pre-script) content for the default Qatar view ----------
     q = qatar_totals(rows)
@@ -216,8 +320,10 @@ def run() -> int:
         for c in conn_small[:STATIC_CONN]) or (
         '<tr><td colspan="5" class="muted">No registrant has records in more than one featured country.</td></tr>')
     tabs = "".join(
-        f'<button type="button" class="tab" data-c="{cc}" aria-pressed="{"true" if cc == "QA" else "false"}">{esc(name)}</button>'
-        for cc, name in list(names.items()) + [("ALL", "All countries")])
+        f'<button type="button" class="tab" data-c="{esc(slug)}" '
+        f'aria-pressed="{"true" if slug == "qatar" else "false"}">{esc(name)}</button>'
+        for slug, name in [(slugs.get(m["name"], ""), m["name"]) for m in config.FEATURED.values()]
+        + [("ALL", "All countries")])
 
     def fetched(source):
         dates = sorted({e["retrieved_at"][:10] for e in manifest.get(source, [])
@@ -313,14 +419,19 @@ def run() -> int:
         "/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n"
         "/data/*\n  Cache-Control: public, max-age=3600\n", encoding="utf-8")
 
-    sizes = {p.name: p.stat().st_size for p in (SITE / "data").iterdir()}
-    too_big = {n: b for n, b in sizes.items() if b > 24 * 1024 * 1024}
+    sizes = {p.name: p.stat().st_size for p in (SITE / "data").iterdir() if p.is_file()}
+    country_sizes = sorted(((p.stat().st_size, p.name)
+                            for p in (SITE / "data" / "country").iterdir()), reverse=True)
+    sizes["country/ (largest)"] = f"{country_sizes[0][1]} {country_sizes[0][0]:,}" if country_sizes else "none"
+    sizes["country/ (files)"] = len(country_sizes)
+    too_big = {n: b for n, b in sizes.items() if isinstance(b, int) and b > 24 * 1024 * 1024}
     if too_big:
         print(f"[site] files over the 25 MB hosting limit: {too_big}", file=sys.stderr)
         return 1
     write_json(config.REPORTS / "site_build.json", {
         "records": len(rows), "featured_records": len(featured),
-        "other_records": len(other), "year_range": [year_min, year_max],
+        "other_records": len(other), "countries": len(index),
+        "year_range": [year_min, year_max],
         "qatar_default_view": q, "data_file_bytes": sizes,
         "site_url_set": bool(site_url), "contact_email_set": bool(email)})
     print(f"[site] built {SITE} | records {len(rows)} | data files {sizes}")

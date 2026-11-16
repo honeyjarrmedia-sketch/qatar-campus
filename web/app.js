@@ -1,9 +1,9 @@
 /* Qatar Campus: one-page records browser. No dependencies.
+   Every country is its own data file, fetched when that country is chosen.
    All text that comes from the data is inserted with textContent. */
 (function () {
   'use strict';
 
-  var FEATURED = [['QA', 'Qatar'], ['CN', 'China'], ['RU', 'Russia'], ['SA', 'Saudi Arabia'], ['TR', 'Turkey']];
   var PAGE_SIZE = 25;
   var CONN_PAGE = 10;
   var $ = function (id) { return document.getElementById(id); };
@@ -17,17 +17,21 @@
     if (a >= 1e6) return '$' + (n / 1e6).toFixed(1) + ' million';
     return money(n);
   };
+  var KIND = { fara: 'FARA registration', lda: 'LDA filing', sec117: 'University report', farafee: 'FARA payment' };
+  var ACTOR = { fara: 'fara_registrant', lda: 'lobbying_registrant', sec117: 'university', farafee: 'fara_fee' };
 
-  var rows = [];            // decoded records currently loaded
-  var meta = null;          // year_min, year_max, other_countries
-  var otherLoaded = false;
-  var otherLoading = null;
+  var index = null;          // index.json: years, country list, featured tabs
+  var summary = null;        // summary.json: totals and year series for all countries
+  var bySlug = {};           // slug -> records, once that country is loaded
+  var loading = {};          // slug -> in-flight promise
+  var entityCountries = null;
   var connections = [];
   var connShown = CONN_PAGE;
   var openRow = '';
+  var lastList = [];
 
-  var state = { c: 'QA', from: null, to: null, q: '', type: '', min: '', conf: '', sup: true,
-                ent: '', row: '', m: 'auto', sort: 'year', dir: -1, page: 0 };
+  var state = { c: 'qatar', from: null, to: null, q: '', type: '', min: '', conf: '', sup: true,
+                ent: '', entSlugs: null, row: '', m: 'auto', sort: 'year', dir: -1, page: 0 };
 
   function el(tag, attrs, kids) {
     var n = document.createElement(tag);
@@ -41,8 +45,15 @@
     return n;
   }
   function clear(node) { while (node.firstChild) node.removeChild(node.firstChild); }
+  function setStatus(t) { $('status').textContent = t; }
 
-  // ---- Data -------------------------------------------------------------
+  // ---- Data ---------------------------------------------------------------
+  function getJSON(url) {
+    return fetch(url).then(function (r) {
+      if (!r.ok) throw new Error(url.split('/').pop() + ' returned ' + r.status);
+      return r.json();
+    });
+  }
   function decode(pack) {
     var f = pack.fields, d = pack.dict, out = [];
     for (var i = 0; i < pack.rows.length; i++) {
@@ -56,44 +67,67 @@
     }
     return out;
   }
-  function getJSON(url) {
-    return fetch(url).then(function (r) {
-      if (!r.ok) throw new Error(url + ' returned ' + r.status);
-      return r.json();
-    });
-  }
-  function needOther() { return state.c === 'ALL' || state.c.slice(0, 2) === 'X:' || !!state.ent; }
-  function loadOther() {
-    if (otherLoaded) return Promise.resolve();
-    if (!otherLoading) {
-      setStatus('Loading records for all countries…');
-      otherLoading = getJSON('data/other.json').then(function (pack) {
-        rows = rows.concat(decode(pack));
-        otherLoaded = true;
+  function loadCountry(slug) {
+    if (bySlug[slug]) return Promise.resolve(bySlug[slug]);
+    if (!loading[slug]) {
+      loading[slug] = getJSON('data/country/' + slug + '.json').then(function (pack) {
+        bySlug[slug] = decode(pack);
+        return bySlug[slug];
       });
     }
-    return otherLoading;
+    return loading[slug];
+  }
+  function loadSummary() {
+    if (summary) return Promise.resolve(summary);
+    return getJSON('data/summary.json').then(function (s) { summary = s; return s; });
+  }
+  function entitySlugs(eid) {
+    if (entityCountries) return Promise.resolve(entityCountries[eid] || []);
+    return getJSON('data/entity_countries.json').then(function (m) {
+      entityCountries = m;
+      return m[eid] || [];
+    }, function () { entityCountries = {}; return []; });
+  }
+  function countryByName(name) {
+    for (var i = 0; i < index.countries.length; i++) if (index.countries[i].name === name) return index.countries[i];
+    return null;
+  }
+  function countryBySlug(slug) {
+    for (var i = 0; i < index.countries.length; i++) if (index.countries[i].slug === slug) return index.countries[i];
+    return null;
+  }
+  function countryIsFeatured(slug) {
+    return slug === 'ALL' || index.featured.some(function (f) { return f[2] === slug; });
+  }
+
+  /** Which country files the current view needs. */
+  function neededSlugs() {
+    if (state.ent) return state.entSlugs || [];
+    if (state.c === 'ALL') return [];
+    return [state.c];
+  }
+  function loadedRows() {
+    var out = [];
+    neededSlugs().forEach(function (s) { if (bySlug[s]) out = out.concat(bySlug[s]); });
+    return out;
   }
 
   // ---- Filtering ----------------------------------------------------------
-  function fullRange() { return state.from === meta.year_min && state.to === meta.year_max; }
+  function fullRange() { return state.from === index.year_min && state.to === index.year_max; }
   function inYears(r, from, to, full) {
     if (r.year === null) return full;
     if (r.t === 'fara') {
-      var end = r.yearEnd === null ? meta.year_max : r.yearEnd;
+      var end = r.yearEnd === null ? index.year_max : r.yearEnd;
       return r.year <= to && end >= from;
     }
     return r.year >= from && r.year <= to;
   }
-  function inCountry(r) {
-    if (state.ent) return r.eid === state.ent;
-    if (state.c === 'ALL') return true;
-    if (state.c.slice(0, 2) === 'X:') return r.country === state.c.slice(2);
-    return r.cc === state.c;
-  }
   function scopeRows() {
     var full = fullRange();
-    return rows.filter(function (r) { return inCountry(r) && inYears(r, state.from, state.to, full); });
+    return loadedRows().filter(function (r) {
+      if (state.ent && r.eid !== state.ent) return false;
+      return inYears(r, state.from, state.to, full);
+    });
   }
   function tableRows(scope) {
     var q = state.q.trim().toLowerCase();
@@ -106,16 +140,16 @@
       if (q && r._s.indexOf(q) === -1) return false;
       return true;
     });
-    var key = state.sort, dir = state.dir;
     var get = {
       country: function (r) { return r.country; }, type: function (r) { return r.t; },
       entity: function (r) { return r.entity; }, principal: function (r) { return r.principal || r.client || ''; },
       amount: function (r) { return r.amount; }, year: function (r) { return r.year; },
       conf: function (r) { return r.conf; }
-    }[key];
+    }[state.sort];
+    var dir = state.dir;
     out.sort(function (a, b) {
       var x = get(a), y = get(b);
-      if (x === null || x === undefined) return (y === null || y === undefined) ? 0 : 1;  // empty values last
+      if (x === null || x === undefined) return (y === null || y === undefined) ? 0 : 1;  // empty last
       if (y === null || y === undefined) return -1;
       if (x < y) return -dir;
       if (x > y) return dir;
@@ -123,14 +157,12 @@
     });
     return out;
   }
-  // A lobbying filing linked to two featured countries is two rows. When
-  // several countries are in view it must still be counted once.
-  function filingKey(r) { return r.id.slice(4, r.id.lastIndexOf('-')); }
+  // A lobbying filing linked to two featured countries is two rows; counted once.
   function uniqueFilings(list) {
     var seen = {}, out = [];
     list.forEach(function (r) {
       if (r.t !== 'lda' || r.sup) return;
-      var k = filingKey(r);
+      var k = r.id.slice(4, r.id.lastIndexOf('-'));
       if (!seen[k]) { seen[k] = 1; out.push(r); }
     });
     return out;
@@ -139,62 +171,79 @@
   // ---- Totals -------------------------------------------------------------
   function scopeName() {
     if (state.ent) {
-      var hit = rows.find(function (r) { return r.eid === state.ent; });
-      return hit ? hit.entity : 'Selected organization';
+      var rows = loadedRows();
+      for (var i = 0; i < rows.length; i++) if (rows[i].eid === state.ent) return rows[i].entity;
+      return 'Selected organization';
     }
     if (state.c === 'ALL') return 'All countries';
-    if (state.c.slice(0, 2) === 'X:') return state.c.slice(2);
-    return FEATURED.filter(function (f) { return f[0] === state.c; })[0][1];
+    var c = countryBySlug(state.c);
+    return c ? c.name : state.c;
+  }
+  function tile(label, value, foot, kind, exact) {
+    return el('div', { 'class': 'card stat' }, [
+      el('div', { 'class': 'label', text: label }),
+      el('div', { 'class': 'stat-value', text: value }),
+      (exact !== null && exact !== undefined && Math.abs(exact) >= 1e6)
+        ? el('div', { 'class': 'stat-exact', text: money(exact) + ' exactly' }) : null,
+      el('div', { 'class': 'stat-foot' }, [
+        kind ? el('button', { type: 'button', 'class': 'linklike', text: foot, onclick: function () {
+          state.type = kind; $('f-type').value = kind; state.page = 0; update();
+          $('records').scrollIntoView();
+        } }) : el('span', { 'class': 'muted', text: foot }),
+        el('span', { 'class': 'tag tag-derived', text: 'derived' })
+      ])
+    ]);
   }
   function renderTotals(scope) {
-    var fara = scope.filter(function (r) { return r.t === 'fara'; });
-    var regs = {}, princ = {};
-    fara.forEach(function (r) { regs[r.eid] = 1; princ[(r.principal || '').toUpperCase()] = 1; });
-    var filings = uniqueFilings(scope);
-    var income = 0, incomeN = 0, expenses = 0, expensesN = 0;
-    filings.forEach(function (r) {
-      if (r.amount === null) return;
-      if ((r.amtType || '').indexOf('income') === 0) { income += r.amount; incomeN++; }
-      else if ((r.amtType || '').indexOf('expenses') === 0) { expenses += r.amount; expensesN++; }
-    });
-    var uni = scope.filter(function (r) { return r.t === 'sec117'; });
-    var uniTotal = 0; uni.forEach(function (r) { uniTotal += r.amount || 0; });
-    var fees = scope.filter(function (r) { return r.t === 'farafee'; });
-    var feeTotal = 0; fees.forEach(function (r) { feeTotal += r.amount || 0; });
-    var tiles = [
-      ['University gifts and contracts reported', bigMoney(uniTotal), 'Show the ' + fmt.format(uni.length) + ' reports', 'sec117', uniTotal],
-      ['FARA registrants', fmt.format(Object.keys(regs).length), 'Show the registrations', 'fara', null],
-      ['Foreign principals', fmt.format(Object.keys(princ).length), 'Show the registrations', 'fara', null],
-      ['Lobbying filings', fmt.format(filings.length), 'Show the filings', 'lda', null],
-      ['Lobbying income reported', bigMoney(income), 'Show the ' + fmt.format(incomeN) + ' filings with income', 'lda', income]
-    ];
-    if (fees.length) tiles.push(['FARA payments read from statements', bigMoney(feeTotal),
-      'Show the ' + fmt.format(fees.length) + ' reported payments', 'farafee', feeTotal]);
     var box = $('stats');
     clear(box);
-    tiles.forEach(function (t) {
-      box.appendChild(el('div', { 'class': 'card stat' }, [
-        el('div', { 'class': 'label', text: t[0] }),
-        el('div', { 'class': 'stat-value', text: t[1] }),
-        (t[4] !== null && Math.abs(t[4]) >= 1e6) ? el('div', { 'class': 'stat-exact', text: money(t[4]) + ' exactly' }) : null,
-        el('div', { 'class': 'stat-foot' }, [
-          el('button', { type: 'button', 'class': 'linklike', text: t[2], onclick: function () {
-            state.type = t[3]; $('f-type').value = t[3]; state.page = 0; update();
-            $('records').scrollIntoView();
-          } }),
-          el('span', { 'class': 'tag tag-derived', text: 'derived' })
-        ])
-      ]));
-    });
-    var note = 'Totals are marked derived because they are counted from individual records. ' +
-      'The Justice Department bulk file carries no dollar amounts, so FARA fees appear only where they have been read from a registrant\'s supplemental statement. ' +
-      'Lobbying filings and university reports are included for Qatar, China, Russia, Saudi Arabia and Turkey only. ' +
-      'University reports cover gifts and contracts that institutions reported to the Department of Education through February 28, 2025.';
-    if (expensesN) note += ' Separately, ' + fmt.format(expensesN) + ' filings by organizations lobbying on their own behalf report ' + money(expenses) + ' in expenses; that figure covers all of the organization\'s lobbying.';
+    var t, allView = state.c === 'ALL' && !state.ent;
+    if (allView) {
+      if (!summary) { box.appendChild(el('p', { 'class': 'muted', text: 'Loading totals…' })); return; }
+      t = summary.tiles;
+    } else {
+      var fara = scope.filter(function (r) { return r.t === 'fara'; });
+      var regs = {}, princ = {};
+      fara.forEach(function (r) { regs[r.eid] = 1; princ[(r.principal || '').toUpperCase()] = 1; });
+      var filings = uniqueFilings(scope);
+      var income = 0, incomeN = 0, uniTotal = 0, uniN = 0, feeTotal = 0, feeN = 0;
+      filings.forEach(function (r) {
+        if (r.amount !== null && (r.amtType || '').indexOf('income') === 0) { income += r.amount; incomeN++; }
+      });
+      scope.forEach(function (r) {
+        if (r.t === 'sec117') { uniTotal += r.amount || 0; uniN++; }
+        if (r.t === 'farafee') { feeTotal += r.amount || 0; feeN++; }
+      });
+      t = { registrants: Object.keys(regs).length, principals: Object.keys(princ).length,
+            filings: filings.length, income: income, income_n: incomeN,
+            university_total: uniTotal, university_n: uniN, fees_total: feeTotal, fees_n: feeN };
+    }
+    var cells = [];
+    if (t.university_n) cells.push(tile('University gifts and contracts reported', bigMoney(t.university_total),
+      'Show the ' + fmt.format(t.university_n) + ' reports', 'sec117', t.university_total));
+    cells.push(tile('FARA registrants', fmt.format(t.registrants), 'Show the registrations', 'fara', null));
+    cells.push(tile('Foreign principals', fmt.format(t.principals), 'Show the registrations', 'fara', null));
+    cells.push(tile('Lobbying filings', fmt.format(t.filings),
+      t.filings ? 'Show the filings' : 'Not collected for this country', t.filings ? 'lda' : '', null));
+    cells.push(tile('Lobbying income reported', bigMoney(t.income),
+      t.filings ? 'Show the ' + fmt.format(t.income_n) + ' filings with income' : 'Not collected for this country',
+      t.filings ? 'lda' : '', t.income));
+    if (t.fees_n) cells.push(tile('FARA payments read from statements', bigMoney(t.fees_total),
+      'Show the ' + fmt.format(t.fees_n) + ' reported payments', 'farafee', t.fees_total));
+    cells.forEach(function (c) { box.appendChild(c); });
+
+    var note = 'Totals are counted from the individual records below. The Justice Department bulk file carries no dollar ' +
+      'amounts, so FARA payments appear only where they have been read from a registrant’s supplemental statement. ' +
+      'University reports cover gifts and contracts that institutions reported to the Department of Education through ' +
+      'February 28, 2025.';
+    if (!t.filings && !allView && !state.ent) {
+      note += ' Lobbying filings were collected for Qatar, China, Russia, Saudi Arabia and Turkey only, so none appear here. ' +
+        'That is a gap in what has been collected, not a statement that none exist.';
+    }
     $('stats-note').textContent = note;
-    $('scope-label').textContent = scopeName() + ', ' + state.from + (state.from === state.to ? '' : ' to ' + state.to);
     var name = scopeName();
-    $('heading').textContent = (state.c === 'ALL' && !state.ent)
+    $('scope-label').textContent = name + ', ' + state.from + (state.from === state.to ? '' : ' to ' + state.to);
+    $('heading').textContent = allView
       ? 'Foreign principals in United States disclosure records'
       : state.ent ? 'Records on file for ' + name
       : name + ' in United States disclosure records';
@@ -212,15 +261,18 @@
   // selection has university reports and FARA registrations otherwise.
   function measure(scope) {
     if (state.m !== 'auto') return state.m;
+    if (state.c === 'ALL' && !state.ent) return 'uni';
     return scope.some(function (r) { return r.t === 'sec117'; }) ? 'uni' : 'fara';
   }
   function chartSeries(scope, m) {
-    var from = state.from, to = state.to, out = [], y;
-    var byYear = {};
-    if (m === 'fara') {
+    var from = state.from, to = state.to, out = [], y, byYear = {};
+    if (state.c === 'ALL' && !state.ent) {
+      var s = (summary && summary.series[m]) || {};
+      Object.keys(s).forEach(function (k) { byYear[+k] = s[k]; });
+    } else if (m === 'fara') {
       scope.forEach(function (r) {
         if (r.t !== 'fara' || r.year === null) return;
-        var end = r.yearEnd === null ? meta.year_max : r.yearEnd;
+        var end = r.yearEnd === null ? index.year_max : r.yearEnd;
         for (var yy = Math.max(r.year, from); yy <= Math.min(end, to); yy++) byYear[yy] = (byYear[yy] || 0) + 1;
       });
     } else if (m === 'uni' || m === 'fee') {
@@ -259,7 +311,8 @@
     var max = Math.max.apply(null, series.map(function (s) { return s[1]; }));
     var label = function (v) { return m.money ? money(v) : fmt.format(v); };
     // Table view: always available, carries every value.
-    var tb = el('table', null, [el('thead', null, [el('tr', null, [el('th', { scope: 'col', text: 'Year' }), el('th', { scope: 'col', text: m.money ? 'USD' : 'Count' })])])]);
+    var tb = el('table', null, [el('thead', null, [el('tr', null, [
+      el('th', { scope: 'col', text: 'Year' }), el('th', { scope: 'col', text: m.money ? 'USD' : 'Count' })])])]);
     var body = el('tbody');
     series.forEach(function (s) { body.appendChild(el('tr', null, [el('td', { text: String(s[0]) }), el('td', { text: label(s[1]) })])); });
     tb.appendChild(body); clear($('chart-table')); $('chart-table').appendChild(tb);
@@ -285,9 +338,9 @@
       var x = L + band * idx + (band - bw) / 2, h = ph * s[1] / top, y0 = T + ph;
       if (s[1] > 0) {
         var r = Math.min(4, bw / 2, h);
-        var d = 'M' + x + ',' + y0 + ' V' + (y0 - h + r) + ' Q' + x + ',' + (y0 - h) + ' ' + (x + r) + ',' + (y0 - h) +
-          ' H' + (x + bw - r) + ' Q' + (x + bw) + ',' + (y0 - h) + ' ' + (x + bw) + ',' + (y0 - h + r) + ' V' + y0 + ' Z';
-        root.appendChild(svg('path', { d: d, 'class': 'bar', 'data-i': idx }));
+        root.appendChild(svg('path', { 'class': 'bar', d:
+          'M' + x + ',' + y0 + ' V' + (y0 - h + r) + ' Q' + x + ',' + (y0 - h) + ' ' + (x + r) + ',' + (y0 - h) +
+          ' H' + (x + bw - r) + ' Q' + (x + bw) + ',' + (y0 - h) + ' ' + (x + bw) + ',' + (y0 - h + r) + ' V' + y0 + ' Z' }));
       }
       if (idx % every === 0) {
         var xt = svg('text', { x: L + band * idx + band / 2, y: H - 8, 'text-anchor': 'middle' });
@@ -313,8 +366,6 @@
   }
 
   // ---- Records table ------------------------------------------------------
-  var KIND = { fara: 'FARA registration', lda: 'LDA filing', sec117: 'University report', farafee: 'FARA payment' };
-  var ACTOR = { fara: 'fara_registrant', lda: 'lobbying_registrant', sec117: 'university', farafee: 'fara_fee' };
   function amountCell(r) {
     var td = el('td', { 'class': 'num' });
     if (r.amount !== null) {
@@ -336,6 +387,7 @@
     shows.appendChild(el('div', { text: r.role + '.' }));
     if (r.t === 'fara') shows.appendChild(el('div', { text: 'Relationship dates as listed in the Justice Department file: ' + (r.dStart || 'not stated') + ' to ' + (r.dEnd || 'no end date listed') + '.' }));
     else if (r.t === 'lda') shows.appendChild(el('div', { text: r.srcType + (r.period ? ', ' + r.period : '') + ', posted ' + (r.dStart || 'date not stated') + '.' }));
+    else if (r.t === 'farafee') shows.appendChild(el('div', { text: 'Reported for the ' + (r.period || 'reporting period') + '.' }));
     if (r.client && r.client !== r.principal) shows.appendChild(el('div', { text: 'Client: ' + r.client }));
     if (r.t === 'sec117') {
       shows.appendChild(el('div', { text: 'Transaction type: ' + r.purpose + '.' }));
@@ -343,7 +395,7 @@
       if (r.detail) shows.appendChild(el('div', { text: r.detail + '.' }));
     } else {
       if (r.purpose) shows.appendChild(el('div', { text: 'Issue areas listed: ' + r.purpose }));
-      if (r.detail) shows.appendChild(el('div', { text: 'Described on the filing as: ' + r.detail }));
+      if (r.detail) shows.appendChild(el('div', { text: r.detail }));
     }
     if (r.people) shows.appendChild(el('div', { text: 'Lobbyists named on the filing: ' + r.people }));
 
@@ -355,11 +407,18 @@
     [r.url].concat(r.urls || []).forEach(function (u, i) {
       src.appendChild(el('a', { href: u, rel: 'noopener', target: '_blank', text: (i === 0 ? r.srcType : 'Related filing ' + i) + ' (' + u.split('/')[2] + ')' }));
     });
-    if (r.t === 'fara') src.appendChild(el('a', { href: 'https://efile.fara.gov/api/v1/RegDocs/html/' + r.eid.slice(5), rel: 'noopener', target: '_blank', text: 'Every document filed under this registration (efile.fara.gov)' }));
+    if (r.t === 'fara' || r.t === 'farafee') {
+      src.appendChild(el('a', { href: 'https://efile.fara.gov/api/v1/RegDocs/html/' + r.eid.slice(5), rel: 'noopener', target: '_blank',
+        text: 'Every document filed under this registration (efile.fara.gov)' }));
+    }
     src.appendChild(el('div', { 'class': 'small', text: 'Retrieved ' + r.retrieved }));
-    src.appendChild(el('button', { type: 'button', 'class': 'linklike', text: r.t === 'sec117' ? 'Show all records for this institution' : 'Show all records for this registrant', onclick: function () { setEntity(r.eid); } }));
+    src.appendChild(el('button', { type: 'button', 'class': 'linklike',
+      text: r.t === 'sec117' ? 'Show all records for this institution' : 'Show all records for this registrant',
+      onclick: function () { setEntity(r.eid); } }));
     src.appendChild(el('button', { type: 'button', 'class': 'linklike', text: 'Copy link to this row', onclick: function (e) {
-      var link = location.origin + location.pathname + '?c=' + encodeURIComponent(r.cc || r.country) + '&row=' + encodeURIComponent(r.id) + '#records';
+      var c = countryByName(r.country);
+      var link = location.origin + location.pathname + '?c=' + encodeURIComponent(c ? c.slug : '') +
+        '&row=' + encodeURIComponent(r.id) + '#records';
       var done = function () { e.target.textContent = 'Link copied'; };
       if (navigator.clipboard) navigator.clipboard.writeText(link).then(done, function () { window.prompt('Copy this link', link); });
       else window.prompt('Copy this link', link);
@@ -368,23 +427,36 @@
   }
   function renderTable(list) {
     var tbody = $('rows'); clear(tbody);
+    if (state.c === 'ALL' && !state.ent) {
+      tbody.appendChild(el('tr', null, [el('td', { colspan: '8' }, [
+        el('div', { style: 'padding: 10px 0; display: flex; flex-direction: column; gap: 10px' }, [
+          el('div', { text: 'The totals and chart above cover all ' + fmt.format(index.countries.length) +
+            ' countries in the records. Individual rows are listed one country at a time, so the page stays quick to load.' }),
+          el('div', { text: 'Choose a country above, or download every record as a spreadsheet from the top of the page.' })
+        ])])]));
+      $('count').textContent = summary ? fmt.format(summary.records) : '';
+      $('page-info').textContent = '';
+      $('prev').disabled = true; $('next').disabled = true;
+      clear($('entity-chip'));
+      return;
+    }
     var pages = Math.max(1, Math.ceil(list.length / PAGE_SIZE));
     if (state.page >= pages) state.page = pages - 1;
     var start = state.page * PAGE_SIZE, slice = list.slice(start, start + PAGE_SIZE);
     slice.forEach(function (r) {
       var open = openRow === r.id;
-      var tr = el('tr', { id: 'r-' + r.id }, [
+      tbody.appendChild(el('tr', { id: 'r-' + r.id }, [
         el('td', { text: r.country }),
         el('td', { style: 'font-size: 14px', text: KIND[r.t] }),
         el('td', null, [el('button', { type: 'button', 'class': 'linklike', style: 'font-weight: 500', 'aria-expanded': String(open), text: r.entity,
           onclick: function () { openRow = open ? '' : r.id; state.row = openRow; update(true); } })]),
-        el('td', r.principal || r.client ? { text: r.principal || r.client } : { 'class': 'muted', style: 'font-size: 14px', text: r.t === 'sec117' ? 'not named in the file' : '' }),
+        el('td', r.principal || r.client ? { text: r.principal || r.client }
+          : { 'class': 'muted', style: 'font-size: 14px', text: r.t === 'sec117' ? 'not named in the file' : '' }),
         amountCell(r),
         el('td', { 'class': 'yr', text: yearText(r) }),
         el('td', null, [el('a', { href: r.url, rel: 'noopener', target: '_blank', style: 'font-size: 14px; white-space: nowrap', text: 'Open filing' })]),
         el('td', null, [el('span', { 'class': 'tag tag-' + r.conf, text: r.conf })])
-      ]);
-      tbody.appendChild(tr);
+      ]));
       if (open) tbody.appendChild(detailRow(r));
     });
     if (!slice.length) tbody.appendChild(el('tr', null, [el('td', { colspan: '8', 'class': 'muted', text: 'No records match these choices.' })]));
@@ -410,7 +482,7 @@
   function csvCell(v) {
     if (v === null || v === undefined) return '';
     var s = String(v);
-    if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;  // stop spreadsheet formula injection
+    if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;   // stop spreadsheet formula injection
     return /[",\n\r]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
   }
   function downloadCsv(list) {
@@ -432,14 +504,17 @@
   // ---- Connections --------------------------------------------------------
   function renderConnections() {
     var tbody = $('conn-rows'); clear(tbody);
-    var names = {}; FEATURED.forEach(function (f) { names[f[0]] = f[1]; });
+    var names = {};
+    index.featured.forEach(function (f) { names[f[0]] = f[1]; });
     connections.slice(0, connShown).forEach(function (c) {
       tbody.appendChild(el('tr', null, [
-        el('td', null, [el('button', { type: 'button', 'class': 'linklike', style: 'font-weight: 500', text: c.name, onclick: function () { setEntity(c.eid); $('records').scrollIntoView(); } }),
+        el('td', null, [el('button', { type: 'button', 'class': 'linklike', style: 'font-weight: 500', text: c.name,
+          onclick: function () { setEntity(c.eid); $('records').scrollIntoView(); } }),
           el('div', { 'class': 'sub', text: c.source === 'Section 117' ? 'Institution reporting under Section 117' : c.source + ' registrant' })]),
         el('td', { text: c.cc.map(function (x) { return names[x] || x; }).join(', ') }),
         el('td', { 'class': 'yr', text: c.all === null ? 'not known for lobbying filings' : c.cc.length + ' of ' + c.all }),
-        el('td', null, [el('button', { type: 'button', 'class': 'linklike', style: 'font-size: 14px', text: 'Show the ' + fmt.format(c.n) + ' records', onclick: function () { setEntity(c.eid); $('records').scrollIntoView(); } })]),
+        el('td', null, [el('button', { type: 'button', 'class': 'linklike', style: 'font-size: 14px',
+          text: 'Show the ' + fmt.format(c.n) + ' records', onclick: function () { setEntity(c.eid); $('records').scrollIntoView(); } })]),
         el('td', null, [el('span', { 'class': 'tag tag-derived', text: 'derived' })])
       ]));
     });
@@ -449,9 +524,9 @@
   }
 
   // ---- State, URL and wiring ---------------------------------------------
-  function setStatus(t) { $('status').textContent = t; }
   function setYears(a, b) {
-    a = Math.max(meta.year_min, Math.min(meta.year_max, a)); b = Math.max(meta.year_min, Math.min(meta.year_max, b));
+    a = Math.max(index.year_min, Math.min(index.year_max, a));
+    b = Math.max(index.year_min, Math.min(index.year_max, b));
     if (a > b) { var t = a; a = b; b = t; }
     $('y-from').value = a; $('y-to').value = b;
     // Nothing changed: do not redraw, or a click already in progress on the
@@ -459,12 +534,31 @@
     if (a === state.from && b === state.to) return;
     state.from = a; state.to = b; state.page = 0; update();
   }
-  function setEntity(eid) { state.ent = eid; state.page = 0; openRow = ''; state.row = ''; update(); }
+  function setCountry(slug) {
+    state.c = slug; state.ent = ''; state.entSlugs = null;
+    state.page = 0; openRow = ''; state.row = '';
+    update();
+  }
+  function setEntity(eid) {
+    state.ent = eid; state.page = 0; openRow = ''; state.row = '';
+    if (!eid) { state.entSlugs = null; update(); return; }
+    setStatus('Looking for this organization’s other records…');
+    entitySlugs(eid).then(function (list) {
+      var here = [];
+      Object.keys(bySlug).forEach(function (s) {
+        if (bySlug[s].some(function (r) { return r.eid === eid; })) here.push(s);
+      });
+      var all = list.slice();
+      here.forEach(function (s) { if (all.indexOf(s) === -1) all.push(s); });
+      state.entSlugs = all;
+      update();
+    });
+  }
   function writeUrl() {
     var p = new URLSearchParams();
-    if (state.c !== 'QA') p.set('c', state.c.slice(0, 2) === 'X:' ? state.c.slice(2) : state.c);
-    if (state.from !== meta.year_min) p.set('from', state.from);
-    if (state.to !== meta.year_max) p.set('to', state.to);
+    if (state.c !== 'qatar') p.set('c', state.c);
+    if (state.from !== index.year_min) p.set('from', state.from);
+    if (state.to !== index.year_max) p.set('to', state.to);
     ['q', 'type', 'min', 'conf', 'ent', 'row'].forEach(function (k) { if (state[k]) p.set(k, state[k]); });
     if (!state.sup) p.set('sup', '0');
     if (state.m !== 'auto') p.set('m', state.m);
@@ -473,10 +567,10 @@
   }
   function readUrl() {
     var p = new URLSearchParams(location.search), c = p.get('c');
-    if (c) state.c = (c === 'ALL' || FEATURED.some(function (f) { return f[0] === c; })) ? c : 'X:' + c;
+    if (c === 'ALL' || (c && countryBySlug(c))) state.c = c;
     var n = function (k, d) { var v = parseInt(p.get(k), 10); return isNaN(v) ? d : v; };
-    state.from = Math.max(meta.year_min, Math.min(meta.year_max, n('from', meta.year_min)));
-    state.to = Math.max(meta.year_min, Math.min(meta.year_max, n('to', meta.year_max)));
+    state.from = Math.max(index.year_min, Math.min(index.year_max, n('from', index.year_min)));
+    state.to = Math.max(index.year_min, Math.min(index.year_max, n('to', index.year_max)));
     ['q', 'type', 'min', 'conf', 'ent', 'row'].forEach(function (k) { if (p.get(k)) state[k] = p.get(k); });
     if (p.get('sup') === '0') state.sup = false;
     if (MEASURES[p.get('m')]) state.m = p.get('m');
@@ -486,15 +580,20 @@
     document.querySelectorAll('#tabs .tab').forEach(function (b) {
       b.setAttribute('aria-pressed', String(!state.ent && b.getAttribute('data-c') === state.c));
     });
-    $('more-countries').value = state.c.slice(0, 2) === 'X:' ? state.c.slice(2) : '';
+    $('more-countries').value = (!state.ent && !countryIsFeatured(state.c)) ? state.c : '';
     $('y-from').value = state.from; $('y-to').value = state.to;
     $('q').value = state.q; $('f-type').value = state.type; $('f-min').value = state.min;
     $('f-conf').value = state.conf; $('f-sup').checked = state.sup;
   }
-  var lastList = [];
+
   function update(keepScroll) {
-    if (needOther() && !otherLoaded) {
-      loadOther().then(function () { update(keepScroll); }, function (e) { setStatus('Could not load all countries: ' + e.message); });
+    var jobs = neededSlugs().filter(function (s) { return !bySlug[s]; }).map(loadCountry);
+    if (state.c === 'ALL' && !state.ent && !summary) jobs.push(loadSummary());
+    if (jobs.length) {
+      setStatus('Loading records…');
+      Promise.all(jobs).then(function () { update(keepScroll); }, function (e) {
+        setStatus('Could not load those records (' + e.message + '). The full spreadsheet is still available from the link at the top of the page.');
+      });
       return;
     }
     var scope = scopeRows();
@@ -509,17 +608,21 @@
       if (idx >= 0) state.page = Math.floor(idx / PAGE_SIZE);
     }
     syncControls(); renderTotals(scope); renderChart(scope); renderTable(lastList);
-    setStatus(fmt.format(lastList.length) + ' records shown');
+    setStatus((state.c === 'ALL' && !state.ent) ? '' : fmt.format(lastList.length) + ' records shown');
     writeUrl();
   }
+
   function wire() {
     document.querySelectorAll('#tabs .tab').forEach(function (b) {
-      b.addEventListener('click', function () { state.c = b.getAttribute('data-c'); state.ent = ''; state.page = 0; update(); });
+      b.addEventListener('click', function () { setCountry(b.getAttribute('data-c')); });
     });
     var sel = $('more-countries');
-    (meta.other_countries || []).forEach(function (c) { sel.appendChild(el('option', { value: c[0], text: c[0] + ' (' + fmt.format(c[1]) + ')' })); });
-    sel.addEventListener('change', function () { if (sel.value) { state.c = 'X:' + sel.value; state.ent = ''; state.page = 0; update(); } });
-    var years = function () { setYears(parseInt($('y-from').value, 10) || meta.year_min, parseInt($('y-to').value, 10) || meta.year_max); };
+    index.countries.forEach(function (c) {
+      if (countryIsFeatured(c.slug)) return;
+      sel.appendChild(el('option', { value: c.slug, text: c.name + ' (' + fmt.format(c.n) + ')' }));
+    });
+    sel.addEventListener('change', function () { if (sel.value) setCountry(sel.value); });
+    var years = function () { setYears(parseInt($('y-from').value, 10) || index.year_min, parseInt($('y-to').value, 10) || index.year_max); };
     $('y-from').addEventListener('change', years); $('y-to').addEventListener('change', years);
     var yt;
     var typed = function () {               // apply a complete year as soon as it is typed
@@ -527,7 +630,7 @@
       if (/^\d{4}$/.test($('y-from').value) && /^\d{4}$/.test($('y-to').value)) yt = setTimeout(years, 350);
     };
     $('y-from').addEventListener('input', typed); $('y-to').addEventListener('input', typed);
-    $('y-reset').addEventListener('click', function () { setYears(meta.year_min, meta.year_max); });
+    $('y-reset').addEventListener('click', function () { setYears(index.year_min, index.year_max); });
     var timer;
     $('q').addEventListener('input', function () { clearTimeout(timer); timer = setTimeout(function () { state.q = $('q').value; state.page = 0; update(); }, 200); });
     [['f-type', 'type'], ['f-min', 'min'], ['f-conf', 'conf']].forEach(function (p) {
@@ -548,12 +651,15 @@
     });
   }
 
-  getJSON('data/featured.json').then(function (pack) {
-    meta = { year_min: pack.year_min, year_max: pack.year_max, other_countries: pack.other_countries };
-    rows = decode(pack);
+  getJSON('data/index.json').then(function (idx) {
+    index = idx;
     readUrl(); wire(); update();
-    if (state.row) { var t = document.getElementById('r-' + state.row); if (t) t.scrollIntoView(); }
+    if (state.row) {
+      setTimeout(function () { var t = document.getElementById('r-' + state.row); if (t) t.scrollIntoView(); }, 400);
+    }
     return getJSON('data/connections.json');
   }).then(function (c) { connections = c; renderConnections(); })
-    .catch(function (e) { setStatus('The records could not be loaded (' + e.message + '). The full CSV file is still available from the link at the top of the page.'); });
+    .catch(function (e) {
+      setStatus('The records could not be loaded (' + e.message + '). The full spreadsheet is still available from the link at the top of the page.');
+    });
 })();

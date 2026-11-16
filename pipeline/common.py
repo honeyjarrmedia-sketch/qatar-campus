@@ -1,6 +1,8 @@
 """Small shared helpers: files, hashing, HTTP, text normalisation."""
 import datetime as dt
+import gzip
 import hashlib
+import io
 import json
 import re
 import time
@@ -52,6 +54,35 @@ def write_json_rows(path, rows: list) -> None:
             f.write(json.dumps(r, ensure_ascii=False, separators=(",", ":")))
             f.write(",\n" if i < len(rows) - 1 else "\n")
         f.write("]\n")
+
+
+def write_records(path, rows: list) -> None:
+    """The record set, one record per line, gzipped.
+
+    Uncompressed it runs past the 100 MB a file may be in a git repository;
+    gzipped it is a few megabytes, and one changed record is still one
+    changed line once unzipped.
+    """
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "wb") as raw, \
+            gzip.GzipFile(fileobj=raw, mode="wb", compresslevel=6, mtime=0) as gz, \
+            io.TextIOWrapper(gz, encoding="utf-8") as f:
+        f.write("[\n")
+        for i, r in enumerate(rows):
+            f.write(json.dumps(r, ensure_ascii=False, separators=(",", ":")))
+            f.write(",\n" if i < len(rows) - 1 else "\n")
+        f.write("]\n")
+
+
+def read_records(path) -> list:
+    """Read a file written by write_records."""
+    out = []
+    with gzip.open(path, "rt", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip().rstrip(",")
+            if line and line not in "[]":
+                out.append(json.loads(line))
+    return out
 
 
 def update_manifest(source: str, entries: list) -> None:

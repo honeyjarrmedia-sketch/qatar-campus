@@ -14,7 +14,7 @@ import urllib.request
 from collections import defaultdict
 
 from . import config
-from .common import now_utc, read_json, write_json
+from .common import now_utc, read_json, read_records, write_json
 
 MAX_AGE_DAYS = 80
 DELAY_SECONDS = 0.35
@@ -41,7 +41,7 @@ def check(url: str) -> dict:
 
 
 def run(limit: int | None = None, max_minutes: float | None = None) -> int:
-    records = read_json(config.CLEAN / "records.json", [])
+    records = read_records(config.CLEAN / "records.json.gz")
     if not records:
         print("[links] no records to check", file=sys.stderr)
         return 1

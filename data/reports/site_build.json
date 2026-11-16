@@ -1,7 +1,8 @@
 {
- "records": 36739,
+ "records": 137422,
  "featured_records": 20083,
- "other_records": 16656,
+ "other_records": 117339,
+ "countries": 296,
  "year_range": [
   1942,
   2026
@@ -19,10 +20,13 @@
   "income_n": 29
  },
  "data_file_bytes": {
-  "featured.json": 6417059,
   "connections.json": 33365,
-  "records-csv.zip": 2070641,
-  "other.json": 4035520
+  "summary.json": 3147,
+  "records-csv.zip": 5183249,
+  "index.json": 17472,
+  "entity_countries.json": 169106,
+  "country/ (largest)": "england.json 3,489,919",
+  "country/ (files)": 296
  },
  "site_url_set": false,
  "contact_email_set": true

@@ -14,15 +14,14 @@ import subprocess
 import sys
 
 from . import config
-from .common import http_get, now_utc, read_json, sha256_file, update_manifest, write_json
+from .common import (http_get, now_utc, read_json, read_records, sha256_file,
+                     update_manifest, write_json)
 
 
 def statements_for(country_code: str, since: str) -> list:
     """Supplemental statements filed under registrations that have a record
     for this country, newest first."""
-    records = [__import__("json").loads(line.rstrip(",\n"))
-               for line in open(config.CLEAN / "records.json", encoding="utf-8")
-               if line.strip() not in "[]"]
+    records = read_records(config.CLEAN / "records.json.gz")
     regs = {r["source_record_id"] for r in records
             if r["country_code"] == country_code and r["actor_type"] == "fara_registrant"}
     docs = read_json(config.CLEAN / "fara_documents.json", []) or []

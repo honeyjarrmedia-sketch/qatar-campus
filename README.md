@@ -31,6 +31,7 @@ To run locally instead:
 pip install -r requirements.txt
 python -m pipeline.run fetch
 python -m pipeline.run clean
+python -m pipeline.run fees --country QA   # after statements are downloaded
 python -m pipeline.run site
 python -m pipeline.run check-links
 ```
@@ -45,7 +46,8 @@ environment variable.
 |---|---|---|
 | DOJ FARA bulk data | `https://efile.fara.gov/bulk/zip/` | Four zipped CSV files, ISO-8859-1. No dollar amounts |
 | LDA filings | `https://lda.gov/api/v1/filings/` | Queried per featured country; raw JSON kept per filing |
-| Section 117 | `fsapartners.ed.gov` spreadsheet | Downloaded and its layout reported; not cleaned yet |
+| Section 117 | `fsapartners.ed.gov` spreadsheet | University gifts and contracts, every country, reported through 2025-02-28 |
+| FARA supplemental statements | `efile.fara.gov` PDFs | Item 14(a) payment figures. Several GB, so the workflow reads and discards them |
 
 Senate Office of Public Records cannot vouch for the data or analyses derived
 from these data after the data have been retrieved from LDA.gov.
@@ -90,9 +92,14 @@ from these data after the data have been retrieved from LDA.gov.
 
 One static page, no build tooling: `python -m pipeline.run site` writes
 `site/` from `data/clean/` and `web/`. The default view (Qatar, all years) is
-written into the HTML; the script loads `site/data/featured.json` for the five
-featured countries and `site/data/other.json` only when another country is
-chosen.
+written into the HTML, so the page has real content before any script runs.
+
+Each country is its own file under `site/data/country/`, fetched when that
+country is chosen, so the page opens with Qatar alone (about half a megabyte)
+however large the dataset grows. `site/data/index.json` lists the countries,
+`summary.json` holds the totals and year series behind the "All countries"
+view, and `entity_countries.json` says which country files hold a given
+organisation's records.
 
 Cloudflare Pages settings: build command empty, output directory `site`.
 
