@@ -56,6 +56,15 @@ jobs:
             ARGS="$ARGS --sample ${{ steps.cfg.outputs.sample }}"
           fi
           python -m pipeline.fetch_fara_docs $ARGS
+      - name: Read the figures out of the statements
+        continue-on-error: true
+        run: |
+          python -m pipeline.run fees --country ${{ steps.cfg.outputs.country }}
+          python -m pipeline.run clean
+          python -m pipeline.run site
+      - name: Discard the PDFs
+        if: always()
+        run: rm -rf raw/fara_docs
       - name: Push to a review branch
         if: always()
         run: |
@@ -63,7 +72,18 @@ jobs:
           git config user.name "qatar-campus-data-bot"
           git config user.email "actions@users.noreply.github.com"
           git checkout -b "$BRANCH"
-          git add raw data
+          git add raw data site
           git commit -m "FARA statements ${{ steps.cfg.outputs.country }} $(date -u +%Y-%m-%d)" || { echo "Nothing changed"; exit 0; }
           git push origin "$BRANCH"
           echo "Branch: $BRANCH" >> "$GITHUB_STEP_SUMMARY"
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import glob, json
+          for f in sorted(glob.glob("data/reports/fara_fees_[A-Z][A-Z].json")):
+              r = json.load(open(f))
+              print(f"\n### {f}\n")
+              print(f"- statements read: {r['statements_read']:,}")
+              print(f"- payment lines: {r['fee_records']:,} worth ${r['amount_total']:,.2f}")
+              print(f"- unmatched lines: {r['lines_not_matched_to_a_principal']:,}")
+              for k, v in r["outcomes"].items():
+                  print(f"  - {k}: {v}")
+          PY

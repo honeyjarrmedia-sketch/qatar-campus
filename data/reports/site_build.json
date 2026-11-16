@@ -1,12 +1,14 @@
 {
- "records": 36737,
- "featured_records": 20081,
+ "records": 36739,
+ "featured_records": 20083,
  "other_records": 16656,
  "year_range": [
   1942,
   2026
  ],
  "qatar_default_view": {
+  "fees_total": 0,
+  "fees_n": 0,
   "university_total": 6572557546.35,
   "university_n": 1223,
   "count": 1461,
@@ -17,9 +19,9 @@
   "income_n": 29
  },
  "data_file_bytes": {
-  "featured.json": 6416099,
+  "featured.json": 6417059,
   "connections.json": 33365,
-  "records-csv.zip": 2070199,
+  "records-csv.zip": 2070641,
   "other.json": 4035520
  },
  "site_url_set": false,

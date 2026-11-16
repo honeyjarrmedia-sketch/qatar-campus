@@ -25,8 +25,10 @@ FIELDS = ["id", "t", "country", "cc", "entity", "eid", "principal", "client",
 DICT_FIELDS = ["t", "country", "cc", "entity", "eid", "client", "amtType",
                "period", "purpose", "srcType", "basis", "conf", "notes",
                "retrieved", "role"]
-TYPES = {"fara_registrant": "fara", "lobbying_registrant": "lda", "university": "sec117"}
-KIND = {"fara": "FARA registration", "lda": "LDA filing", "sec117": "University report"}
+TYPES = {"fara_registrant": "fara", "lobbying_registrant": "lda", "university": "sec117",
+         "fara_fee": "farafee"}
+KIND = {"fara": "FARA registration", "lda": "LDA filing", "sec117": "University report",
+        "farafee": "FARA payment"}
 STATIC_ROWS = 25
 STATIC_CONN = 10
 
@@ -90,7 +92,10 @@ def qatar_totals(rows: list) -> dict:
     with_income = [r for r in filings.values()
                    if r["amount"] is not None and r["amtType"].startswith("income")]
     uni = [r for r in scope if r["t"] == "sec117"]
+    fees = [r for r in scope if r["t"] == "farafee"]
     return {
+        "fees_total": sum(r["amount"] or 0 for r in fees),
+        "fees_n": len(fees),
         "university_total": sum(r["amount"] or 0 for r in uni),
         "university_n": len(uni),
         "count": sum(1 for r in scope if not r["sup"]),
@@ -194,7 +199,9 @@ def run() -> int:
         stat_html("Lobbying filings", f'{q["filings"]:,}', "Qatar, all years"),
         stat_html("Lobbying income reported", big_money(q["income"]),
                   f'from {q["income_n"]:,} filings', q["income"]),
-    ])
+    ] + ([stat_html("FARA payments read from statements", big_money(q["fees_total"]),
+                    f'from {q["fees_n"]:,} reported payments', q["fees_total"])]
+         if q["fees_n"] else []))
     qatar = sorted((r for r in rows if r["cc"] == "QA" and not r["sup"]),
                    key=lambda r: (-(r["year"] or 0), r["id"]))
     static_rows = "".join(row_html(r, year_max) for r in qatar[:STATIC_ROWS])
@@ -228,6 +235,18 @@ def run() -> int:
     partial = sum(1 for r in fara_rows if r["conf"] == "partial")
     partial_note = (f"{partial:,} of {len(fara_rows):,} FARA rows are marked partial for this reason."
                     if fara_rows else "")
+
+    fee_reports = sorted(config.REPORTS.glob("fara_fees_[A-Z][A-Z].json"))
+    fee_bits = []
+    for fp in fee_reports:
+        fr = read_json(fp, {}) or {}
+        read_n = fr.get("statements_read", 0)
+        got = fr.get("outcomes", {}).get("extracted", 0)
+        if read_n:
+            fee_bits.append(f"Of {read_n:,} statements read so far, {got:,} had a "
+                            f"readable receipts table.")
+    fee_note = " ".join(fee_bits) or ("No statements have been read yet, so no FARA "
+                                      "payment figures appear on this page.")
 
     email = (cfg.get("contact_email") or "").strip()
     contact = (f'<a href="mailto:{esc(email)}">{esc(email)}</a>' if email
@@ -271,7 +290,7 @@ def run() -> int:
         "STATIC_ROWS": static_rows,
         "STATIC_PAGE_INFO": f'Showing 1–{min(STATIC_ROWS, len(qatar))} of {len(qatar):,}' if qatar else "Showing 0 records",
         "CONN_ROWS": conn_rows, "SOURCE_DATES": esc(" ".join(parts)),
-        "PARTIAL_NOTE": esc(partial_note), "CONTACT": contact,
+        "PARTIAL_NOTE": esc(partial_note), "FEE_NOTE": esc(fee_note), "CONTACT": contact,
         "CHANGELOG": changelog, "COMMENTARY": commentary,
         "CREDIT": esc(cfg.get("footer_credit", "")),
     }.items():

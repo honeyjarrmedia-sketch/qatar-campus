@@ -1,0 +1,16 @@
+{
+ "country_code": "QA",
+ "statements_read": 8,
+ "outcomes": {
+  "no text layer (scanned image)": 3,
+  "extracted": 1,
+  "table says: see appendix (not parsed)": 4
+ },
+ "fee_records": 2,
+ "amount_total": 18838.64,
+ "by_country": {
+  "China": 18838.64
+ },
+ "lines_not_matched_to_a_principal": 0,
+ "amount_not_matched": 0
+}

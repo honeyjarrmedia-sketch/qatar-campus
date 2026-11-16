@@ -15,7 +15,7 @@ from collections import Counter, defaultdict
 from urllib.parse import urlparse
 
 from . import clean_fara, clean_lda, clean_sec117, config
-from .common import norm_name, now_utc, write_json, write_json_rows
+from .common import norm_name, now_utc, read_json, write_json, write_json_rows
 
 # The fourteen columns from the project brief come first, in its order.
 CSV_COLUMNS = [
@@ -111,6 +111,16 @@ def run() -> int:
         records.extend(res["records"])
         entities.update({e["entity_id"]: e for e in res["entities"]})
         documents.update(res.get("documents", {}))
+
+    # Fee lines read from supplemental statements by pipeline.extract_fara_fees.
+    # They are produced from records.json, so they are merged here on the next
+    # clean rather than being rebuilt in this step.
+    for path in sorted(config.CLEAN.glob("fara_fees_*.json")):
+        fees = read_json(path, []) or []
+        if fees:
+            sources[f"fara_fees_{path.stem.split('_')[-1]}"] = {"included": True, "records": len(fees)}
+            records.extend(fees)
+            print(f"[build] merged {len(fees)} fee lines from {path.name}")
 
     for r in records:
         r.setdefault("purpose_detail", "")

@@ -159,6 +159,8 @@
     });
     var uni = scope.filter(function (r) { return r.t === 'sec117'; });
     var uniTotal = 0; uni.forEach(function (r) { uniTotal += r.amount || 0; });
+    var fees = scope.filter(function (r) { return r.t === 'farafee'; });
+    var feeTotal = 0; fees.forEach(function (r) { feeTotal += r.amount || 0; });
     var tiles = [
       ['University gifts and contracts reported', bigMoney(uniTotal), 'Show the ' + fmt.format(uni.length) + ' reports', 'sec117', uniTotal],
       ['FARA registrants', fmt.format(Object.keys(regs).length), 'Show the registrations', 'fara', null],
@@ -166,6 +168,8 @@
       ['Lobbying filings', fmt.format(filings.length), 'Show the filings', 'lda', null],
       ['Lobbying income reported', bigMoney(income), 'Show the ' + fmt.format(incomeN) + ' filings with income', 'lda', income]
     ];
+    if (fees.length) tiles.push(['FARA payments read from statements', bigMoney(feeTotal),
+      'Show the ' + fmt.format(fees.length) + ' reported payments', 'farafee', feeTotal]);
     var box = $('stats');
     clear(box);
     tiles.forEach(function (t) {
@@ -201,7 +205,8 @@
     fara: { unit: 'FARA registrations active', money: false },
     lda: { unit: 'lobbying filings', money: false },
     income: { unit: 'in lobbying income reported', money: true },
-    uni: { unit: 'in university gifts and contracts reported', money: true }
+    uni: { unit: 'in university gifts and contracts reported', money: true },
+    fee: { unit: 'in FARA payments read from statements', money: true }
   };
   // Until the visitor picks a measure, show university dollars where the
   // selection has university reports and FARA registrations otherwise.
@@ -218,9 +223,10 @@
         var end = r.yearEnd === null ? meta.year_max : r.yearEnd;
         for (var yy = Math.max(r.year, from); yy <= Math.min(end, to); yy++) byYear[yy] = (byYear[yy] || 0) + 1;
       });
-    } else if (m === 'uni') {
+    } else if (m === 'uni' || m === 'fee') {
+      var want = m === 'uni' ? 'sec117' : 'farafee';
       scope.forEach(function (r) {
-        if (r.t === 'sec117' && r.year !== null && r.amount !== null) byYear[r.year] = (byYear[r.year] || 0) + r.amount;
+        if (r.t === want && r.year !== null && r.amount !== null) byYear[r.year] = (byYear[r.year] || 0) + r.amount;
       });
     } else {
       uniqueFilings(scope).forEach(function (r) {
@@ -307,8 +313,8 @@
   }
 
   // ---- Records table ------------------------------------------------------
-  var KIND = { fara: 'FARA registration', lda: 'LDA filing', sec117: 'University report' };
-  var ACTOR = { fara: 'fara_registrant', lda: 'lobbying_registrant', sec117: 'university' };
+  var KIND = { fara: 'FARA registration', lda: 'LDA filing', sec117: 'University report', farafee: 'FARA payment' };
+  var ACTOR = { fara: 'fara_registrant', lda: 'lobbying_registrant', sec117: 'university', farafee: 'fara_fee' };
   function amountCell(r) {
     var td = el('td', { 'class': 'num' });
     if (r.amount !== null) {

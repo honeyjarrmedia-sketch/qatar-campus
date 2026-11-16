@@ -372,5 +372,103 @@
    "bytes": 9337605,
    "sha256": "a4e70dab99b1e7ab113bf3b701ac9cd00838e490a853d163a7135b46e4402949"
   }
+ ],
+ "fara_docs_QA": [
+  {
+   "regnum": "6210",
+   "date": "2026-11-13",
+   "url": "https://efile.fara.gov/docs/6210-Supplemental-Statement-20261113-27.pdf",
+   "path": "raw/fara_docs/6210/6210-Supplemental-Statement-20261113-27.pdf",
+   "retrieved_at": "2026-11-16T15:10:58Z",
+   "status": "ok",
+   "bytes": 8258479,
+   "sha256": "a02af8580dc8c321556869214b47d181f357a660a135b18fb316ee39b8666697",
+   "text_chars": 0,
+   "has_text_layer": false
+  },
+  {
+   "regnum": "6537",
+   "date": "2026-11-02",
+   "url": "https://efile.fara.gov/docs/6537-Supplemental-Statement-20261102-17.pdf",
+   "path": "raw/fara_docs/6537/6537-Supplemental-Statement-20261102-17.pdf",
+   "retrieved_at": "2026-11-16T15:10:58Z",
+   "status": "ok",
+   "bytes": 4037300,
+   "sha256": "035e8075fb0678b697141100c04beffa5abd02bf4917483c0be05367a6003dc7",
+   "text_chars": 0,
+   "has_text_layer": false
+  },
+  {
+   "regnum": "3731",
+   "date": "2026-10-29",
+   "url": "https://efile.fara.gov/docs/3731-Supplemental-Statement-20261029-56.pdf",
+   "path": "raw/fara_docs/3731/3731-Supplemental-Statement-20261029-56.pdf",
+   "retrieved_at": "2026-11-16T15:10:59Z",
+   "status": "ok",
+   "bytes": 2637256,
+   "sha256": "0d24626f8aed6fe11ad4480a9afa7b3518577f42b130a8a7dc876c711494576d",
+   "text_chars": 48233,
+   "has_text_layer": true
+  },
+  {
+   "regnum": "6212",
+   "date": "2026-10-28",
+   "url": "https://efile.fara.gov/docs/6212-Supplemental-Statement-20261028-27.pdf",
+   "path": "raw/fara_docs/6212/6212-Supplemental-Statement-20261028-27.pdf",
+   "retrieved_at": "2026-11-16T15:11:00Z",
+   "status": "ok",
+   "bytes": 6278130,
+   "sha256": "f044188958fbd954baf8052055f4122669dad965af7ce9cf31a8a9d1c4fdab78",
+   "text_chars": 95578,
+   "has_text_layer": true
+  },
+  {
+   "regnum": "7458",
+   "date": "2026-10-27",
+   "url": "https://efile.fara.gov/docs/7458-Supplemental-Statement-20261027-4.pdf",
+   "path": "raw/fara_docs/7458/7458-Supplemental-Statement-20261027-4.pdf",
+   "retrieved_at": "2026-11-16T15:11:00Z",
+   "status": "ok",
+   "bytes": 2143206,
+   "sha256": "469072b3b078721b8aef589b1cd357581be89a8c5936cfc8186b4d839c110cda",
+   "text_chars": 34736,
+   "has_text_layer": true
+  },
+  {
+   "regnum": "6723",
+   "date": "2026-10-06",
+   "url": "https://efile.fara.gov/docs/6723-Supplemental-Statement-0-0.pdf",
+   "path": "raw/fara_docs/6723/6723-Supplemental-Statement-0-0.pdf",
+   "retrieved_at": "2026-11-16T15:11:01Z",
+   "status": "ok",
+   "bytes": 4264216,
+   "sha256": "d8dd51b649586db205bb2a5ae12ccf0dc803ebf5fc730827094319efe101a602",
+   "text_chars": 0,
+   "has_text_layer": false
+  },
+  {
+   "regnum": "3718",
+   "date": "2026-09-30",
+   "url": "https://efile.fara.gov/docs/3718-Supplemental-Statement-20260930-49.pdf",
+   "path": "raw/fara_docs/3718/3718-Supplemental-Statement-20260930-49.pdf",
+   "retrieved_at": "2026-11-16T15:11:02Z",
+   "status": "ok",
+   "bytes": 6606964,
+   "sha256": "dfd6547b94f6de1c0ba31f969a58c84bb13324e8e862223ba15796b13e85def2",
+   "text_chars": 119252,
+   "has_text_layer": true
+  },
+  {
+   "regnum": "2244",
+   "date": "2026-09-30",
+   "url": "https://efile.fara.gov/docs/2244-Supplemental-Statement-20260930-47.pdf",
+   "path": "raw/fara_docs/2244/2244-Supplemental-Statement-20260930-47.pdf",
+   "retrieved_at": "2026-11-16T15:11:02Z",
+   "status": "ok",
+   "bytes": 10068186,
+   "sha256": "70d1eccb7d320c7ddcfd764ca66553c845738d5cb0562842cc4cde01bbd6abd8",
+   "text_chars": 159810,
+   "has_text_layer": true
+  }
  ]
 }

@@ -5,3 +5,8 @@ node_modules/
 dist/
 .astro/
 .DS_Store
+# Supplemental statement PDFs: thousands of files, several GB. They are
+# downloaded, read and discarded by the workflow; what is kept is the
+# extracted figures in data/clean/fara_fees_*.json, each carrying the
+# address of the PDF it came from.
+raw/fara_docs/

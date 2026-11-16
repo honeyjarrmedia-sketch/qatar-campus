@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-16T08:35:52Z",
+ "generated_at": "2026-11-16T15:17:56Z",
  "sources": {
   "fara": {
    "included": true,
@@ -12,10 +12,14 @@
   "sec117": {
    "included": true,
    "records": 16469
+  },
+  "fara_fees_QA": {
+   "included": true,
+   "records": 2
   }
  },
- "records_total": 36737,
- "records_featured": 20081,
+ "records_total": 36739,
+ "records_featured": 20083,
  "featured_records_by_source_and_country": {
   "fara": {
    "Turkey": 200,
@@ -37,13 +41,17 @@
    "Qatar": 1223,
    "Turkey": 432,
    "Russia": 106
+  },
+  "farafee": {
+   "China": 2
   }
  },
  "records_by_confidence": {
   "verified": 29039,
-  "partial": 7698
+  "partial": 7698,
+  "derived": 2
  },
- "records_with_amount": 17588,
+ "records_with_amount": 17590,
  "entities": 7729,
  "connections": 287,
  "year_range": [

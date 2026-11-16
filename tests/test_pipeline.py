@@ -364,3 +364,61 @@ class FaraFullyQuotedFormat(unittest.TestCase):
                          ['Synthetic Railways ("SR") , through Synthetic GmbH',
                           "Synthetic two-line\nname", "Synthetic, with comma"])
         self.assertEqual(rows[0]["registrationnumber"], "9001")
+
+
+class FaraFeeTable(unittest.TestCase):
+    """The Item 14(a) reader, on synthetic word positions copied in shape
+    from a real statement. No real filing or figure appears here."""
+
+    @staticmethod
+    def _page(rows):
+        """rows: (top, [(text, x0)]) -> an object shaped like a pdfplumber page."""
+        words = []
+        for top, items in rows:
+            for text, x0 in items:
+                words.append({"text": text, "x0": float(x0),
+                              "x1": float(x0) + 6.0 * len(text), "top": float(top)})
+        return type("P", (), {"extract_words": staticmethod(lambda: words)})()
+
+    HEADER = (214, [("Foreign", 70), ("Principal", 104), ("Date", 171), ("Whom", 262),
+                    ("Purpose", 331), ("Amount", 446), ("Subtotal", 511)])
+
+    def test_payment_lines_read_totals_ignored(self):
+        from pipeline import extract_fara_fees as x
+        page = self._page([
+            self.HEADER,
+            (228, [("Synthetic", 73), ("Ministry", 118), ("07/06/2026", 174),
+                   ("Payment", 334), ("$14,160.00", 448)]),
+            (255, [("Synthetic", 73), ("Agency", 118)]),
+            (264, [("07/06/2026", 174), ("Payment", 334), ("$", 448), ("4,678.64", 457)]),
+            (349, [("$", 496), ("18,838.64", 518)]),     # grand total, Subtotal column
+            (363, [("Total", 518)]),
+        ])
+        rows = x._page_rows(page, "14. (a) RECEIPTS-MONIES")
+        self.assertEqual(rows, [
+            {"principal_as_printed": "Synthetic Ministry", "amount_usd": 14160.0},
+            {"principal_as_printed": "Synthetic Agency", "amount_usd": 4678.64},
+        ])
+
+    def test_appendix_page_yields_nothing(self):
+        from pipeline import extract_fara_fees as x
+        page = self._page([
+            self.HEADER,
+            (228, [("See", 73), ("Appendix", 90), ("for", 140)]),
+            (240, [("Response", 73)]),
+            (349, [("$", 460), ("2,995,443.00", 470)]),   # the registrant's grand total
+        ])
+        self.assertEqual(x._page_rows(page, "14. (a) See Appendix for Response"), [])
+
+    def test_line_without_a_date_is_not_a_payment(self):
+        from pipeline import extract_fara_fees as x
+        page = self._page([
+            self.HEADER,
+            (228, [("Synthetic", 73), ("Ministry", 118), ("$99,999.00", 448)]),
+        ])
+        self.assertEqual(x._page_rows(page, "14. (a) RECEIPTS-MONIES"), [])
+
+    def test_missing_headings_mean_no_table(self):
+        from pipeline import extract_fara_fees as x
+        page = self._page([(214, [("Some", 70), ("other", 104), ("page", 171)])])
+        self.assertEqual(x._page_rows(page, "14. (a)"), [])

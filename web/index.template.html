@@ -80,6 +80,7 @@
 <option value="fara">FARA registrations active in each year</option>
 <option value="lda">Lobbying filings per year</option>
 <option value="income">Lobbying income reported per year (USD)</option>
+<option value="fee">FARA payments read from statements, per year (USD)</option>
 </select>
 </div>
 </div>
@@ -102,7 +103,7 @@
 
 <div class="card filters row" style="padding: 20px" aria-label="Filters">
 <div class="field grow"><label class="label" for="q">Search</label><input id="q" type="search" placeholder="Registrant, principal or client name"></div>
-<div class="field mid"><label class="label" for="f-type">Record type</label><select id="f-type"><option value="">All types</option><option value="fara">FARA registration</option><option value="lda">LDA filing</option><option value="sec117">University report</option></select></div>
+<div class="field mid"><label class="label" for="f-type">Record type</label><select id="f-type"><option value="">All types</option><option value="fara">FARA registration</option><option value="lda">LDA filing</option><option value="sec117">University report</option><option value="farafee">FARA payment</option></select></div>
 <div class="field" style="flex: 0 1 160px"><label class="label" for="f-min">Minimum amount</label><input id="f-min" type="number" inputmode="numeric" min="0" placeholder="USD"></div>
 <div class="field mid"><label class="label" for="f-conf">Confidence</label><select id="f-conf"><option value="">Any</option><option>verified</option><option>derived</option><option>partial</option></select></div>
 <label class="check"><input type="checkbox" id="f-sup" checked> Hide reports replaced by a later amendment</label>
@@ -153,6 +154,7 @@
 <div class="gap"><h3>Sources</h3><p>Department of Justice FARA eFile bulk data, Lobbying Disclosure Act filings from LDA.gov, and the Department of Education file of Section 117 public records. @@SOURCE_DATES@@</p></div>
 <div class="gap"><h3>Why Qatar leads</h3><p>Qatar is the lead focus of this site. The database itself covers every country in the Justice Department file, and every country is held to the same rules.</p></div>
 <div class="gap"><h3>FARA dollar amounts</h3><p>The Justice Department bulk file lists who is registered for whom, with dates. It carries no dollar amounts. Amounts are shown only where they have been read from a supplemental statement, and those rows are marked derived.</p></div>
+<div class="gap"><h3>FARA payments</h3><p>Because the bulk file has no money in it, payment figures are read from the Item 14(a) receipts table of each registrant&rsquo;s six-month supplemental statement, and each one links to the statement it came from. @@FEE_NOTE@@ Three kinds of statement yield nothing and are not guessed at: one filed as a scanned image with no machine-readable text; one whose table says &ldquo;See Appendix for Response&rdquo;, where the detail sits in free text that is not parsed; and one with no payment lines. A statement covers every foreign principal the registrant acts for, so the total printed on the form is never used here and only lines naming a particular principal are counted for that country.</p></div>
 <div class="gap"><h3>FARA source links</h3><p>A FARA row links to the exhibit that names the foreign principal. Where the Justice Department document index has no exhibit under that exact name, the row is marked partial and links to the list of every document filed under that registration number. @@PARTIAL_NOTE@@</p></div>
 <div class="gap"><h3>What a country means on a lobbying filing</h3><p>On an LDA record, the country is where the client or a listed foreign entity is located, as written on the filing. It does not mean the filing involves that country's government.</p></div>
 <div class="gap"><h3>Countries as filed</h3><p>Country names are kept as the filing gives them. Hong Kong, Macau and Taiwan are listed separately and are not merged into China.</p></div>
