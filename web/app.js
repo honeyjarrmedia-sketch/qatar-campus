@@ -17,6 +17,13 @@
     if (a >= 1e6) return '$' + (n / 1e6).toFixed(1) + ' million';
     return money(n);
   };
+  // Money is added in whole cents: adding thousands of floating point
+  // amounts gives an answer that depends on the order they were added in.
+  var sumMoney = function (values) {
+    var cents = 0;
+    values.forEach(function (v) { cents += Math.round((v || 0) * 100); });
+    return cents / 100;
+  };
   var KIND = { fara: 'FARA registration', lda: 'LDA filing', sec117: 'University report', farafee: 'FARA payment' };
   var ACTOR = { fara: 'fara_registrant', lda: 'lobbying_registrant', sec117: 'university', farafee: 'fara_fee' };
 
@@ -206,14 +213,14 @@
       var regs = {}, princ = {};
       fara.forEach(function (r) { regs[r.eid] = 1; princ[(r.principal || '').toUpperCase()] = 1; });
       var filings = uniqueFilings(scope);
-      var income = 0, incomeN = 0, uniTotal = 0, uniN = 0, feeTotal = 0, feeN = 0;
-      filings.forEach(function (r) {
-        if (r.amount !== null && (r.amtType || '').indexOf('income') === 0) { income += r.amount; incomeN++; }
-      });
-      scope.forEach(function (r) {
-        if (r.t === 'sec117') { uniTotal += r.amount || 0; uniN++; }
-        if (r.t === 'farafee') { feeTotal += r.amount || 0; feeN++; }
-      });
+      var incomeRows = filings.filter(function (r) {
+        return r.amount !== null && (r.amtType || '').indexOf('income') === 0; });
+      var uniRows = scope.filter(function (r) { return r.t === 'sec117'; });
+      var feeRows = scope.filter(function (r) { return r.t === 'farafee'; });
+      var income = sumMoney(incomeRows.map(function (r) { return r.amount; }));
+      var incomeN = incomeRows.length;
+      var uniTotal = sumMoney(uniRows.map(function (r) { return r.amount; })), uniN = uniRows.length;
+      var feeTotal = sumMoney(feeRows.map(function (r) { return r.amount; })), feeN = feeRows.length;
       t = { registrants: Object.keys(regs).length, principals: Object.keys(princ).length,
             filings: filings.length, income: income, income_n: incomeN,
             university_total: uniTotal, university_n: uniN, fees_total: feeTotal, fees_n: feeN };
@@ -278,16 +285,17 @@
     } else if (m === 'uni' || m === 'fee') {
       var want = m === 'uni' ? 'sec117' : 'farafee';
       scope.forEach(function (r) {
-        if (r.t === want && r.year !== null && r.amount !== null) byYear[r.year] = (byYear[r.year] || 0) + r.amount;
+        if (r.t === want && r.year !== null && r.amount !== null) byYear[r.year] = (byYear[r.year] || 0) + Math.round(r.amount * 100);
       });
     } else {
       uniqueFilings(scope).forEach(function (r) {
         if (r.year === null) return;
         if (m === 'lda') byYear[r.year] = (byYear[r.year] || 0) + 1;
-        else if (r.amount !== null && (r.amtType || '').indexOf('income') === 0) byYear[r.year] = (byYear[r.year] || 0) + r.amount;
+        else if (r.amount !== null && (r.amtType || '').indexOf('income') === 0) byYear[r.year] = (byYear[r.year] || 0) + Math.round(r.amount * 100);
       });
     }
-    for (y = from; y <= to; y++) out.push([y, byYear[y] || 0]);
+    var inCents = m === 'uni' || m === 'fee' || m === 'income';
+    for (y = from; y <= to; y++) out.push([y, inCents ? (byYear[y] || 0) / 100 : (byYear[y] || 0)]);
     // Trim empty years at the start so a long empty history does not flatten the chart.
     var first = 0;
     while (first < out.length - 1 && out[first][1] === 0) first++;

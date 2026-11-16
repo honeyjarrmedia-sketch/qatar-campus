@@ -52,6 +52,14 @@ environment variable.
 Senate Office of Public Records cannot vouch for the data or analyses derived
 from these data after the data have been retrieved from LDA.gov.
 
+## Checking a refresh before publishing it
+
+`python tests/verify_against_sources.py` recomputes the headline figures
+straight from the files in `raw/`, with code that shares nothing with the
+pipeline, and compares them with what `site/` serves. It also checks that
+the CSV column adds up to the figure shown on the page, that every row has a
+source link, and that no link points off the government hosts.
+
 ## Rules the code enforces
 
 - A record with no source link, or a link outside the official hosts in

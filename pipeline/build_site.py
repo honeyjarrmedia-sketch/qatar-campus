@@ -94,17 +94,27 @@ def qatar_totals(rows: list) -> dict:
     uni = [r for r in scope if r["t"] == "sec117"]
     fees = [r for r in scope if r["t"] == "farafee"]
     return {
-        "fees_total": sum(r["amount"] or 0 for r in fees),
+        "fees_total": exact_sum(r["amount"] for r in fees),
         "fees_n": len(fees),
-        "university_total": sum(r["amount"] or 0 for r in uni),
+        "university_total": exact_sum(r["amount"] for r in uni),
         "university_n": len(uni),
         "count": sum(1 for r in scope if not r["sup"]),
         "registrants": len({r["eid"] for r in fara}),
         "principals": len({(r["principal"] or "").upper() for r in fara}),
         "filings": len(filings),
-        "income": sum(r["amount"] for r in with_income),
+        "income": exact_sum(r["amount"] for r in with_income),
         "income_n": len(with_income),
     }
+
+
+def exact_sum(values) -> float:
+    """Add money in whole cents.
+
+    Adding a hundred thousand amounts as floating point gives an answer that
+    depends on the order they were added in: the same figures summed two ways
+    came out a penny apart. Cents are integers, so this does not drift.
+    """
+    return round(sum(round((v or 0) * 100) for v in values) / 100, 2)
 
 
 def big_money(n: float) -> str:
@@ -263,8 +273,9 @@ def run() -> int:
                 if not r["sup"]:
                     out[r["year"]] += 1
             elif r["amount"] is not None:
-                out[r["year"]] += r["amount"]
-        return {str(k): round(v, 2) for k, v in sorted(out.items())}
+                out[r["year"]] += round(r["amount"] * 100)   # whole cents
+        return {str(k): (v if kind in ("fara", "lda") else round(v / 100, 2))
+                for k, v in sorted(out.items())}
 
     all_fara = [r for r in rows if r["t"] == "fara"]
     all_uni = [r for r in rows if r["t"] == "sec117"]
@@ -281,11 +292,11 @@ def run() -> int:
             "registrants": len({r["eid"] for r in all_fara}),
             "principals": len({(r["principal"] or "").upper() for r in all_fara}),
             "filings": len(all_filings),
-            "income": round(sum(r["amount"] for r in income), 2),
+            "income": exact_sum(r["amount"] for r in income),
             "income_n": len(income),
-            "university_total": round(sum(r["amount"] or 0 for r in all_uni), 2),
+            "university_total": exact_sum(r["amount"] for r in all_uni),
             "university_n": len(all_uni),
-            "fees_total": round(sum(r["amount"] or 0 for r in all_fee), 2),
+            "fees_total": exact_sum(r["amount"] for r in all_fee),
             "fees_n": len(all_fee),
         },
         "series": {"fara": year_series(rows, "fara"), "lda": year_series(rows, "lda"),
