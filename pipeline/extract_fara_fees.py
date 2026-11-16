@@ -21,6 +21,7 @@ Nothing is inferred:
 Every amount keeps the address of the PDF it came from and the page it was
 printed on, so each figure can be checked against the filing.
 """
+import difflib
 import re
 from collections import Counter, defaultdict
 
@@ -47,25 +48,47 @@ def _lines(words, tol=3.0):
     return [(k * tol, sorted(v, key=lambda w: w["x0"])) for k, v in sorted(out.items())]
 
 
+def _heading(word: str, target: str) -> bool:
+    """Is this printed word the column heading, allowing for scanning errors?
+
+    These forms are scanned, and the headings come through with the odd wrong
+    letter: a real statement prints "Foreign Prmcipal". An exact comparison
+    throws the whole table away over one character.
+    """
+    w = re.sub(r"[^A-Za-z]", "", word).lower()
+    t = target.lower()
+    if w == t:
+        return True
+    return (abs(len(w) - len(t)) <= 1 and len(w) >= 4
+            and difflib.SequenceMatcher(None, w, t).ratio() >= 0.8)
+
+
 def _columns(words):
-    """Left edge of each column, taken from the table's own headings."""
-    want = {"Principal": "principal", "Date": "date", "Whom": "whom",
-            "Purpose": "purpose", "Amount": "amount", "Subtotal": "subtotal"}
+    """Left edge of each column, taken from the table's own headings.
+
+    Only Amount and Date are required: Amount marks the figures, and the
+    principal's cell is everything left of Date. Subtotal, when printed,
+    marks where the Amount column ends.
+    """
+    want = ["principal", "date", "whom", "purpose", "amount", "subtotal"]
     best = {}
     for w in words:
-        key = want.get(w["text"].strip())
-        if key and key not in best:
-            best[key] = w
-    if "amount" not in best or "principal" not in best:
+        for key in want:
+            if key not in best and _heading(w["text"], key):
+                best[key] = w
+                break
+    if "amount" not in best or "date" not in best:
         return None
     header_top = best["amount"]["top"]
-    if any(abs(best[k]["top"] - header_top) > 6 for k in best):
-        return None  # headings not on one line: not the table we want
-    cols = {"principal_x1": best["date"]["x0"] - 4 if "date" in best else best["amount"]["x0"],
+    # Headings sit on one printed line; a word matched elsewhere is not one.
+    best = {k: v for k, v in best.items() if abs(v["top"] - header_top) <= 6}
+    if "date" not in best:
+        return None
+    cols = {"principal_x1": best["date"]["x0"] - 4,
             "amount_x0": best["amount"]["x0"] - 6,
             "amount_x1": (best["subtotal"]["x0"] - 6) if "subtotal" in best else 10_000,
             "header_top": header_top}
-    return cols if cols["principal_x1"] > 0 else None
+    return cols if cols["principal_x1"] > 0 and cols["amount_x0"] > cols["principal_x1"] else None
 
 
 def _page_rows(page, page_text: str) -> list:

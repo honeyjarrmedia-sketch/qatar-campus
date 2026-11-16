@@ -458,3 +458,29 @@ class FaraFeeNameHandling(unittest.TestCase):
         self.assertEqual(len(x._token_matches("SYNTHETIC", both)), 2)
         # Filler words alone never match anything.
         self.assertEqual(x._token_matches("GOVERNMENT OF THE", known), [])
+
+
+class FaraFeeScannedHeadings(unittest.TestCase):
+    """Real statements are scanned, so a heading can come through misspelled."""
+
+    def test_misread_heading_still_finds_the_table(self):
+        from pipeline import extract_fara_fees as x
+        page = FaraFeeTable._page([
+            # "Prmcipal" is how a real filing's heading was scanned.
+            (214, [("Foreign", 70), ("Prmcipal", 104), ("Date", 171), ("Whom", 262),
+                   ("Purpose", 331), ("Amount", 446), ("Subtotal", 511)]),
+            (228, [("Synthetic", 73), ("Embassy", 118), ("08/01/2025-", 174),
+                   ("Consulting", 334), ("$45,000.00", 448)]),
+            (349, [("$", 496), ("45,000.00", 518)]),
+        ])
+        self.assertEqual(x._page_rows(page, "14 (a) RECEIPTS-MONIES"),
+                         [{"principal_as_printed": "Synthetic Embassy", "amount_usd": 45000.0}])
+
+    def test_a_page_without_an_amount_column_is_not_read(self):
+        from pipeline import extract_fara_fees as x
+        page = FaraFeeTable._page([
+            (214, [("Foreign", 70), ("Principal", 104), ("Date", 171), ("Whom", 262),
+                   ("Purpose", 331), ("Thing", 460), ("of", 486), ("Value", 497)]),
+            (228, [("Synthetic", 73), ("07/06/2026", 174), ("$1.00", 462)]),
+        ])
+        self.assertEqual(x._page_rows(page, "14 (c) RECEIPTS-THINGS OF VALUE"), [])
