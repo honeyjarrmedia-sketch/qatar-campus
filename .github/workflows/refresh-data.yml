@@ -1,0 +1,61 @@
+name: Refresh data
+
+# Downloads the raw government files, rebuilds the cleaned dataset and pushes
+# the result to a new branch so the changes can be reviewed before they go live.
+on:
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "Sources to download (comma separated)"
+        default: "fara,lda,sec117"
+  push:
+    branches: [main]
+    paths: ["pipeline/.fetch-trigger"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Unit tests (synthetic fixtures only)
+        run: python -m unittest discover -s tests -v
+      - name: Download raw files
+        continue-on-error: true
+        env:
+          LDA_API_KEY: ${{ secrets.LDA_API_KEY }}
+        run: python -m pipeline.run fetch --only "${{ github.event.inputs.only || 'fara,lda,sec117' }}"
+      - name: Build cleaned dataset
+        id: build
+        continue-on-error: true
+        run: python -m pipeline.run clean
+      - name: Check source links
+        continue-on-error: true
+        run: python -m pipeline.run check-links --max-minutes 150
+      - name: Push results to a review branch
+        if: always()
+        run: |
+          BRANCH="data/refresh-$(date -u +%Y%m%d-%H%M)"
+          git config user.name "qatar-campus-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add raw data
+          git commit -m "Data refresh $(date -u +%Y-%m-%d)" || { echo "Nothing changed"; exit 0; }
+          git push origin "$BRANCH"
+          echo "Review: https://github.com/${GITHUB_REPOSITORY}/compare/main...${BRANCH}" >> "$GITHUB_STEP_SUMMARY"
+      - name: Report build status
+        if: steps.build.outcome == 'failure'
+        run: |
+          echo "The dataset build did not complete cleanly. See data/reports/ on the review branch." >> "$GITHUB_STEP_SUMMARY"
+          exit 1
