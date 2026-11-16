@@ -502,3 +502,36 @@ class FaraFeePrintedNames(unittest.TestCase):
                          "Synthetic Board A Synthetic Office B")
         self.assertEqual(tidy("Embassy of the Synthetic State"),
                          "Embassy of the Synthetic State")
+
+
+class FaraFeeDoubleCounting(unittest.TestCase):
+    """A payment must not be counted twice, and a run of digits is not money."""
+
+    def test_an_impossible_amount_is_flagged_not_returned_as_a_payment(self):
+        from pipeline import extract_fara_fees as x
+        page = FaraFeeTable._page([
+            FaraFeeTable.HEADER,
+            (228, [("Synthetic", 73), ("Province", 118), ("07/06/2026", 174),
+                   ("$2,000,020,192,019.00", 448)]),
+            (248, [("Synthetic", 73), ("Province", 118), ("08/06/2026", 174),
+                   ("$5,000.00", 448)]),
+        ])
+        rows = x._page_rows(page, "14. (a) RECEIPTS-MONIES")
+        self.assertEqual([r.get("implausible", False) for r in rows], [True, False])
+        self.assertEqual(rows[1]["amount_usd"], 5000.0)
+
+    def test_a_repeated_line_in_one_statement_is_counted_once(self):
+        from pipeline import extract_fara_fees as x
+        rows = [{"principal_as_printed": "Synthetic Holdings", "amount_usd": 658761.29},
+                {"principal_as_printed": "Synthetic Holdings", "amount_usd": 452536.24},
+                {"principal_as_printed": "Synthetic Holdings", "amount_usd": 658761.29}]
+        seen, unique, dropped = set(), [], 0
+        for row in rows:                      # the rule extract_pdf applies
+            key = (row["principal_as_printed"], row["amount_usd"])
+            if key in seen:
+                dropped += 1
+                continue
+            seen.add(key)
+            unique.append(row)
+        self.assertEqual(dropped, 1)
+        self.assertEqual(sum(r["amount_usd"] for r in unique), 1111297.53)

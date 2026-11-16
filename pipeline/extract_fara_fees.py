@@ -36,6 +36,7 @@ APPENDIX = re.compile(r"see\s+appendix", re.I)
 # Words that mark a summary line rather than a payment line.
 SUMMARY = re.compile(r"total|subtotal|arrancant", re.I)
 SAME = re.compile(r"same(\s+as\s+above)?\.?", re.I)
+MAX_LINE = 1_000_000_000  # one payment line; see where it is used
 DATE = re.compile(r"\b[0-9]{1,2}/[0-9]{1,2}/[0-9]{2,4}\b")
 
 
@@ -144,7 +145,13 @@ def _page_rows(page, page_text: str) -> list:
             value = float(m.group(1).replace(",", ""))
         except ValueError:
             continue
-        if value <= 0:
+        # A six-month FARA receipt of a billion dollars does not happen; a
+        # figure that large is a reference number or a run of digits read as
+        # money. Such lines are counted and reported, never published.
+        if value <= 0 or value > MAX_LINE:
+            if value > MAX_LINE:
+                rows.append({"principal_as_printed": name, "amount_usd": value,
+                             "implausible": True})
             continue
         last_named = name
         rows.append({"principal_as_printed": _tidy_printed(name),
@@ -182,11 +189,39 @@ def extract_pdf(path, url: str) -> dict:
         if not pages:
             result["outcome"] = "no Item 14(a) section found in the text"
             return result
-        for i in pages[:3]:
+        # A statement has one receipts table. It may run onto the next page,
+        # but a second copy of the form later in the same PDF is a different
+        # document, not a continuation: reading both counts its payments
+        # twice. So: the first page that yields rows, then only pages
+        # immediately following it that also do.
+        start = None
+        for i in pages:
             rows = _page_rows(pdf.pages[i], texts[i])
             if rows:
-                result["pages_with_table"].append(i + 1)
+                start, result["pages_with_table"] = i, [i + 1]
+                result["rows"] = list(rows)
+                break
+        if start is not None:
+            nxt = start + 1
+            while nxt in pages:
+                rows = _page_rows(pdf.pages[nxt], texts[nxt])
+                if not rows:
+                    break
+                result["pages_with_table"].append(nxt + 1)
                 result["rows"].extend(rows)
+                nxt += 1
+        # The same line read twice is dropped: within one statement an
+        # identical principal and amount on a continuation page is the
+        # table's header row repeating, not a second payment.
+        seen, unique = set(), []
+        for row in result["rows"]:
+            key = (row["principal_as_printed"], row["amount_usd"])
+            if key in seen:
+                result["duplicate_lines_dropped"] = result.get("duplicate_lines_dropped", 0) + 1
+                continue
+            seen.add(key)
+            unique.append(row)
+        result["rows"] = unique
         if result["rows"]:
             result["outcome"] = "extracted"
         elif any(APPENDIX.search(texts[i]) for i in pages):
@@ -264,6 +299,7 @@ def run(country_code: str = "QA") -> dict:
     reg_name = {r["source_record_id"]: r["entity_or_person_name"] for r in fara}
 
     outcomes, fee_records, unmatched, other_countries = Counter(), [], [], []
+    implausible, duplicates = [], 0
     samples, SAMPLE_PER_OUTCOME = defaultdict(list), 6
     for doc in docs:
         path = config.ROOT / doc["path"]
@@ -272,6 +308,7 @@ def run(country_code: str = "QA") -> dict:
             continue
         res = extract_pdf(path, doc["url"])
         outcomes[res["outcome"]] += 1
+        duplicates += res.get("duplicate_lines_dropped", 0)
         # Keep a few examples of each way a statement can yield nothing, so the
         # reader can be checked against what the filings actually look like.
         if res["outcome"] != "extracted" and len(samples[res["outcome"]]) < SAMPLE_PER_OUTCOME:
@@ -280,6 +317,11 @@ def run(country_code: str = "QA") -> dict:
         regnum = doc["regnum"]
         known = by_reg.get(regnum, {})
         for row in res["rows"]:
+            if row.get("implausible"):
+                implausible.append({"registration_number": regnum, "url": res["url"],
+                                    "principal_as_printed": row["principal_as_printed"],
+                                    "amount_usd": row["amount_usd"]})
+                continue
             printed = norm_name(row["principal_as_printed"])
             match, how = known.get(printed), "exact name"
             if match is None:  # one name printed inside the other
@@ -361,12 +403,15 @@ def run(country_code: str = "QA") -> dict:
                        for c in sorted({r["country"] for r in fee_records})},
         "lines_not_matched_to_a_principal": len(unmatched),
         "amount_not_matched": round(sum(u["amount_usd"] for u in unmatched), 2),
+        "repeated_lines_dropped": duplicates,
+        "lines_too_large_to_be_a_payment": len(implausible),
         "lines_for_other_countries_not_published": len(other_countries),
         "amount_for_other_countries": round(sum(o["amount_usd"] for o in other_countries), 2),
         "other_countries_seen": sorted({o["country"] for o in other_countries}),
     }
     write_json(config.REPORTS / f"fara_fees_{country_code}.json", report)
     write_json(config.REPORTS / f"fara_fees_unmatched_{country_code}.json", unmatched[:400])
+    write_json(config.REPORTS / f"fara_fees_implausible_{country_code}.json", implausible[:200])
     write_json(config.REPORTS / f"fara_fees_other_countries_{country_code}.json",
                sorted(other_countries, key=lambda o: -o["amount_usd"])[:400])
     (config.REPORTS / f"fara_fees_diagnostics_{country_code}.txt").write_text(
