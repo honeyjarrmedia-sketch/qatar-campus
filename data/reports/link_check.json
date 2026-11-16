@@ -1,11 +1,22 @@
 {
- "generated_at": "2026-11-16T16:51:56Z",
- "records": 36737,
- "distinct_links": 21531,
- "links_ok": 12714,
- "links_dead_or_unreachable": 0,
- "links_not_yet_checked": 8817,
+ "generated_at": "2026-11-16T18:46:45Z",
+ "records": 137422,
+ "distinct_links": 21532,
+ "links_ok": 21531,
+ "links_dead_or_unreachable": 1,
+ "links_not_yet_checked": 0,
  "featured_links_not_yet_checked": 0,
  "records_missing_source_url": [],
- "dead": []
+ "dead": [
+  {
+   "url": "https://efile.fara.gov/docs/5666-Exhibit-AB-20200925-62.pdf",
+   "status": 404,
+   "error": "Not Found",
+   "checked_at": "2026-11-16T17:52:27Z",
+   "record_ids": [
+    "fara-5666-a4c8f6d234"
+   ],
+   "records_affected": 1
+  }
+ ]
 }
