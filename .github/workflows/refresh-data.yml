@@ -16,7 +16,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: refresh-data
+  group: refresh-data-v2
   cancel-in-progress: false
 
 jobs:
@@ -40,20 +40,29 @@ jobs:
         id: build
         continue-on-error: true
         run: python -m pipeline.run clean
-      - name: Check source links
-        continue-on-error: true
-        run: python -m pipeline.run check-links --max-minutes 150
       - name: Push results to a review branch
         if: always()
         run: |
           BRANCH="data/refresh-$(date -u +%Y%m%d-%H%M)"
+          echo "BRANCH=$BRANCH" >> "$GITHUB_ENV"
           git config user.name "qatar-campus-data-bot"
           git config user.email "actions@users.noreply.github.com"
           git checkout -b "$BRANCH"
           git add raw data
-          git commit -m "Data refresh $(date -u +%Y-%m-%d)" || { echo "Nothing changed"; exit 0; }
+          git commit -m "Data refresh $(date -u +%Y-%m-%d)" || echo "Nothing changed"
           git push origin "$BRANCH"
           echo "Review: https://github.com/${GITHUB_REPOSITORY}/compare/main...${BRANCH}" >> "$GITHUB_STEP_SUMMARY"
+      # The link check runs after the data is pushed, so a long check never
+      # delays the review branch. Its report is added as a second commit.
+      - name: Check source links
+        continue-on-error: true
+        run: python -m pipeline.run check-links --max-minutes 150
+      - name: Push link check report
+        if: always()
+        run: |
+          git add data/reports
+          git commit -m "Link check report $(date -u +%Y-%m-%d)" || { echo "No link report changes"; exit 0; }
+          git push origin "$BRANCH"
       - name: Report build status
         if: steps.build.outcome == 'failure'
         run: |
