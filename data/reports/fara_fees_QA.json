@@ -1,19 +1,51 @@
 {
  "country_code": "QA",
- "statements_read": 8,
+ "statements_read": 814,
  "outcomes": {
-  "no text layer (scanned image)": 3,
-  "extracted": 1,
-  "table says: see appendix (not parsed)": 4
+  "no text layer (scanned image)": 5,
+  "extracted": 95,
+  "table says: see appendix (not parsed)": 292,
+  "no payment lines found in the table": 413,
+  "no Item 14(a) section found in the text": 8,
+  "unreadable pdf: Unexpected EOF": 1
  },
- "fee_records": 0,
- "amount_total": 0,
- "by_country": {},
- "lines_not_matched_to_a_principal": 0,
- "amount_not_matched": 0,
- "lines_for_other_countries_not_published": 2,
- "amount_for_other_countries": 18838.64,
+ "fee_records": 154,
+ "amount_total": 15721775.47,
+ "by_country": {
+  "Qatar": 15721775.47
+ },
+ "lines_not_matched_to_a_principal": 133,
+ "amount_not_matched": 2000566480697.01,
+ "lines_for_other_countries_not_published": 201,
+ "amount_for_other_countries": 952690953.4,
  "other_countries_seen": [
-  "China"
+  "Australia",
+  "British Virgin Islands",
+  "China",
+  "Congo, Republic of the",
+  "Cote D'ivoire (ivory Coast)",
+  "Dominican Republic",
+  "Finland",
+  "Germany",
+  "Grenada",
+  "Hong Kong",
+  "India",
+  "Italy",
+  "Jamaica",
+  "Japan",
+  "Kenya",
+  "Korea, South",
+  "Kosova",
+  "Macau",
+  "Morocco",
+  "Nicaragua",
+  "Papua New Guinea",
+  "Portugal",
+  "Rwanda",
+  "Samoa",
+  "Spain",
+  "Taiwan",
+  "United Arab Emirates",
+  "Vietnam"
  ]
 }

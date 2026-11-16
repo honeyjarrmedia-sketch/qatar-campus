@@ -1,5 +1,915 @@
 [
  {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 510000000.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20191126-4.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 59426482.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20191126-4.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 53558611.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20191126-4.pdf"
+ },
+ {
+  "country": "Dominican Republic",
+  "registration_number": "6549",
+  "principal": "Discover Dominica Authority",
+  "amount_usd": 51889625.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20191126-4.pdf"
+ },
+ {
+  "country": "Dominican Republic",
+  "registration_number": "6549",
+  "principal": "Discover Dominica Authority",
+  "amount_usd": 51633519.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20191126-4.pdf"
+ },
+ {
+  "country": "Dominican Republic",
+  "registration_number": "6549",
+  "principal": "Discover Dominica Authority",
+  "amount_usd": 51500180.47,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20191126-4.pdf"
+ },
+ {
+  "country": "Australia",
+  "registration_number": "6549",
+  "principal": "Melbourne Convention & Visitors Bureau",
+  "amount_usd": 51004918.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20191126-4.pdf"
+ },
+ {
+  "country": "Macau",
+  "registration_number": "6549",
+  "principal": "Macao Government Tourism Office",
+  "amount_usd": 34296654.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Dominican Republic",
+  "registration_number": "6549",
+  "principal": "Discover Dominica Authority",
+  "amount_usd": 20043938.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 10000000.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 8271917.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 7549628.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 5775000.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Japan",
+  "registration_number": "6549",
+  "principal": "Kyoto Convention & Visitors Bureau",
+  "amount_usd": 5176497.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20191126-4.pdf"
+ },
+ {
+  "country": "Macau",
+  "registration_number": "6549",
+  "principal": "Macao Government Tourism Office",
+  "amount_usd": 5124970.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20191126-4.pdf"
+ },
+ {
+  "country": "Korea, South",
+  "registration_number": "5928",
+  "principal": "Embassy of the Republic of Korea",
+  "amount_usd": 5110000.0,
+  "url": "https://efile.fara.gov/docs/5928-Supplemental-Statement-20211130-25.pdf"
+ },
+ {
+  "country": "Macau",
+  "registration_number": "6549",
+  "principal": "Macao Government Tourism Office",
+  "amount_usd": 2497000.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Australia",
+  "registration_number": "6549",
+  "principal": "Melbourne Convention & Visitors Bureau",
+  "amount_usd": 2269302.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Dominican Republic",
+  "registration_number": "6549",
+  "principal": "Discover Dominica Authority",
+  "amount_usd": 2131946.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Australia",
+  "registration_number": "6549",
+  "principal": "Melbourne Convention & Visitors Bureau",
+  "amount_usd": 1875000.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Kosova",
+  "registration_number": "5044",
+  "principal": "Republic of Kosovo, Ministry of Foreign Affairs through Alston & Bird",
+  "amount_usd": 1736500.0,
+  "url": "https://efile.fara.gov/docs/5044-Supplemental-Statement-20211028-39.pdf"
+ },
+ {
+  "country": "Italy",
+  "registration_number": "6549",
+  "principal": "South Tyrol",
+  "amount_usd": 1320777.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Australia",
+  "registration_number": "6549",
+  "principal": "Melbourne Convention & Visitors Bureau",
+  "amount_usd": 892315.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 598043.27,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20191126-4.pdf"
+ },
+ {
+  "country": "Korea, South",
+  "registration_number": "5928",
+  "principal": "Embassy of the Republic of Korea",
+  "amount_usd": 570000.0,
+  "url": "https://efile.fara.gov/docs/5928-Supplemental-Statement-20211130-25.pdf"
+ },
+ {
+  "country": "Australia",
+  "registration_number": "6549",
+  "principal": "Melbourne Convention & Visitors Bureau",
+  "amount_usd": 528241.64,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20191126-4.pdf"
+ },
+ {
+  "country": "Korea, South",
+  "registration_number": "5928",
+  "principal": "Embassy of the Republic of Korea",
+  "amount_usd": 520000.0,
+  "url": "https://efile.fara.gov/docs/5928-Supplemental-Statement-20211130-25.pdf"
+ },
+ {
+  "country": "Australia",
+  "registration_number": "6549",
+  "principal": "Melbourne Convention & Visitors Bureau",
+  "amount_usd": 395825.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Macau",
+  "registration_number": "6549",
+  "principal": "Macao Government Tourism Office",
+  "amount_usd": 368910.16,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Cote D'ivoire (ivory Coast)",
+  "registration_number": "4990",
+  "principal": "Government of the Republic of Cote d'Ivoire",
+  "amount_usd": 276155.0,
+  "url": "https://efile.fara.gov/docs/4990-Supplemental-Statement-20210922-35.pdf"
+ },
+ {
+  "country": "Morocco",
+  "registration_number": "6540",
+  "principal": "Embassy of Morocco",
+  "amount_usd": 242995.24,
+  "url": "https://efile.fara.gov/docs/6540-Supplemental-Statement-20221130-10.pdf"
+ },
+ {
+  "country": "Morocco",
+  "registration_number": "6540",
+  "principal": "Embassy of Morocco",
+  "amount_usd": 240000.0,
+  "url": "https://efile.fara.gov/docs/6540-Supplemental-Statement-20210528-6.pdf"
+ },
+ {
+  "country": "Morocco",
+  "registration_number": "6540",
+  "principal": "Embassy of Morocco",
+  "amount_usd": 240000.0,
+  "url": "https://efile.fara.gov/docs/6540-Supplemental-Statement-20201123-5.pdf"
+ },
+ {
+  "country": "Macau",
+  "registration_number": "6549",
+  "principal": "Macao Government Tourism Office",
+  "amount_usd": 200000.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20191126-4.pdf"
+ },
+ {
+  "country": "China",
+  "registration_number": "5875",
+  "principal": "China-United States Exchange Foundation",
+  "amount_usd": 195000.0,
+  "url": "https://efile.fara.gov/docs/5875-Supplemental-Statement-20230130-37.pdf"
+ },
+ {
+  "country": "China",
+  "registration_number": "5875",
+  "principal": "China-United States Exchange Foundation",
+  "amount_usd": 195000.0,
+  "url": "https://efile.fara.gov/docs/5875-Supplemental-Statement-20220812-36.pdf"
+ },
+ {
+  "country": "Australia",
+  "registration_number": "6549",
+  "principal": "Tourism Northern Territory",
+  "amount_usd": 174035.4,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20210528-8.pdf"
+ },
+ {
+  "country": "Congo, Republic of the",
+  "registration_number": "6438",
+  "principal": "Republic of Congo",
+  "amount_usd": 150000.0,
+  "url": "https://efile.fara.gov/docs/6438-Supplemental-Statement-20220730-11.pdf"
+ },
+ {
+  "country": "United Arab Emirates",
+  "registration_number": "6212",
+  "principal": "Dubai Corporation for Tourism and Commerce Marketing",
+  "amount_usd": 129400.0,
+  "url": "https://efile.fara.gov/docs/6212-Supplemental-Statement-20211029-17.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 125000.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Macau",
+  "registration_number": "6549",
+  "principal": "Macao Government Tourism Office",
+  "amount_usd": 123554.95,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20191126-4.pdf"
+ },
+ {
+  "country": "Morocco",
+  "registration_number": "6540",
+  "principal": "Embassy of Morocco",
+  "amount_usd": 121484.0,
+  "url": "https://efile.fara.gov/docs/6540-Supplemental-Statement-20221130-10.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 116763.72,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 107643.47,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Vietnam",
+  "registration_number": "6447",
+  "principal": "VTA Telecom Corporation Viettel Group",
+  "amount_usd": 104610.63,
+  "url": "https://efile.fara.gov/docs/6447-Supplemental-Statement-20210301-9.pdf"
+ },
+ {
+  "country": "Jamaica",
+  "registration_number": "6212",
+  "principal": "Jamaica Tourist Board",
+  "amount_usd": 104475.0,
+  "url": "https://efile.fara.gov/docs/6212-Supplemental-Statement-20201029-15.pdf"
+ },
+ {
+  "country": "Congo, Republic of the",
+  "registration_number": "6438",
+  "principal": "Republic of Congo",
+  "amount_usd": 100000.0,
+  "url": "https://efile.fara.gov/docs/6438-Supplemental-Statement-20220730-11.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 100000.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "China",
+  "registration_number": "5875",
+  "principal": "China-United States Exchange Foundation",
+  "amount_usd": 97479.0,
+  "url": "https://efile.fara.gov/docs/5875-Supplemental-Statement-20241105-38.pdf"
+ },
+ {
+  "country": "Macau",
+  "registration_number": "6549",
+  "principal": "Macao Government Tourism Office",
+  "amount_usd": 92598.04,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 91602.2,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Macau",
+  "registration_number": "6549",
+  "principal": "Macao Government Tourism Office",
+  "amount_usd": 91423.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 81529.26,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 79938.03,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Australia",
+  "registration_number": "6549",
+  "principal": "Tourism Northern Territory",
+  "amount_usd": 78794.4,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20210528-8.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 78200.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20211129-9.pdf"
+ },
+ {
+  "country": "Macau",
+  "registration_number": "6549",
+  "principal": "Macao Government Tourism Office",
+  "amount_usd": 77370.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20210528-8.pdf"
+ },
+ {
+  "country": "Macau",
+  "registration_number": "6549",
+  "principal": "Macao Government Tourism Office",
+  "amount_usd": 77370.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20210528-8.pdf"
+ },
+ {
+  "country": "Hong Kong",
+  "registration_number": "6212",
+  "principal": "Hong Kong Tourism Board",
+  "amount_usd": 76333.33,
+  "url": "https://efile.fara.gov/docs/6212-Supplemental-Statement-20201029-15.pdf"
+ },
+ {
+  "country": "Congo, Republic of the",
+  "registration_number": "6438",
+  "principal": "Republic of Congo",
+  "amount_usd": 75000.0,
+  "url": "https://efile.fara.gov/docs/6438-Supplemental-Statement-20220730-11.pdf"
+ },
+ {
+  "country": "Korea, South",
+  "registration_number": "5928",
+  "principal": "Embassy of the Republic of Korea",
+  "amount_usd": 75000.0,
+  "url": "https://efile.fara.gov/docs/5928-Supplemental-Statement-20201130-23.pdf"
+ },
+ {
+  "country": "Kenya",
+  "registration_number": "6549",
+  "principal": "Kenya Tourism Board",
+  "amount_usd": 74584.65,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Dominican Republic",
+  "registration_number": "6549",
+  "principal": "Discover Dominica Authority",
+  "amount_usd": 69646.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 67750.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 67612.5,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20211129-9.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 63200.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20211129-9.pdf"
+ },
+ {
+  "country": "Germany",
+  "registration_number": "6549",
+  "principal": "German National Tourist Office",
+  "amount_usd": 60608.53,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "India",
+  "registration_number": "6922",
+  "principal": "Republic of India",
+  "amount_usd": 60000.0,
+  "url": "https://efile.fara.gov/docs/6922-Supplemental-Statement-20220331-2.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 57412.51,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20211129-9.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 55300.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20211129-9.pdf"
+ },
+ {
+  "country": "Congo, Republic of the",
+  "registration_number": "6438",
+  "principal": "Republic of Congo",
+  "amount_usd": 50000.0,
+  "url": "https://efile.fara.gov/docs/6438-Supplemental-Statement-20220730-11.pdf"
+ },
+ {
+  "country": "Spain",
+  "registration_number": "6549",
+  "principal": "Turismo de Tenerife",
+  "amount_usd": 49964.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20210528-8.pdf"
+ },
+ {
+  "country": "Taiwan",
+  "registration_number": "6549",
+  "principal": "Taiwan Tourism Bureau",
+  "amount_usd": 49000.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20211129-9.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 48493.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 48000.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20211129-9.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 48000.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Kenya",
+  "registration_number": "6549",
+  "principal": "Kenya Tourism Board",
+  "amount_usd": 47168.6,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Dominican Republic",
+  "registration_number": "6549",
+  "principal": "Discover Dominica Authority",
+  "amount_usd": 44715.68,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 42412.51,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20211129-9.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 41306.25,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20211129-9.pdf"
+ },
+ {
+  "country": "Germany",
+  "registration_number": "6549",
+  "principal": "German National Tourist Office",
+  "amount_usd": 41250.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Germany",
+  "registration_number": "6549",
+  "principal": "German National Tourist Office",
+  "amount_usd": 41225.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 38917.07,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Hong Kong",
+  "registration_number": "3731",
+  "principal": "Government of Hong Kong",
+  "amount_usd": 37500.0,
+  "url": "https://efile.fara.gov/docs/3731-Supplemental-Statement-20161018-26.pdf"
+ },
+ {
+  "country": "Dominican Republic",
+  "registration_number": "6549",
+  "principal": "Discover Dominica Authority",
+  "amount_usd": 34547.9,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Nicaragua",
+  "registration_number": "6549",
+  "principal": "INTUR (Instituto Nicaraguense de Turismo)",
+  "amount_usd": 30469.99,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Macau",
+  "registration_number": "6549",
+  "principal": "Macao Government Tourism Office",
+  "amount_usd": 28170.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20210528-8.pdf"
+ },
+ {
+  "country": "Congo, Republic of the",
+  "registration_number": "6438",
+  "principal": "Republic of Congo",
+  "amount_usd": 27965.48,
+  "url": "https://efile.fara.gov/docs/6438-Supplemental-Statement-20210131-8.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 26306.25,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20211129-9.pdf"
+ },
+ {
+  "country": "Italy",
+  "registration_number": "6549",
+  "principal": "South Tyrol",
+  "amount_usd": 26205.16,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Australia",
+  "registration_number": "6549",
+  "principal": "Melbourne Convention & Visitors Bureau",
+  "amount_usd": 25842.45,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Macau",
+  "registration_number": "6549",
+  "principal": "Macao Government Tourism Office",
+  "amount_usd": 25570.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Macau",
+  "registration_number": "6549",
+  "principal": "Macao Government Tourism Office",
+  "amount_usd": 25570.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Macau",
+  "registration_number": "6549",
+  "principal": "Macao Government Tourism Office",
+  "amount_usd": 25570.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Macau",
+  "registration_number": "6549",
+  "principal": "Macao Government Tourism Office",
+  "amount_usd": 25570.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "India",
+  "registration_number": "6549",
+  "principal": "Kerala Tourism Board, represented by Start Communications",
+  "amount_usd": 24970.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Macau",
+  "registration_number": "6549",
+  "principal": "Macao Government Tourism Office",
+  "amount_usd": 24970.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Macau",
+  "registration_number": "6549",
+  "principal": "Macao Government Tourism Office",
+  "amount_usd": 24970.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Macau",
+  "registration_number": "6549",
+  "principal": "Macao Government Tourism Office",
+  "amount_usd": 24970.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Macau",
+  "registration_number": "6549",
+  "principal": "Macao Government Tourism Office",
+  "amount_usd": 24970.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 24683.24,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Nicaragua",
+  "registration_number": "6549",
+  "principal": "INTUR (Instituto Nicaraguense de Turismo)",
+  "amount_usd": 21879.09,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Dominican Republic",
+  "registration_number": "6549",
+  "principal": "Discover Dominica Authority",
+  "amount_usd": 21319.46,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "India",
+  "registration_number": "6922",
+  "principal": "Republic of India",
+  "amount_usd": 20000.0,
+  "url": "https://efile.fara.gov/docs/6922-Supplemental-Statement-20220331-2.pdf"
+ },
+ {
+  "country": "India",
+  "registration_number": "6922",
+  "principal": "Republic of India",
+  "amount_usd": 20000.0,
+  "url": "https://efile.fara.gov/docs/6922-Supplemental-Statement-20220331-2.pdf"
+ },
+ {
+  "country": "Germany",
+  "registration_number": "6549",
+  "principal": "German National Tourist Office",
+  "amount_usd": 19874.66,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 19430.62,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Macau",
+  "registration_number": "6549",
+  "principal": "Macao Government Tourism Office",
+  "amount_usd": 19150.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20211129-9.pdf"
+ },
+ {
+  "country": "Macau",
+  "registration_number": "6549",
+  "principal": "Macao Government Tourism Office",
+  "amount_usd": 19150.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20211129-9.pdf"
+ },
+ {
+  "country": "Macau",
+  "registration_number": "6549",
+  "principal": "Macao Government Tourism Office",
+  "amount_usd": 19150.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20211129-9.pdf"
+ },
+ {
+  "country": "Macau",
+  "registration_number": "6549",
+  "principal": "Macao Government Tourism Office",
+  "amount_usd": 19150.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20211129-9.pdf"
+ },
+ {
+  "country": "Australia",
+  "registration_number": "6549",
+  "principal": "Melbourne Convention & Visitors Bureau",
+  "amount_usd": 18750.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20191126-4.pdf"
+ },
+ {
+  "country": "Australia",
+  "registration_number": "6549",
+  "principal": "Melbourne Convention & Visitors Bureau",
+  "amount_usd": 18750.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Australia",
+  "registration_number": "6549",
+  "principal": "Melbourne Convention & Visitors Bureau",
+  "amount_usd": 18750.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Australia",
+  "registration_number": "6549",
+  "principal": "Melbourne Convention & Visitors Bureau",
+  "amount_usd": 18750.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Germany",
+  "registration_number": "6549",
+  "principal": "German National Tourist Office",
+  "amount_usd": 18645.38,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Japan",
+  "registration_number": "6549",
+  "principal": "Kyoto Convention & Visitors Bureau",
+  "amount_usd": 18581.22,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20211129-9.pdf"
+ },
+ {
+  "country": "Spain",
+  "registration_number": "6549",
+  "principal": "Turismo de Tenerife",
+  "amount_usd": 18460.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20210528-8.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 18000.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Japan",
+  "registration_number": "6549",
+  "principal": "Kyoto Convention & Visitors Bureau",
+  "amount_usd": 17852.36,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20211129-9.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 17750.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Dominican Republic",
+  "registration_number": "6549",
+  "principal": "Discover Dominica Authority",
+  "amount_usd": 16508.53,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 16035.46,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20210528-8.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 15550.38,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20210528-8.pdf"
+ },
+ {
+  "country": "Japan",
+  "registration_number": "6549",
+  "principal": "Shizuoka Prefectural Tourism Association",
+  "amount_usd": 15337.24,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20211129-9.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 15306.25,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20211129-9.pdf"
+ },
+ {
+  "country": "Germany",
+  "registration_number": "6549",
+  "principal": "German National Tourist Office",
+  "amount_usd": 15259.57,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Nicaragua",
+  "registration_number": "6549",
+  "principal": "INTUR (Instituto Nicaraguense de Turismo)",
+  "amount_usd": 15004.57,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 15000.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20210528-8.pdf"
+ },
+ {
+  "country": "Dominican Republic",
+  "registration_number": "6549",
+  "principal": "Discover Dominica Authority",
+  "amount_usd": 14295.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20210528-8.pdf"
+ },
+ {
   "country": "China",
   "registration_number": "3731",
   "principal": "Hikvision USA, Inc.",
@@ -7,10 +917,493 @@
   "url": "https://efile.fara.gov/docs/3731-Supplemental-Statement-20261029-56.pdf"
  },
  {
+  "country": "India",
+  "registration_number": "6549",
+  "principal": "Kerala Tourism Board, represented by Start Communications",
+  "amount_usd": 13812.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Dominican Republic",
+  "registration_number": "6549",
+  "principal": "Discover Dominica Authority",
+  "amount_usd": 13781.6,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Dominican Republic",
+  "registration_number": "6549",
+  "principal": "Discover Dominica Authority",
+  "amount_usd": 13679.07,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Dominican Republic",
+  "registration_number": "6549",
+  "principal": "Discover Dominica Authority",
+  "amount_usd": 13195.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20210528-8.pdf"
+ },
+ {
+  "country": "Dominican Republic",
+  "registration_number": "6549",
+  "principal": "Discover Dominica Authority",
+  "amount_usd": 12749.18,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Japan",
+  "registration_number": "6549",
+  "principal": "Kyoto Convention & Visitors Bureau",
+  "amount_usd": 11926.85,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Grenada",
+  "registration_number": "6212",
+  "principal": "Grenada Tourism Authority",
+  "amount_usd": 11250.0,
+  "url": "https://efile.fara.gov/docs/6212-Supplemental-Statement-20211029-17.pdf"
+ },
+ {
+  "country": "Kenya",
+  "registration_number": "6549",
+  "principal": "Kenya Tourism Board",
+  "amount_usd": 11214.67,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Dominican Republic",
+  "registration_number": "6549",
+  "principal": "Discover Dominica Authority",
+  "amount_usd": 10534.16,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Samoa",
+  "registration_number": "6549",
+  "principal": "Samoa Tourism Authority",
+  "amount_usd": 10459.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20210528-8.pdf"
+ },
+ {
+  "country": "Dominican Republic",
+  "registration_number": "6549",
+  "principal": "Discover Dominica Authority",
+  "amount_usd": 10445.73,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Dominican Republic",
+  "registration_number": "6549",
+  "principal": "Discover Dominica Authority",
+  "amount_usd": 10400.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Macau",
+  "registration_number": "6549",
+  "principal": "Macao Government Tourism Office",
+  "amount_usd": 10151.85,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20210528-8.pdf"
+ },
+ {
+  "country": "Portugal",
+  "registration_number": "6549",
+  "principal": "Association for the Promotion of the Autonomous Region of Madeira",
+  "amount_usd": 8718.24,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20211129-9.pdf"
+ },
+ {
+  "country": "Vietnam",
+  "registration_number": "6447",
+  "principal": "VTA Telecom Corporation Viettel Group",
+  "amount_usd": 8087.67,
+  "url": "https://efile.fara.gov/docs/6447-Supplemental-Statement-20200828-8.pdf"
+ },
+ {
+  "country": "Papua New Guinea",
+  "registration_number": "6549",
+  "principal": "Papua New Guinea Tourism Promotion Authority",
+  "amount_usd": 8052.92,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20210528-8.pdf"
+ },
+ {
+  "country": "India",
+  "registration_number": "6549",
+  "principal": "Kerala Tourism Board, represented by Start Communications",
+  "amount_usd": 7200.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "India",
+  "registration_number": "6549",
+  "principal": "Kerala Tourism Board, represented by Start Communications",
+  "amount_usd": 7175.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "India",
+  "registration_number": "6549",
+  "principal": "Kerala Tourism Board, represented by Start Communications",
+  "amount_usd": 7175.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Japan",
+  "registration_number": "6549",
+  "principal": "Shizuoka Prefectural Tourism Association",
+  "amount_usd": 7060.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20211129-9.pdf"
+ },
+ {
+  "country": "Japan",
+  "registration_number": "6549",
+  "principal": "Shizuoka Prefectural Tourism Association",
+  "amount_usd": 6660.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20211129-9.pdf"
+ },
+ {
+  "country": "Dominican Republic",
+  "registration_number": "6549",
+  "principal": "Discover Dominica Authority",
+  "amount_usd": 6003.35,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20210528-8.pdf"
+ },
+ {
+  "country": "Samoa",
+  "registration_number": "6549",
+  "principal": "Samoa Tourism Authority",
+  "amount_usd": 5924.9,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20211129-9.pdf"
+ },
+ {
+  "country": "Australia",
+  "registration_number": "6549",
+  "principal": "Tourism Northern Territory",
+  "amount_usd": 5696.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20210528-8.pdf"
+ },
+ {
+  "country": "Australia",
+  "registration_number": "6549",
+  "principal": "Tourism Northern Territory",
+  "amount_usd": 5696.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20210528-8.pdf"
+ },
+ {
+  "country": "Congo, Republic of the",
+  "registration_number": "6438",
+  "principal": "Republic of Congo",
+  "amount_usd": 5675.0,
+  "url": "https://efile.fara.gov/docs/6438-Supplemental-Statement-20210730-9.pdf"
+ },
+ {
+  "country": "Papua New Guinea",
+  "registration_number": "6549",
+  "principal": "Papua New Guinea Tourism Promotion Authority",
+  "amount_usd": 5475.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Dominican Republic",
+  "registration_number": "6549",
+  "principal": "Discover Dominica Authority",
+  "amount_usd": 5200.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20210528-8.pdf"
+ },
+ {
+  "country": "Dominican Republic",
+  "registration_number": "6549",
+  "principal": "Discover Dominica Authority",
+  "amount_usd": 5200.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20210528-8.pdf"
+ },
+ {
+  "country": "Germany",
+  "registration_number": "6549",
+  "principal": "German National Tourist Office",
+  "amount_usd": 5021.21,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Australia",
+  "registration_number": "6549",
+  "principal": "Melbourne Convention & Visitors Bureau",
+  "amount_usd": 4683.89,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20191126-4.pdf"
+ },
+ {
   "country": "China",
   "registration_number": "3731",
   "principal": "Hikvision USA, Inc.",
   "amount_usd": 4678.64,
   "url": "https://efile.fara.gov/docs/3731-Supplemental-Statement-20261029-56.pdf"
+ },
+ {
+  "country": "Samoa",
+  "registration_number": "6549",
+  "principal": "Samoa Tourism Authority",
+  "amount_usd": 4607.31,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20210528-8.pdf"
+ },
+ {
+  "country": "Macau",
+  "registration_number": "6549",
+  "principal": "Macao Government Tourism Office",
+  "amount_usd": 4500.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Finland",
+  "registration_number": "6549",
+  "principal": "Business Finland",
+  "amount_usd": 3655.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20211129-9.pdf"
+ },
+ {
+  "country": "Japan",
+  "registration_number": "6549",
+  "principal": "Shizuoka Prefectural Tourism Association",
+  "amount_usd": 2400.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20210528-8.pdf"
+ },
+ {
+  "country": "Kenya",
+  "registration_number": "6549",
+  "principal": "Kenya Tourism Board",
+  "amount_usd": 2305.85,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Germany",
+  "registration_number": "6549",
+  "principal": "German National Tourist Office",
+  "amount_usd": 2253.48,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Samoa",
+  "registration_number": "6549",
+  "principal": "Samoa Tourism Authority",
+  "amount_usd": 2200.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20210528-8.pdf"
+ },
+ {
+  "country": "Rwanda",
+  "registration_number": "6549",
+  "principal": "Embassy of the Republic of Rwanda in Washington, D.C-USA",
+  "amount_usd": 2000.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20210528-8.pdf"
+ },
+ {
+  "country": "British Virgin Islands",
+  "registration_number": "6549",
+  "principal": "British Virgin Islands Tourist Board",
+  "amount_usd": 1964.54,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20210528-8.pdf"
+ },
+ {
+  "country": "Japan",
+  "registration_number": "6549",
+  "principal": "Kyoto Convention & Visitors Bureau",
+  "amount_usd": 1754.54,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Dominican Republic",
+  "registration_number": "6549",
+  "principal": "Discover Dominica Authority",
+  "amount_usd": 1500.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20211129-9.pdf"
+ },
+ {
+  "country": "Dominican Republic",
+  "registration_number": "6549",
+  "principal": "Discover Dominica Authority",
+  "amount_usd": 1500.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20211129-9.pdf"
+ },
+ {
+  "country": "Australia",
+  "registration_number": "6549",
+  "principal": "Melbourne Convention & Visitors Bureau",
+  "amount_usd": 1296.36,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Germany",
+  "registration_number": "6549",
+  "principal": "German National Tourist Office",
+  "amount_usd": 1229.9,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Papua New Guinea",
+  "registration_number": "6549",
+  "principal": "Papua New Guinea Tourism Promotion Authority",
+  "amount_usd": 1051.26,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20210528-8.pdf"
+ },
+ {
+  "country": "Germany",
+  "registration_number": "6549",
+  "principal": "German National Tourist Office",
+  "amount_usd": 962.47,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Macau",
+  "registration_number": "6549",
+  "principal": "Macao Government Tourism Office",
+  "amount_usd": 895.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20210528-8.pdf"
+ },
+ {
+  "country": "Germany",
+  "registration_number": "6549",
+  "principal": "German National Tourist Office",
+  "amount_usd": 889.61,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Dominican Republic",
+  "registration_number": "6549",
+  "principal": "Discover Dominica Authority",
+  "amount_usd": 812.5,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20211129-9.pdf"
+ },
+ {
+  "country": "Germany",
+  "registration_number": "6549",
+  "principal": "German National Tourist Office",
+  "amount_usd": 781.72,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Papua New Guinea",
+  "registration_number": "6549",
+  "principal": "Papua New Guinea Tourism Promotion Authority",
+  "amount_usd": 740.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20191126-4.pdf"
+ },
+ {
+  "country": "Germany",
+  "registration_number": "6549",
+  "principal": "German National Tourist Office",
+  "amount_usd": 618.13,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Nicaragua",
+  "registration_number": "6549",
+  "principal": "INTUR (Instituto Nicaraguense de Turismo)",
+  "amount_usd": 491.5,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Germany",
+  "registration_number": "6549",
+  "principal": "German National Tourist Office",
+  "amount_usd": 461.14,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Dominican Republic",
+  "registration_number": "6549",
+  "principal": "Discover Dominica Authority",
+  "amount_usd": 229.47,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20211129-9.pdf"
+ },
+ {
+  "country": "Germany",
+  "registration_number": "6549",
+  "principal": "German National Tourist Office",
+  "amount_usd": 180.91,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Kenya",
+  "registration_number": "6549",
+  "principal": "Kenya Tourism Board",
+  "amount_usd": 122.86,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Germany",
+  "registration_number": "6549",
+  "principal": "German National Tourist Office",
+  "amount_usd": 117.91,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Germany",
+  "registration_number": "6549",
+  "principal": "German National Tourist Office",
+  "amount_usd": 107.96,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Macau",
+  "registration_number": "6549",
+  "principal": "Macao Government Tourism Office",
+  "amount_usd": 100.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20190522-3.pdf"
+ },
+ {
+  "country": "Germany",
+  "registration_number": "6549",
+  "principal": "German National Tourist Office",
+  "amount_usd": 83.19,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Germany",
+  "registration_number": "6549",
+  "principal": "German National Tourist Office",
+  "amount_usd": 83.01,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Germany",
+  "registration_number": "6549",
+  "principal": "German National Tourist Office",
+  "amount_usd": 80.8,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Germany",
+  "registration_number": "6549",
+  "principal": "German National Tourist Office",
+  "amount_usd": 68.28,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Germany",
+  "registration_number": "6549",
+  "principal": "German National Tourist Office",
+  "amount_usd": 50.51,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Germany",
+  "registration_number": "6549",
+  "principal": "German National Tourist Office",
+  "amount_usd": 40.24,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Germany",
+  "registration_number": "6549",
+  "principal": "German National Tourist Office",
+  "amount_usd": 26.0,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
+ },
+ {
+  "country": "Germany",
+  "registration_number": "6549",
+  "principal": "German National Tourist Office",
+  "amount_usd": 19.25,
+  "url": "https://efile.fara.gov/docs/6549-Supplemental-Statement-20181218-1.pdf"
  }
 ]
