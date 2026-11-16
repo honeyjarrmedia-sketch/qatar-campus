@@ -1,16 +1,47 @@
 {
  "country_code": "QA",
- "statements_read": 8,
+ "statements_read": 814,
  "outcomes": {
-  "no text layer (scanned image)": 3,
-  "extracted": 1,
-  "table says: see appendix (not parsed)": 4
+  "no text layer (scanned image)": 5,
+  "extracted": 95,
+  "table says: see appendix (not parsed)": 292,
+  "no payment lines found in the table": 413,
+  "no Item 14(a) section found in the text": 8,
+  "unreadable pdf: Unexpected EOF": 1
  },
- "fee_records": 2,
- "amount_total": 18838.64,
+ "fee_records": 344,
+ "amount_total": 933540125.4,
  "by_country": {
-  "China": 18838.64
+  "Australia": 57336646.14,
+  "British Virgin Islands": 656708788.53,
+  "China": 506317.64,
+  "Congo, Republic of the": 408640.48,
+  "Cote D'ivoire (ivory Coast)": 276155.0,
+  "Dominican Republic": 177505471.1,
+  "Finland": 3655.0,
+  "Germany": 209938.86,
+  "Grenada": 11250.0,
+  "Hong Kong": 113833.33,
+  "India": 160332.0,
+  "Italy": 1346982.16,
+  "Jamaica": 104475.0,
+  "Japan": 5258069.21,
+  "Kenya": 135396.63,
+  "Korea, South": 6275000.0,
+  "Kosova": 1736500.0,
+  "Macau": 8408559.84,
+  "Morocco": 844479.24,
+  "Nicaragua": 67845.15,
+  "Papua New Guinea": 15319.18,
+  "Portugal": 8718.24,
+  "Qatar": 15730305.47,
+  "Rwanda": 2000.0,
+  "Samoa": 5924.9,
+  "Spain": 68424.0,
+  "Taiwan": 49000.0,
+  "United Arab Emirates": 129400.0,
+  "Vietnam": 112698.3
  },
- "lines_not_matched_to_a_principal": 0,
- "amount_not_matched": 0
+ "lines_not_matched_to_a_principal": 144,
+ "amount_not_matched": 2000601353300.48
 }
