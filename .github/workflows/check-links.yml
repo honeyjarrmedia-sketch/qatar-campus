@@ -1,0 +1,55 @@
+name: Check source links
+
+# Checks every source link in the committed dataset and writes the report to
+# data/reports/link_check.json. It downloads nothing and rebuilds nothing.
+# Run it from Actions, or by changing pipeline/.linkcheck-trigger on main.
+on:
+  workflow_dispatch:
+    inputs:
+      max_minutes:
+        description: "Minutes to spend checking links"
+        default: "150"
+  push:
+    branches: [main]
+    paths: ["pipeline/.linkcheck-trigger"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: check-links
+  cancel-in-progress: false
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check links
+        continue-on-error: true
+        run: python -m pipeline.run check-links --max-minutes "${{ github.event.inputs.max_minutes || '150' }}"
+      - name: Push the report to a review branch
+        if: always()
+        run: |
+          BRANCH="links/check-$(date -u +%Y%m%d-%H%M)"
+          git config user.name "qatar-campus-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add data/reports
+          git commit -m "Link check $(date -u +%Y-%m-%d)" || { echo "Nothing changed"; exit 0; }
+          git push origin "$BRANCH"
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          r = json.load(open("data/reports/link_check.json"))
+          print(f"| Links | Count |\n|---|---|")
+          for k in ("distinct_links", "links_ok", "links_dead_or_unreachable",
+                    "links_not_yet_checked", "featured_links_not_yet_checked"):
+              print(f"| {k.replace('_', ' ')} | {r.get(k, 0):,} |")
+          for d in r["dead"][:25]:
+              print(f"\n- `{d['status']}` {d['url']} ({d['records_affected']} records)")
+          PY
+          echo "Review: https://github.com/${GITHUB_REPOSITORY}/compare/main...${BRANCH}" >> "$GITHUB_STEP_SUMMARY"
