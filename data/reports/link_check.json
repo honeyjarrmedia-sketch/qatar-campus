@@ -1,0 +1,11 @@
+{
+ "generated_at": "2026-11-16T11:00:06Z",
+ "records": 20253,
+ "distinct_links": 21515,
+ "links_ok": 16099,
+ "links_dead_or_unreachable": 0,
+ "links_not_yet_checked": 5416,
+ "featured_links_not_yet_checked": 0,
+ "records_missing_source_url": [],
+ "dead": []
+}
