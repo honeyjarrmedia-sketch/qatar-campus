@@ -85,7 +85,9 @@ def _page_rows(page, page_text: str) -> list:
         text_all = " ".join(w["text"] for w in line)
         if END_SECTION.search(text_all):
             break
-        left = " ".join(w["text"] for w in line if w["x1"] <= cols["principal_x1"]).strip()
+        # A word belongs to the principal cell when it STARTS in that column:
+        # a long word can overrun the next column's edge without belonging to it.
+        left = " ".join(w["text"] for w in line if w["x0"] < cols["principal_x1"]).strip()
         # A principal's name often wraps over two or three printed lines, so
         # the lines since the last payment are joined rather than replaced.
         if left and not SUMMARY.search(left) and not APPENDIX.search(left):
