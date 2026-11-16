@@ -34,6 +34,7 @@ END_SECTION = re.compile(r"\(\s*b\s*\)\s*RECEIPTS", re.I)
 APPENDIX = re.compile(r"see\s+appendix", re.I)
 # Words that mark a summary line rather than a payment line.
 SUMMARY = re.compile(r"total|subtotal|arrancant", re.I)
+SAME = re.compile(r"same(\s+as\s+above)?\.?", re.I)
 DATE = re.compile(r"\b[0-9]{1,2}/[0-9]{1,2}/[0-9]{2,4}\b")
 
 
@@ -77,7 +78,7 @@ def _page_rows(page, page_text: str) -> list:
     cols = _columns(words)
     if not cols:
         return []
-    rows, pending_principal = [], ""
+    rows, parts, last_named = [], [], ""
     for top, line in _lines(words):
         if top <= cols["header_top"] + 4:
             continue
@@ -85,8 +86,11 @@ def _page_rows(page, page_text: str) -> list:
         if END_SECTION.search(text_all):
             break
         left = " ".join(w["text"] for w in line if w["x1"] <= cols["principal_x1"]).strip()
-        if left and not SUMMARY.search(left):
-            pending_principal = left if not APPENDIX.search(left) else ""
+        # A principal's name often wraps over two or three printed lines, so
+        # the lines since the last payment are joined rather than replaced.
+        if left and not SUMMARY.search(left) and not APPENDIX.search(left):
+            parts.append(left)
+        pending_principal = " ".join(" ".join(parts).split())
         # A payment line carries a date; the grand total and subtotals do not.
         if not any(DATE.search(w["text"]) and w["x1"] <= cols["amount_x0"] for w in line):
             continue
@@ -100,7 +104,16 @@ def _page_rows(page, page_text: str) -> list:
             continue
         joined = "".join(w["text"] for w in money).replace("$", "").replace(" ", "")
         m = MONEY.match(joined)
-        if not m or not pending_principal:
+        if not m:
+            continue
+        # "Same" in the principal cell means the row above's principal, which
+        # is what the form's own instruction to list each principal separately
+        # produces when several payments share one.
+        name = pending_principal
+        if SAME.fullmatch(name.strip()) or (not name and last_named):
+            name = last_named
+        parts = []
+        if not name:
             continue
         try:
             value = float(m.group(1).replace(",", ""))
@@ -108,7 +121,8 @@ def _page_rows(page, page_text: str) -> list:
             continue
         if value <= 0:
             continue
-        rows.append({"principal_as_printed": " ".join(pending_principal.split()),
+        last_named = name
+        rows.append({"principal_as_printed": " ".join(name.split()),
                      "amount_usd": round(value, 2)})
     return rows
 
@@ -157,6 +171,42 @@ def extract_pdf(path, url: str) -> dict:
     return result
 
 
+# Words that carry no identifying weight in an organisation's name.
+FILLER = {"THE", "OF", "AND", "A", "AN", "STATE", "GOVERNMENT", "REPUBLIC",
+          "OFFICE", "MISSION", "INC", "LLC", "LTD", "SA", "AG", "GMBH", "CO"}
+
+
+def _significant(name: str) -> set:
+    return {w for w in name.split() if w not in FILLER and len(w) > 1}
+
+
+def _token_matches(printed: str, known: dict) -> list:
+    """Principals whose significant words are a subset of the printed name,
+    or the reverse. Used only when exactly one principal matches."""
+    want = _significant(printed)
+    if not want:
+        return []
+    out = []
+    for k, v in known.items():
+        have = _significant(k)
+        if have and (have <= want or want <= have):
+            out.append(v)
+    return out
+
+
+def _section_text(path, limit: int = 2500) -> str:
+    """The Item 14(a) part of a statement, as plain text, for diagnostics."""
+    import subprocess
+    try:
+        done = subprocess.run(["pdftotext", "-layout", "-enc", "UTF-8", str(path), "-"],
+                              capture_output=True, timeout=120)
+        text = done.stdout.decode("utf-8", "replace")
+    except Exception as e:
+        return f"(could not read: {e})"
+    m = re.search(r"14\.?\s*\(\s*a\s*\)", text)
+    return text[m.start():m.start() + limit] if m else text[:limit]
+
+
 def run(country_code: str = "QA") -> dict:
     """Read every downloaded statement for one country and build fee records."""
     manifest = (read_json(config.MANIFEST, {}) or {}).get(f"fara_docs_{country_code}", [])
@@ -174,6 +224,7 @@ def run(country_code: str = "QA") -> dict:
     reg_name = {r["source_record_id"]: r["entity_or_person_name"] for r in fara}
 
     outcomes, fee_records, unmatched = Counter(), [], []
+    samples, SAMPLE_PER_OUTCOME = defaultdict(list), 6
     for doc in docs:
         path = config.ROOT / doc["path"]
         if not path.exists():
@@ -181,16 +232,23 @@ def run(country_code: str = "QA") -> dict:
             continue
         res = extract_pdf(path, doc["url"])
         outcomes[res["outcome"]] += 1
+        # Keep a few examples of each way a statement can yield nothing, so the
+        # reader can be checked against what the filings actually look like.
+        if res["outcome"] != "extracted" and len(samples[res["outcome"]]) < SAMPLE_PER_OUTCOME:
+            samples[res["outcome"]].append({"url": res["url"], "text": _section_text(path)})
         period = res["period_ending"] or doc.get("date")
         regnum = doc["regnum"]
         known = by_reg.get(regnum, {})
         for row in res["rows"]:
             printed = norm_name(row["principal_as_printed"])
-            match = known.get(printed)
-            if match is None:  # try a contained-name match, both directions
+            match, how = known.get(printed), "exact name"
+            if match is None:  # one name printed inside the other
                 hits = [v for k, v in known.items()
                         if k and printed and (k in printed or printed in k)]
-                match = hits[0] if len(hits) == 1 else None
+                match, how = (hits[0], "one name contains the other") if len(hits) == 1 else (None, "")
+            if match is None:  # same significant words, one filler word apart
+                hits = _token_matches(printed, known)
+                match, how = (hits[0], "same significant words") if len(hits) == 1 else (None, "")
             if match is None:
                 unmatched.append({"registration_number": regnum, "url": res["url"],
                                   "principal_as_printed": row["principal_as_printed"],
@@ -222,7 +280,9 @@ def run(country_code: str = "QA") -> dict:
                 "purpose": "",
                 "purpose_detail": (
                     f"Printed on the statement as \"{row['principal_as_printed']}\" on page "
-                    + ", ".join(str(p) for p in res["pages_with_table"]) + "."),
+                    + ", ".join(str(p) for p in res["pages_with_table"])
+                    + (f"; matched to the principal in the Justice Department file by {how}."
+                       if how != "exact name" else ".")),
                 "lobbyists": [],
                 "source_url": res["url"],
                 "source_urls": [res["url"]],
@@ -251,6 +311,10 @@ def run(country_code: str = "QA") -> dict:
     }
     write_json(config.REPORTS / f"fara_fees_{country_code}.json", report)
     write_json(config.REPORTS / f"fara_fees_unmatched_{country_code}.json", unmatched[:400])
+    (config.REPORTS / f"fara_fees_diagnostics_{country_code}.txt").write_text(
+        "".join(f"\n\n{'=' * 70}\n{outcome}\n{s['url']}\n{'=' * 70}\n{s['text']}"
+                for outcome, items in sorted(samples.items()) for s in items),
+        encoding="utf-8")
     write_json(config.CLEAN / f"fara_fees_{country_code}.json", fee_records)
     print(f"[fees] {country_code}: {len(fee_records)} fee lines, "
           f"${report['amount_total']:,.2f} | outcomes {dict(outcomes)}")

@@ -428,3 +428,33 @@ class FaraFeeTable(unittest.TestCase):
         from pipeline import extract_fara_fees as x
         page = self._page([(214, [("Some", 70), ("other", 104), ("page", 171)])])
         self.assertEqual(x._page_rows(page, "14. (a)"), [])
+
+
+class FaraFeeNameHandling(unittest.TestCase):
+    """Wrapped names, repeated principals, and matching to the DOJ file."""
+
+    def test_wrapped_name_is_joined_and_same_carries_forward(self):
+        from pipeline import extract_fara_fees as x
+        page = FaraFeeTable._page([
+            FaraFeeTable.HEADER,
+            (228, [("Government", 73), ("of", 130)]),
+            (238, [("the", 73), ("Synthetic", 92), ("State", 140)]),
+            (248, [("07/06/2026", 174), ("$1,000.00", 448)]),
+            (268, [("Same", 73), ("08/06/2026", 174), ("$2,000.00", 448)]),
+        ])
+        rows = x._page_rows(page, "14. (a) RECEIPTS-MONIES")
+        self.assertEqual(rows, [
+            {"principal_as_printed": "Government of the Synthetic State", "amount_usd": 1000.0},
+            {"principal_as_printed": "Government of the Synthetic State", "amount_usd": 2000.0},
+        ])
+
+    def test_significant_word_match_is_used_only_when_unique(self):
+        from pipeline import extract_fara_fees as x
+        known = {"EMBASSY OF THE STATE OF SYNTHETICA": "A",
+                 "SYNTHETIC TRADE COUNCIL": "B"}
+        self.assertEqual(x._token_matches("EMBASSY OF SYNTHETICA", known), ["A"])
+        # Two principals share the significant word, so neither is chosen.
+        both = {"SYNTHETIC COUNCIL": "A", "SYNTHETIC BOARD": "B"}
+        self.assertEqual(len(x._token_matches("SYNTHETIC", both)), 2)
+        # Filler words alone never match anything.
+        self.assertEqual(x._token_matches("GOVERNMENT OF THE", known), [])
