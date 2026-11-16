@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>@@BRAND@@: foreign agent registrations and lobbying filings in the United States</title>
+<title>@@BRAND@@: Qatar and other foreign principals in United States disclosure records</title>
 <meta name="description" content="@@META_DESCRIPTION@@">
 @@CANONICAL@@
 <meta property="og:type" content="website">
-<meta property="og:title" content="@@BRAND@@: foreign agent registrations and lobbying filings in the United States">
+<meta property="og:title" content="@@BRAND@@: Qatar and other foreign principals in United States disclosure records">
 <meta property="og:description" content="@@META_DESCRIPTION@@">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%274%27 fill=%27%231E3A8A%27/%3E%3Crect x=%277%27 y=%2717%27 width=%274%27 height=%278%27 fill=%27%23fff%27/%3E%3Crect x=%2714%27 y=%2711%27 width=%274%27 height=%2714%27 fill=%27%23fff%27/%3E%3Crect x=%2721%27 y=%277%27 width=%274%27 height=%2718%27 fill=%27%23fff%27/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,11 +36,11 @@
 
 <section id="overview" class="hero">
 <div class="label">United States public records · Qatar first</div>
-<h1 id="heading">Qatar-linked foreign agent registrations and lobbying filings in the United States</h1>
-<p class="lede">Every row and every total on this page links to the government filing it came from. The page reports what each filing states and nothing more.</p>
+<h1 id="heading">Qatar in United States disclosure records</h1>
+<p class="lede">Foreign agent registrations, lobbying filings and university gift and contract reports. Every row and every total links to the government record it came from. The page reports what each record states and nothing more.</p>
 <div class="actions">
 <a class="btn btn-primary" href="#records">Go to the records</a>
-<a class="btn btn-secondary" href="data/records.csv" download>Download all records (CSV)</a>
+<a class="btn btn-secondary" href="data/records-csv.zip" download>Download all records (CSV, zipped)</a>
 <span class="small">Last updated <span class="mono">@@LAST_UPDATED@@</span></span>
 </div>
 </section>
@@ -67,7 +67,7 @@
 <section class="section" style="margin-top: 24px; gap: 12px" aria-label="Totals">
 <div class="label">Showing: <span id="scope-label">Qatar, @@YEAR_MIN@@ to @@YEAR_MAX@@</span></div>
 <div class="stats" id="stats">@@STATS@@</div>
-<p class="small" id="stats-note">Totals are marked derived because they are counted from individual records. The Justice Department bulk file carries no dollar amounts, so FARA fees appear only where they have been read from a registrant's supplemental statement. Lobbying filings are included for Qatar, China, Russia, Saudi Arabia and Turkey only.</p>
+<p class="small" id="stats-note">Totals are marked derived because they are counted from individual records. The Justice Department bulk file carries no dollar amounts, so FARA fees appear only where they have been read from a registrant's supplemental statement. Lobbying filings and university reports are included for Qatar, China, Russia, Saudi Arabia and Turkey only. University reports cover gifts and contracts that institutions reported to the Department of Education through February 28, 2025.</p>
 </section>
 
 <section class="section" aria-labelledby="chart-title">
@@ -76,6 +76,7 @@
 <div class="field mid" style="flex: 0 1 340px">
 <label class="label" for="measure">Measure</label>
 <select id="measure">
+<option value="uni">University gifts and contracts reported per year (USD)</option>
 <option value="fara">FARA registrations active in each year</option>
 <option value="lda">Lobbying filings per year</option>
 <option value="income">Lobbying income reported per year (USD)</option>
@@ -101,7 +102,7 @@
 
 <div class="card filters row" style="padding: 20px" aria-label="Filters">
 <div class="field grow"><label class="label" for="q">Search</label><input id="q" type="search" placeholder="Registrant, principal or client name"></div>
-<div class="field mid"><label class="label" for="f-type">Record type</label><select id="f-type"><option value="">All types</option><option value="fara">FARA registration</option><option value="lda">LDA filing</option></select></div>
+<div class="field mid"><label class="label" for="f-type">Record type</label><select id="f-type"><option value="">All types</option><option value="fara">FARA registration</option><option value="lda">LDA filing</option><option value="sec117">University report</option></select></div>
 <div class="field" style="flex: 0 1 160px"><label class="label" for="f-min">Minimum amount</label><input id="f-min" type="number" inputmode="numeric" min="0" placeholder="USD"></div>
 <div class="field mid"><label class="label" for="f-conf">Confidence</label><select id="f-conf"><option value="">Any</option><option>verified</option><option>derived</option><option>partial</option></select></div>
 <label class="check"><input type="checkbox" id="f-sup" checked> Hide reports replaced by a later amendment</label>
@@ -115,8 +116,8 @@
 <tr>
 <th scope="col" data-sort="country"><button type="button">Country</button></th>
 <th scope="col" data-sort="type"><button type="button">Record type</button></th>
-<th scope="col" data-sort="entity"><button type="button">Registrant</button></th>
-<th scope="col" data-sort="principal"><button type="button">Foreign principal or client</button></th>
+<th scope="col" data-sort="entity"><button type="button">Registrant or institution</button></th>
+<th scope="col" data-sort="principal"><button type="button">Foreign principal, client or source</button></th>
 <th scope="col" class="num" data-sort="amount"><button type="button">Amount (USD)</button></th>
 <th scope="col" data-sort="year" aria-sort="descending"><button type="button">Year</button></th>
 <th scope="col">Source</th>
@@ -131,10 +132,10 @@
 
 <section id="connections" class="section" aria-labelledby="conn-title">
 <h2 id="conn-title">Connections</h2>
-<p class="prose">Registrants that have records in more than one of the five countries. This shows overlap in the filings and nothing else. It does not state or imply any relationship between the countries. The third column shows how many countries the registrant has records for in total, so a shared firm can be read in context.</p>
+<p class="prose">Registrants and institutions that have records in more than one of the five countries. This shows overlap in the filings and nothing else. It does not state or imply any relationship between the countries. The third column shows how many countries the registrant or institution has records for in the whole source file, so an overlap can be read in context.</p>
 <div class="card table-box">
 <table class="data conn">
-<thead><tr><th scope="col">Registrant</th><th scope="col">Featured countries on file</th><th scope="col">All countries on file</th><th scope="col">Records behind the overlap</th><th scope="col">Confidence</th></tr></thead>
+<thead><tr><th scope="col">Registrant or institution</th><th scope="col">Featured countries on file</th><th scope="col">All countries on file</th><th scope="col">Records behind the overlap</th><th scope="col">Confidence</th></tr></thead>
 <tbody id="conn-rows">@@CONN_ROWS@@</tbody>
 </table>
 </div>
@@ -149,7 +150,7 @@
 <div class="card flag"><div><span class="tag tag-partial">partial</span></div><p>The source has a known gap. The row says what is missing.</p></div>
 </div>
 <div class="card gaps">
-<div class="gap"><h3>Sources</h3><p>Department of Justice FARA eFile bulk data and Lobbying Disclosure Act filings from LDA.gov. @@SOURCE_DATES@@</p></div>
+<div class="gap"><h3>Sources</h3><p>Department of Justice FARA eFile bulk data, Lobbying Disclosure Act filings from LDA.gov, and the Department of Education file of Section 117 public records. @@SOURCE_DATES@@</p></div>
 <div class="gap"><h3>Why Qatar leads</h3><p>Qatar is the lead focus of this site. The database itself covers every country in the Justice Department file, and every country is held to the same rules.</p></div>
 <div class="gap"><h3>FARA dollar amounts</h3><p>The Justice Department bulk file lists who is registered for whom, with dates. It carries no dollar amounts. Amounts are shown only where they have been read from a supplemental statement, and those rows are marked derived.</p></div>
 <div class="gap"><h3>FARA source links</h3><p>A FARA row links to the exhibit that names the foreign principal. Where the Justice Department document index has no exhibit under that exact name, the row is marked partial and links to the list of every document filed under that registration number. @@PARTIAL_NOTE@@</p></div>
@@ -158,7 +159,8 @@
 <div class="gap"><h3>Years</h3><p>A FARA registration counts toward every year from its start date to its end date, or to the present if the Justice Department file lists no end date. A lobbying filing counts toward its filing year. Rows with no usable date appear only when all years are selected.</p></div>
 <div class="gap"><h3>Amended reports</h3><p>When a lobbying report is amended, the most recently posted version for the same registrant, client and period is used in totals. Earlier versions stay in the records and are marked as replaced.</p></div>
 <div class="gap"><h3>Individuals</h3><p>People appear only where a filing names them, in the detail of that filing's row. The Justice Department file does not tie an individual to a specific foreign principal, so individuals are not listed by country.</p></div>
-<div class="gap"><h3>Not yet included</h3><p>University foreign gift reports, campaign finance records and nonprofit tax filings are not in this release.</p></div>
+<div class="gap"><h3>University gifts and contracts</h3><p>Under Section 117 of the Higher Education Act, institutions report foreign gifts and contracts worth $250,000 or more in a year. The figures are self-reported by the institutions. The Department of Education file does not name the foreign source for most transactions, so that column is usually empty. These records run through February 28, 2025; later reports are published on the Department&rsquo;s newer portal and are not yet included. A university row links to the Department&rsquo;s spreadsheet, which holds every record, and not to a document for that single transaction.</p></div>
+<div class="gap"><h3>Not yet included</h3><p>Campaign finance records and nonprofit tax filings are not in this release. University reports for countries other than the five featured ones are also not included.</p></div>
 <p class="small" style="margin-top: 16px">Senate Office of Public Records cannot vouch for the data or analyses derived from these data after the data have been retrieved from LDA.gov.</p>
 </div>
 </section>

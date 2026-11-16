@@ -14,8 +14,8 @@ import sys
 from collections import Counter, defaultdict
 from urllib.parse import urlparse
 
-from . import clean_fara, clean_lda, config
-from .common import norm_name, now_utc, write_json
+from . import clean_fara, clean_lda, clean_sec117, config
+from .common import norm_name, now_utc, write_json, write_json_rows
 
 # The fourteen columns from the project brief come first, in its order.
 CSV_COLUMNS = [
@@ -81,13 +81,16 @@ def build_connections(records: list, entities: dict) -> list:
             "source": ent.get("source", ""),
             "featured_countries": sorted(per_country),
             "records_by_country": {cc: per_country[cc] for cc in sorted(per_country)},
-            # Context: how broad this registrant's foreign work is overall.
-            # Only known for FARA, where every country is in the dataset.
-            "all_countries_in_dataset": len(all_countries[eid]) if is_fara else None,
+            # Context: how many countries this registrant or institution has
+            # records for in the whole source file. Known for FARA and for
+            # Section 117; not known for LDA, which is downloaded per country.
+            "all_countries_in_dataset": (len(all_countries[eid]) if is_fara
+                                         else ent.get("countries_in_source")),
             "all_foreign_principals_in_dataset": len(all_principals[eid]) if is_fara else None,
             "confidence": "derived",
-            "method": "Same registration (FARA registration number or LDA "
-                      "registrant ID) has records for two or more featured "
+            "method": "Same FARA registration number, LDA registrant ID or "
+                      "Department of Education institution ID has records "
+                      "for two or more featured "
                       "countries. Overlap only; no relationship between the "
                       "countries is stated or implied.",
         })
@@ -97,7 +100,7 @@ def build_connections(records: list, entities: dict) -> list:
 
 def run() -> int:
     sources, records, entities, documents = {}, [], {}, {}
-    for name, module in (("fara", clean_fara), ("lda", clean_lda)):
+    for name, module in (("fara", clean_fara), ("lda", clean_lda), ("sec117", clean_sec117)):
         try:
             res = module.run()
         except Exception as e:
@@ -129,11 +132,12 @@ def run() -> int:
     write_json(config.REPORTS / "possible_same_entity.json", possible)
 
     config.CLEAN.mkdir(parents=True, exist_ok=True)
-    write_json(config.CLEAN / "records.json", records)
+    write_json_rows(config.CLEAN / "records.json", records)
     write_json(config.CLEAN / "entities.json",
                sorted(entities.values(), key=lambda e: e["name"].upper()))
-    write_json(config.CLEAN / "connections.json", connections)
-    write_json(config.CLEAN / "fara_documents.json", documents)
+    write_json_rows(config.CLEAN / "connections.json", connections)
+    write_json_rows(config.CLEAN / "fara_documents.json",
+                    [{"registration_number": k, "documents": v} for k, v in documents.items()])
     with open(config.CLEAN / "records.csv", "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=CSV_COLUMNS, extrasaction="ignore")
         w.writeheader()

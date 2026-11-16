@@ -23,16 +23,20 @@ USER_AGENT = (
 # --- Featured countries -----------------------------------------------------
 # "lda_code" is the ISO code used by the LDA API (confirmed against
 # https://lda.gov/api/v1/constants/general/countries/ on 2026-11-16).
+# "sec117_values" are the same for the Department of Education file
+# (confirmed against the February 2025 file: Turkey appears as
+# "TURKEY (TURKIYE)").
 # "fara_values" are the exact strings, upper-cased, that count as this
 # country in FARA's "Country/Location Represented" column. Anything not
 # listed here is NOT folded into a featured country. Hong Kong, Macau and
 # Taiwan are deliberately kept separate, as filed.
 FEATURED = {
-    "QA": {"name": "Qatar", "fara_values": ["QATAR"]},
-    "CN": {"name": "China", "fara_values": ["CHINA"]},
-    "RU": {"name": "Russia", "fara_values": ["RUSSIA"]},
-    "SA": {"name": "Saudi Arabia", "fara_values": ["SAUDI ARABIA"]},
-    "TR": {"name": "Turkey", "fara_values": ["TURKEY", "TURKIYE", "TÜRKIYE"]},
+    "QA": {"name": "Qatar", "fara_values": ["QATAR"], "sec117_values": ["QATAR"]},
+    "CN": {"name": "China", "fara_values": ["CHINA"], "sec117_values": ["CHINA"]},
+    "RU": {"name": "Russia", "fara_values": ["RUSSIA"], "sec117_values": ["RUSSIA"]},
+    "SA": {"name": "Saudi Arabia", "fara_values": ["SAUDI ARABIA"], "sec117_values": ["SAUDI ARABIA"]},
+    "TR": {"name": "Turkey", "fara_values": ["TURKEY", "TURKIYE", "TÜRKIYE"],
+           "sec117_values": ["TURKEY", "TURKEY (TURKIYE)", "TURKIYE", "TÜRKIYE"]},
 }
 
 # Any FARA country string containing one of these fragments is listed in

@@ -6,6 +6,7 @@ is deleted afterwards. None of it is, or may ever be copied into, the
 published dataset.
 """
 import csv
+import datetime as dt
 import gzip
 import io
 import json
@@ -19,7 +20,7 @@ from pathlib import Path
 _TMP = tempfile.mkdtemp(prefix="qc-synthetic-")
 os.environ["QC_ROOT"] = _TMP
 
-from pipeline import build_dataset, clean_fara, clean_lda, config  # noqa: E402
+from pipeline import build_dataset, clean_fara, clean_lda, clean_sec117, config  # noqa: E402
 from pipeline.common import parse_mdy, title_country, write_json  # noqa: E402
 from pipeline.fetch_lda import filing_matches  # noqa: E402
 
@@ -55,6 +56,24 @@ def _filing(uuid, rid, cid, year, period, ftype, posted, income,
                              if fe_country else []),
         "affiliated_organizations": [],
     }
+
+
+SEC117_HEADER = ["OPEID", "School Name", "State", "Transaction Type", "Foreign Government Source",
+                 "Attribution Country", "Amount", "Receipt Date", "Contract Start Date", "Contract End Date",
+                 "Restricted Transaction Foreign Government Legal Name",
+                 "Restricted Transaction Foreign Government Name", "Restricted Transaction Description",
+                 "Institution Owned by Foreign Source", "Foreign Source Owner Name",
+                 "Foreign Source Ownership Date", "Changes Due to Foreign Source Owner", "Legacy"]
+
+
+def make_sec117(path, rows):
+    import openpyxl
+    wb = openpyxl.Workbook(); ws = wb.active
+    ws.append(["SYNTHETIC title block"]); ws.append(SEC117_HEADER)
+    for r in rows:
+        ws.append(r)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    wb.save(path)
 
 
 def setUpModule():
@@ -98,8 +117,20 @@ def setUpModule():
     with gzip.open(lda_dir / "client_country.jsonl.gz", "wt", encoding="utf-8") as f:
         for x in filings:
             f.write(json.dumps(x) + "\n")
+    make_sec117(raw / "sec117" / "synthetic.xlsx", [
+        ["00900100", "Synthetic University", "TX", "Contract", "Yes", "QATAR", 500000, dt.datetime(2019, 5, 1), dt.datetime(2019, 1, 1), dt.datetime(2019, 12, 31), None, None, "free text never read", None, None, None, None, "No"],
+        ["00900100", "Synthetic University", "TX", "Gift", "N/A", "CHINA", 300000, None, None, None, None, None, None, None, None, None, None, "Yes"],
+        ["00900100", "Synthetic University", "TX", "Restricted Gift", "Yes", "QATAR", -25000, dt.datetime(2020, 2, 2), None, None, "Synthetic Ministry Legal Name", "Synthetic Ministry", None, None, None, None, None, "No"],
+        ["00900200", "Synthetic College", "NY", "Gift", "No", "TURKEY (TURKIYE)", 250000, dt.datetime(2021, 3, 3), None, None, None, None, None, None, None, None, None, "No"],
+        ["00900200", "Synthetic College", "NY", "Gift", "No", "RUSSIA", 260000, dt.datetime(2021, 3, 3), None, None, None, None, None, None, None, None, None, "No"],
+        ["00900200", "Synthetic College", "NY", "Gift", "No", "SAUDI ARABIA", 270000, dt.datetime(2021, 3, 3), None, None, None, None, None, None, None, None, None, "No"],
+        ["00900200", "Synthetic College", "NY", "Gift", "No", "FRANCE", 999999, dt.datetime(2021, 3, 3), None, None, None, None, None, None, None, None, None, "No"],
+    ])
     stamp = "2026-01-02T00:00:00Z"
     write_json(config.MANIFEST, {
+        "sec117": [{"key": "complete_through_2025-02-28", "status": "ok",
+                    "url": "https://fsapartners.ed.gov/sites/default/files/synthetic.xlsx",
+                    "path": "raw/sec117/synthetic.xlsx", "retrieved_at": stamp}],
         "fara": [
             {"key": "registrants", "status": "ok", "path": "raw/fara/reg.zip", "retrieved_at": stamp},
             {"key": "foreign_principals", "status": "ok", "path": "raw/fara/fp.zip", "retrieved_at": stamp},
@@ -190,20 +221,45 @@ class Lda(unittest.TestCase):
         self.assertEqual(self.res["report"]["filings_with_no_featured_link_after_local_check"], 1)
 
 
+class Sec117(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.res = clean_sec117.run()
+
+    def test_only_featured_countries_and_exact_values(self):
+        recs = self.res["records"]
+        self.assertEqual(len(recs), 6)  # FRANCE row is not a featured country
+        self.assertEqual(sorted({r["country_code"] for r in recs}), ["CN", "QA", "RU", "SA", "TR"])
+        q = [r for r in recs if r["country_code"] == "QA"]
+        self.assertEqual(sorted(r["amount_usd"] for r in q), [-25000.0, 500000.0])
+        named = [r for r in q if r["foreign_principal"]][0]
+        self.assertEqual(named["foreign_principal"], "Synthetic Ministry Legal Name")
+        self.assertIn("adjustment", named["notes"])
+        self.assertFalse(any("free text never read" in json.dumps(r) for r in recs))
+
+    def test_undated_row_has_no_year_and_context_counts_all_countries(self):
+        cn = [r for r in self.res["records"] if r["country_code"] == "CN"][0]
+        self.assertIsNone(cn["year"])
+        ents = {e["entity_id"]: e for e in self.res["entities"]}
+        self.assertEqual(ents["sec117-00900200"]["countries_in_source"], 4)
+
+
 class Build(unittest.TestCase):
     def test_full_build_validates_and_finds_overlap(self):
         self.assertEqual(build_dataset.run(), 0)
         clean = Path(_TMP) / "data" / "clean"
         records = json.loads((clean / "records.json").read_text())
-        self.assertEqual(len(records), 10)
+        self.assertEqual(len(records), 16)
         conns = json.loads((clean / "connections.json").read_text())
         names = {c["entity_id"]: c["featured_countries"] for c in conns}
         self.assertEqual(names["fara-9001"], ["CN", "QA"])
         self.assertEqual(names["fara-9002"], ["RU", "SA", "TR"])
         self.assertEqual(names["lda-501"], ["CN", "RU"])
+        self.assertEqual(names["sec117-00900100"], ["CN", "QA"])
+        self.assertEqual(names["sec117-00900200"], ["RU", "SA", "TR"])
         with open(clean / "records.csv", newline="", encoding="utf-8") as f:
             rows = list(csv.DictReader(f))
-        self.assertEqual(len(rows), 10)
+        self.assertEqual(len(rows), 16)
         self.assertEqual(list(rows[0])[:14], build_dataset.CSV_COLUMNS[:14])
 
     def test_bad_source_link_fails_validation(self):
@@ -287,3 +343,24 @@ class LdaFetchAgainstLocalFakeServer(unittest.TestCase):
         self.assertEqual(entries[("QA", "client_ppb_country")]["status"], "skipped")
         self.assertEqual(entries[("QA", "foreign_entity_country")]["status"], "skipped")
         self.assertEqual(entries[("CN", "client_country")]["saved"], 0)
+
+
+class FaraFullyQuotedFormat(unittest.TestCase):
+    """DOJ's real layout: all fields quoted, inner quotes unescaped (synthetic rows)."""
+
+    def test_inner_quotes_and_embedded_newline_are_kept(self):
+        raw = ('"Foreign Principal","Country/Location Represented","Registration Number"\r\n'
+               '"Synthetic Railways ("SR") , through Synthetic GmbH","QATAR","9001"\r\n'
+               '"Synthetic two-line\nname","CHINA","9002"\r\n'
+               '"Synthetic, with comma","RUSSIA","9003"\r\n'
+               '"Too","many","fields","here"\r\n')
+        path = Path(_TMP) / "quoted.zip"
+        with zipfile.ZipFile(path, "w") as z:
+            z.writestr("x.csv", raw.encode("iso-8859-1"))
+        rows, malformed, headers = clean_fara.read_bulk_zip(path)
+        self.assertEqual(headers, ["Foreign Principal", "Country/Location Represented", "Registration Number"])
+        self.assertEqual(malformed, 1)
+        self.assertEqual([r["foreignprincipal"] for r in rows],
+                         ['Synthetic Railways ("SR") , through Synthetic GmbH',
+                          "Synthetic two-line\nname", "Synthetic, with comma"])
+        self.assertEqual(rows[0]["registrationnumber"], "9001")

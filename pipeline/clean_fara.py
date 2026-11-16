@@ -55,18 +55,49 @@ def read_bulk_zip(path):
         if len(names) != 1:
             raise SchemaError(f"{path}: expected one CSV inside, found {z.namelist()}")
         text = z.read(names[0]).decode(config.FARA_ENCODING)
-    reader = csv.reader(io.StringIO(text, newline=""))
-    headers = next(reader)
+    first_line = text.split("\n", 1)[0].strip()
+    if first_line.startswith('"') and '","' in first_line:
+        records = _split_fully_quoted(text)
+    else:
+        records = csv.reader(io.StringIO(text, newline=""))
+    headers = next(records)
     keys = [norm_header(h) for h in headers]
     rows, malformed = [], 0
-    for line in reader:
+    for line in records:
         if not line or not any(c.strip() for c in line):
             continue
         if len(line) != len(keys):
-            malformed += 1  # stray comma or quote; skipped and counted
+            malformed += 1  # skipped and counted, never realigned by guesswork
             continue
         rows.append(dict(zip(keys, (c.strip() for c in line))))
     return rows, malformed, headers
+
+
+def _split_fully_quoted(text):
+    """Parse DOJ's bulk format: every field wrapped in double quotes, fields
+    separated by '","', and quotation marks INSIDE a field left unescaped.
+
+    A standard CSV parser misreads those inner quotes (it drops them or
+    shifts columns), so the line is split on the exact delimiter instead and
+    each field is kept character for character. A record whose text spans
+    several lines is joined until it closes with a quote and has the full
+    number of fields.
+    """
+    lines = text.replace("\r\n", "\n").replace("\r", "\n").split("\n")
+    width = len(lines[0][1:-1].split('","')) if lines else 0
+    buf = None
+    for line in lines:
+        buf = line if buf is None else buf + "\n" + line
+        if not buf.strip():
+            buf = None
+            continue
+        if buf.startswith('"') and buf.endswith('"'):
+            fields = buf[1:-1].split('","')
+            if len(fields) >= width:
+                yield fields
+                buf = None
+    if buf and buf.strip():
+        yield buf.split('","')  # unterminated tail: counted as malformed
 
 
 def resolve(headers, required, optional, label):
@@ -143,7 +174,8 @@ def run() -> dict:
         if config.FARA_SCOPE == "featured" and not cc:
             continue
         regnum = g(row, F, "regnum")
-        principal = g(row, F, "principal")
+        # Collapse line breaks and repeated spaces inside names (formatting only).
+        principal = " ".join(g(row, F, "principal").split())
         start_raw, end_raw = g(row, F, "fp_start"), g(row, F, "fp_end")
         start, end = parse_mdy(start_raw), parse_mdy(end_raw)
         if (start_raw and not start) or (end_raw and not end):
@@ -184,7 +216,7 @@ def run() -> dict:
             "country_as_filed": raw_country,
             "featured": bool(cc),
             "actor_type": "fara_registrant",
-            "entity_or_person_name": g(row, F, "registrant"),
+            "entity_or_person_name": " ".join(g(row, F, "registrant").split()),
             "entity_id": f"fara-{regnum}",
             "role": "Registered under FARA as agent of the foreign principal",
             "foreign_principal": principal,
@@ -232,7 +264,7 @@ def run() -> dict:
     entities = []
     for regnum in sorted(entity_ids, key=lambda x: (len(x), x)):
         reg = registrants.get(regnum, {})
-        name = g(reg, R, "name") or name_in_records[regnum]
+        name = " ".join(g(reg, R, "name").split()) or name_in_records[regnum]
         entities.append({
             "entity_id": f"fara-{regnum}",
             "slug": f"{slugify(name)}-fara-{regnum}",

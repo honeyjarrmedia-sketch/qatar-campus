@@ -90,8 +90,27 @@ for k in range(700):
 with gzip.open(raw / "lda/ALL/client_country.jsonl.gz", "wt", encoding="utf-8") as f:
     for x in filings:
         f.write(json.dumps(x) + "\n")
+import datetime as dt  # noqa: E402
+SEC117_HEADER = ["OPEID", "School Name", "State", "Transaction Type", "Foreign Government Source",
+                 "Attribution Country", "Amount", "Receipt Date", "Contract Start Date", "Contract End Date",
+                 "Restricted Transaction Foreign Government Legal Name",
+                 "Restricted Transaction Foreign Government Name", "Restricted Transaction Description",
+                 "Institution Owned by Foreign Source", "Foreign Source Owner Name",
+                 "Foreign Source Ownership Date", "Changes Due to Foreign Source Owner", "Legacy"]
+import openpyxl  # noqa: E402
+wb = openpyxl.Workbook(); ws = wb.active
+ws.append(["SYNTHETIC title block"]); ws.append(SEC117_HEADER)
+for k in range(400):
+    c = rnd.choice(["QATAR"] * 4 + ["CHINA"] * 4 + ["SAUDI ARABIA"] * 3 + ["RUSSIA", "TURKEY (TURKIYE)", "FRANCE"])
+    y = rnd.randint(2008, 2024); school = rnd.randint(0, 14)
+    ws.append([f"009{school:05d}", f"Synthetic University {school}", "TX", rnd.choice(["Contract", "Gift"]), rnd.choice(["Yes", "No", "N/A"]),
+               c, rnd.choice([250, 300, 500, 900, 2500]) * 1000, dt.datetime(y, 6, 1), None, None, None, None, None, None, None, None, None, "No"])
+(raw / "sec117").mkdir(parents=True)
+wb.save(raw / "sec117" / "synthetic.xlsx")
 stamp = "2026-11-16T00:00:00Z"
 write_json(config.MANIFEST, {
+    "sec117": [{"key": "complete_through_2025-02-28", "status": "ok", "path": "raw/sec117/synthetic.xlsx",
+                "url": "https://fsapartners.ed.gov/sites/default/files/synthetic.xlsx", "retrieved_at": stamp}],
     "fara": [{"key": k, "status": "ok", "path": f"raw/fara/{p}.zip", "retrieved_at": stamp}
              for k, p in (("registrants", "reg"), ("foreign_principals", "fp"), ("registrant_docs", "docs"))],
     "lda": [{"status": "ok", "path": "raw/lda/ALL/client_country.jsonl.gz", "retrieved_at": stamp}]})

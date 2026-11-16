@@ -10,6 +10,13 @@
   var fmt = new Intl.NumberFormat('en-US');
   var money = function (n) { return '$' + fmt.format(Math.round(n)); };
   var compact = new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 });
+  // Headline figures: a short form for reading, with the exact figure beneath.
+  var bigMoney = function (n) {
+    var a = Math.abs(n);
+    if (a >= 1e9) return '$' + (n / 1e9).toFixed(2) + ' billion';
+    if (a >= 1e6) return '$' + (n / 1e6).toFixed(1) + ' million';
+    return money(n);
+  };
 
   var rows = [];            // decoded records currently loaded
   var meta = null;          // year_min, year_max, other_countries
@@ -20,7 +27,7 @@
   var openRow = '';
 
   var state = { c: 'QA', from: null, to: null, q: '', type: '', min: '', conf: '', sup: true,
-                ent: '', row: '', m: 'fara', sort: 'year', dir: -1, page: 0 };
+                ent: '', row: '', m: 'auto', sort: 'year', dir: -1, page: 0 };
 
   function el(tag, attrs, kids) {
     var n = document.createElement(tag);
@@ -133,7 +140,7 @@
   function scopeName() {
     if (state.ent) {
       var hit = rows.find(function (r) { return r.eid === state.ent; });
-      return hit ? hit.entity : 'Selected registrant';
+      return hit ? hit.entity : 'Selected organization';
     }
     if (state.c === 'ALL') return 'All countries';
     if (state.c.slice(0, 2) === 'X:') return state.c.slice(2);
@@ -150,11 +157,14 @@
       if ((r.amtType || '').indexOf('income') === 0) { income += r.amount; incomeN++; }
       else if ((r.amtType || '').indexOf('expenses') === 0) { expenses += r.amount; expensesN++; }
     });
+    var uni = scope.filter(function (r) { return r.t === 'sec117'; });
+    var uniTotal = 0; uni.forEach(function (r) { uniTotal += r.amount || 0; });
     var tiles = [
-      ['FARA registrants', fmt.format(Object.keys(regs).length), 'Show the registrations', 'fara'],
-      ['Foreign principals', fmt.format(Object.keys(princ).length), 'Show the registrations', 'fara'],
-      ['Lobbying filings', fmt.format(filings.length), 'Show the filings', 'lda'],
-      ['Lobbying income reported', money(income), 'Show the ' + fmt.format(incomeN) + ' filings with income', 'lda']
+      ['University gifts and contracts reported', bigMoney(uniTotal), 'Show the ' + fmt.format(uni.length) + ' reports', 'sec117', uniTotal],
+      ['FARA registrants', fmt.format(Object.keys(regs).length), 'Show the registrations', 'fara', null],
+      ['Foreign principals', fmt.format(Object.keys(princ).length), 'Show the registrations', 'fara', null],
+      ['Lobbying filings', fmt.format(filings.length), 'Show the filings', 'lda', null],
+      ['Lobbying income reported', bigMoney(income), 'Show the ' + fmt.format(incomeN) + ' filings with income', 'lda', income]
     ];
     var box = $('stats');
     clear(box);
@@ -162,6 +172,7 @@
       box.appendChild(el('div', { 'class': 'card stat' }, [
         el('div', { 'class': 'label', text: t[0] }),
         el('div', { 'class': 'stat-value', text: t[1] }),
+        (t[4] !== null && Math.abs(t[4]) >= 1e6) ? el('div', { 'class': 'stat-exact', text: money(t[4]) + ' exactly' }) : null,
         el('div', { 'class': 'stat-foot' }, [
           el('button', { type: 'button', 'class': 'linklike', text: t[2], onclick: function () {
             state.type = t[3]; $('f-type').value = t[3]; state.page = 0; update();
@@ -173,36 +184,48 @@
     });
     var note = 'Totals are marked derived because they are counted from individual records. ' +
       'The Justice Department bulk file carries no dollar amounts, so FARA fees appear only where they have been read from a registrant\'s supplemental statement. ' +
-      'Lobbying filings are included for Qatar, China, Russia, Saudi Arabia and Turkey only.';
+      'Lobbying filings and university reports are included for Qatar, China, Russia, Saudi Arabia and Turkey only. ' +
+      'University reports cover gifts and contracts that institutions reported to the Department of Education through February 28, 2025.';
     if (expensesN) note += ' Separately, ' + fmt.format(expensesN) + ' filings by organizations lobbying on their own behalf report ' + money(expenses) + ' in expenses; that figure covers all of the organization\'s lobbying.';
     $('stats-note').textContent = note;
     $('scope-label').textContent = scopeName() + ', ' + state.from + (state.from === state.to ? '' : ' to ' + state.to);
     var name = scopeName();
     $('heading').textContent = (state.c === 'ALL' && !state.ent)
-      ? 'Foreign agent registrations and lobbying filings in the United States'
+      ? 'Foreign principals in United States disclosure records'
       : state.ent ? 'Records on file for ' + name
-      : name + '-linked foreign agent registrations and lobbying filings in the United States';
+      : name + ' in United States disclosure records';
   }
 
   // ---- Chart --------------------------------------------------------------
   var MEASURES = {
     fara: { unit: 'FARA registrations active', money: false },
     lda: { unit: 'lobbying filings', money: false },
-    income: { unit: 'in lobbying income reported', money: true }
+    income: { unit: 'in lobbying income reported', money: true },
+    uni: { unit: 'in university gifts and contracts reported', money: true }
   };
-  function chartSeries(scope) {
+  // Until the visitor picks a measure, show university dollars where the
+  // selection has university reports and FARA registrations otherwise.
+  function measure(scope) {
+    if (state.m !== 'auto') return state.m;
+    return scope.some(function (r) { return r.t === 'sec117'; }) ? 'uni' : 'fara';
+  }
+  function chartSeries(scope, m) {
     var from = state.from, to = state.to, out = [], y;
     var byYear = {};
-    if (state.m === 'fara') {
+    if (m === 'fara') {
       scope.forEach(function (r) {
         if (r.t !== 'fara' || r.year === null) return;
         var end = r.yearEnd === null ? meta.year_max : r.yearEnd;
         for (var yy = Math.max(r.year, from); yy <= Math.min(end, to); yy++) byYear[yy] = (byYear[yy] || 0) + 1;
       });
+    } else if (m === 'uni') {
+      scope.forEach(function (r) {
+        if (r.t === 'sec117' && r.year !== null && r.amount !== null) byYear[r.year] = (byYear[r.year] || 0) + r.amount;
+      });
     } else {
       uniqueFilings(scope).forEach(function (r) {
         if (r.year === null) return;
-        if (state.m === 'lda') byYear[r.year] = (byYear[r.year] || 0) + 1;
+        if (m === 'lda') byYear[r.year] = (byYear[r.year] || 0) + 1;
         else if (r.amount !== null && (r.amtType || '').indexOf('income') === 0) byYear[r.year] = (byYear[r.year] || 0) + r.amount;
       });
     }
@@ -224,7 +247,8 @@
     return n;
   }
   function renderChart(scope) {
-    var series = chartSeries(scope), box = $('chart'), tip = $('chart-tip'), m = MEASURES[state.m];
+    var mk = measure(scope), series = chartSeries(scope, mk), box = $('chart'), tip = $('chart-tip'), m = MEASURES[mk];
+    $('measure').value = mk;
     clear(box); tip.hidden = true;
     var max = Math.max.apply(null, series.map(function (s) { return s[1]; }));
     var label = function (v) { return m.money ? money(v) : fmt.format(v); };
@@ -283,12 +307,15 @@
   }
 
   // ---- Records table ------------------------------------------------------
+  var KIND = { fara: 'FARA registration', lda: 'LDA filing', sec117: 'University report' };
+  var ACTOR = { fara: 'fara_registrant', lda: 'lobbying_registrant', sec117: 'university' };
   function amountCell(r) {
     var td = el('td', { 'class': 'num' });
     if (r.amount !== null) {
       td.appendChild(document.createTextNode(money(r.amount)));
       if (r.amtType) td.appendChild(el('div', { 'class': 'sub', text: r.amtType }));
     } else {
+      td.className = 'num none';
       td.textContent = r.t === 'fara' ? 'not in bulk data' : 'none stated';
     }
     return td;
@@ -302,10 +329,16 @@
     var shows = el('div', null, [el('div', { 'class': 'label', text: 'What the filing shows' })]);
     shows.appendChild(el('div', { text: r.role + '.' }));
     if (r.t === 'fara') shows.appendChild(el('div', { text: 'Relationship dates as listed in the Justice Department file: ' + (r.dStart || 'not stated') + ' to ' + (r.dEnd || 'no end date listed') + '.' }));
-    else shows.appendChild(el('div', { text: r.srcType + (r.period ? ', ' + r.period : '') + ', posted ' + (r.dStart || 'date not stated') + '.' }));
+    else if (r.t === 'lda') shows.appendChild(el('div', { text: r.srcType + (r.period ? ', ' + r.period : '') + ', posted ' + (r.dStart || 'date not stated') + '.' }));
     if (r.client && r.client !== r.principal) shows.appendChild(el('div', { text: 'Client: ' + r.client }));
-    if (r.purpose) shows.appendChild(el('div', { text: 'Issue areas listed: ' + r.purpose }));
-    if (r.detail) shows.appendChild(el('div', { text: 'Described on the filing as: ' + r.detail }));
+    if (r.t === 'sec117') {
+      shows.appendChild(el('div', { text: 'Transaction type: ' + r.purpose + '.' }));
+      if (r.principal) shows.appendChild(el('div', { text: 'Foreign source named in the file: ' + r.principal }));
+      if (r.detail) shows.appendChild(el('div', { text: r.detail + '.' }));
+    } else {
+      if (r.purpose) shows.appendChild(el('div', { text: 'Issue areas listed: ' + r.purpose }));
+      if (r.detail) shows.appendChild(el('div', { text: 'Described on the filing as: ' + r.detail }));
+    }
     if (r.people) shows.appendChild(el('div', { text: 'Lobbyists named on the filing: ' + r.people }));
 
     var why = el('div', null, [el('div', { 'class': 'label', text: 'Why this row is listed under ' + r.country }),
@@ -318,7 +351,7 @@
     });
     if (r.t === 'fara') src.appendChild(el('a', { href: 'https://efile.fara.gov/api/v1/RegDocs/html/' + r.eid.slice(5), rel: 'noopener', target: '_blank', text: 'Every document filed under this registration (efile.fara.gov)' }));
     src.appendChild(el('div', { 'class': 'small', text: 'Retrieved ' + r.retrieved }));
-    src.appendChild(el('button', { type: 'button', 'class': 'linklike', text: 'Show all records for this registrant', onclick: function () { setEntity(r.eid); } }));
+    src.appendChild(el('button', { type: 'button', 'class': 'linklike', text: r.t === 'sec117' ? 'Show all records for this institution' : 'Show all records for this registrant', onclick: function () { setEntity(r.eid); } }));
     src.appendChild(el('button', { type: 'button', 'class': 'linklike', text: 'Copy link to this row', onclick: function (e) {
       var link = location.origin + location.pathname + '?c=' + encodeURIComponent(r.cc || r.country) + '&row=' + encodeURIComponent(r.id) + '#records';
       var done = function () { e.target.textContent = 'Link copied'; };
@@ -336,10 +369,10 @@
       var open = openRow === r.id;
       var tr = el('tr', { id: 'r-' + r.id }, [
         el('td', { text: r.country }),
-        el('td', { style: 'font-size: 14px', text: r.t === 'fara' ? 'FARA registration' : 'LDA filing' }),
+        el('td', { style: 'font-size: 14px', text: KIND[r.t] }),
         el('td', null, [el('button', { type: 'button', 'class': 'linklike', style: 'font-weight: 500', 'aria-expanded': String(open), text: r.entity,
           onclick: function () { openRow = open ? '' : r.id; state.row = openRow; update(true); } })]),
-        el('td', { text: r.principal || r.client || '' }),
+        el('td', r.principal || r.client ? { text: r.principal || r.client } : { 'class': 'muted', style: 'font-size: 14px', text: r.t === 'sec117' ? 'not named in the file' : '' }),
         amountCell(r),
         el('td', { 'class': 'yr', text: yearText(r) }),
         el('td', null, [el('a', { href: r.url, rel: 'noopener', target: '_blank', style: 'font-size: 14px; white-space: nowrap', text: 'Open filing' })]),
@@ -358,7 +391,7 @@
       else th.removeAttribute('aria-sort');
     });
     var chip = $('entity-chip'); clear(chip);
-    if (state.ent) chip.appendChild(el('span', { 'class': 'chip' }, ['Registrant: ' + scopeName(),
+    if (state.ent) chip.appendChild(el('span', { 'class': 'chip' }, ['Showing only: ' + scopeName(),
       el('button', { type: 'button', text: 'Clear', onclick: function () { setEntity(''); } })]));
   }
 
@@ -379,7 +412,7 @@
     list.forEach(function (r) {
       lines.push(CSV_COLS.map(function (c) {
         var v = r[c[1]];
-        if (c[1] === 't') v = r.t === 'fara' ? 'fara_registrant' : 'lobbying_registrant';
+        if (c[1] === 't') v = ACTOR[r.t];
         if (c[1] === 'sup') v = r.sup ? 'true' : 'false';
         return csvCell(v);
       }).join(','));
@@ -397,9 +430,9 @@
     connections.slice(0, connShown).forEach(function (c) {
       tbody.appendChild(el('tr', null, [
         el('td', null, [el('button', { type: 'button', 'class': 'linklike', style: 'font-weight: 500', text: c.name, onclick: function () { setEntity(c.eid); $('records').scrollIntoView(); } }),
-          el('div', { 'class': 'sub', text: c.source + ' registrant' })]),
+          el('div', { 'class': 'sub', text: c.source === 'Section 117' ? 'Institution reporting under Section 117' : c.source + ' registrant' })]),
         el('td', { text: c.cc.map(function (x) { return names[x] || x; }).join(', ') }),
-        el('td', { 'class': 'yr', text: c.all === null ? 'featured countries only' : c.cc.length + ' of ' + c.all }),
+        el('td', { 'class': 'yr', text: c.all === null ? 'not known for lobbying filings' : c.cc.length + ' of ' + c.all }),
         el('td', null, [el('button', { type: 'button', 'class': 'linklike', style: 'font-size: 14px', text: 'Show the ' + fmt.format(c.n) + ' records', onclick: function () { setEntity(c.eid); $('records').scrollIntoView(); } })]),
         el('td', null, [el('span', { 'class': 'tag tag-derived', text: 'derived' })])
       ]));
@@ -428,7 +461,7 @@
     if (state.to !== meta.year_max) p.set('to', state.to);
     ['q', 'type', 'min', 'conf', 'ent', 'row'].forEach(function (k) { if (state[k]) p.set(k, state[k]); });
     if (!state.sup) p.set('sup', '0');
-    if (state.m !== 'fara') p.set('m', state.m);
+    if (state.m !== 'auto') p.set('m', state.m);
     var qs = p.toString();
     history.replaceState(null, '', location.pathname + (qs ? '?' + qs : '') + location.hash);
   }
@@ -450,7 +483,7 @@
     $('more-countries').value = state.c.slice(0, 2) === 'X:' ? state.c.slice(2) : '';
     $('y-from').value = state.from; $('y-to').value = state.to;
     $('q').value = state.q; $('f-type').value = state.type; $('f-min').value = state.min;
-    $('f-conf').value = state.conf; $('f-sup').checked = state.sup; $('measure').value = state.m;
+    $('f-conf').value = state.conf; $('f-sup').checked = state.sup;
   }
   var lastList = [];
   function update(keepScroll) {

@@ -42,6 +42,18 @@ def write_json(path, obj) -> None:
         f.write("\n")
 
 
+def write_json_rows(path, rows: list) -> None:
+    """A JSON array with one record per line: valid JSON, compact, and each
+    changed record shows as one changed line when versions are compared."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        f.write("[\n")
+        for i, r in enumerate(rows):
+            f.write(json.dumps(r, ensure_ascii=False, separators=(",", ":")))
+            f.write(",\n" if i < len(rows) - 1 else "\n")
+        f.write("]\n")
+
+
 def update_manifest(source: str, entries: list) -> None:
     """Replace one source's section of raw/MANIFEST.json."""
     manifest = read_json(config.MANIFEST, {}) or {}

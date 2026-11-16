@@ -9,6 +9,7 @@ import html
 import json
 import shutil
 import sys
+import zipfile
 from collections import Counter
 
 from . import config
@@ -24,6 +25,8 @@ FIELDS = ["id", "t", "country", "cc", "entity", "eid", "principal", "client",
 DICT_FIELDS = ["t", "country", "cc", "entity", "eid", "client", "amtType",
                "period", "purpose", "srcType", "basis", "conf", "notes",
                "retrieved", "role"]
+TYPES = {"fara_registrant": "fara", "lobbying_registrant": "lda", "university": "sec117"}
+KIND = {"fara": "FARA registration", "lda": "LDA filing", "sec117": "University report"}
 STATIC_ROWS = 25
 STATIC_CONN = 10
 
@@ -31,7 +34,7 @@ STATIC_CONN = 10
 def compact_row(r: dict) -> dict:
     return {
         "id": r["id"],
-        "t": "fara" if r["actor_type"] == "fara_registrant" else "lda",
+        "t": TYPES[r["actor_type"]],
         "country": r["country"], "cc": r["country_code"],
         "entity": r["entity_or_person_name"], "eid": r["entity_id"],
         "principal": r["foreign_principal"], "client": r.get("client_name", ""),
@@ -86,7 +89,10 @@ def qatar_totals(rows: list) -> dict:
             filings.setdefault(r["id"][4:r["id"].rfind("-")], r)
     with_income = [r for r in filings.values()
                    if r["amount"] is not None and r["amtType"].startswith("income")]
+    uni = [r for r in scope if r["t"] == "sec117"]
     return {
+        "university_total": sum(r["amount"] or 0 for r in uni),
+        "university_n": len(uni),
         "count": sum(1 for r in scope if not r["sup"]),
         "registrants": len({r["eid"] for r in fara}),
         "principals": len({(r["principal"] or "").upper() for r in fara}),
@@ -96,9 +102,20 @@ def qatar_totals(rows: list) -> dict:
     }
 
 
-def stat_html(label, value, foot) -> str:
+def big_money(n: float) -> str:
+    """Mirror of bigMoney() in web/app.js."""
+    if abs(n) >= 1e9:
+        return "${:.2f} billion".format(n / 1e9)
+    if abs(n) >= 1e6:
+        return "${:.1f} million".format(n / 1e6)
+    return money(n)
+
+
+def stat_html(label, value, foot, exact=None) -> str:
+    extra = (f'<div class="stat-exact">{esc(money(exact))} exactly</div>'
+             if exact is not None and abs(exact) >= 1e6 else "")
     return (f'<div class="card stat"><div class="label">{esc(label)}</div>'
-            f'<div class="stat-value">{esc(value)}</div>'
+            f'<div class="stat-value">{esc(value)}</div>{extra}'
             f'<div class="stat-foot"><span>{esc(foot)}</span>'
             f'<span class="tag tag-derived">derived</span></div></div>')
 
@@ -116,9 +133,9 @@ def row_html(r: dict, year_max: int) -> str:
         year = f'{r["year"]}–{"present" if r["yearEnd"] is None else r["yearEnd"]}'
     else:
         year = str(r["year"])
-    kind = "FARA registration" if r["t"] == "fara" else "LDA filing"
+    kind = KIND[r["t"]]
     return (f'<tr><td>{esc(r["country"])}</td><td style="font-size: 14px">{kind}</td>'
-            f'<td>{esc(r["entity"])}</td><td>{esc(r["principal"] or r["client"])}</td>'
+            f'<td>{esc(r["entity"])}</td><td>{esc(r["principal"] or r["client"]) or ("<span class=\"muted\" style=\"font-size: 14px\">not named in the file</span>" if r["t"] == "sec117" else "")}</td>'
             f'<td class="num">{amount}</td><td class="yr">{esc(year)}</td>'
             f'<td><a href="{esc(r["url"])}" rel="noopener" style="font-size: 14px; white-space: nowrap">Open filing</a></td>'
             f'<td><span class="tag tag-{esc(r["conf"])}">{esc(r["conf"])}</span></td></tr>')
@@ -148,7 +165,10 @@ def run() -> int:
     (SITE / "data").mkdir()
     for name in ("app.js", "style.css"):
         shutil.copyfile(WEB / name, SITE / "assets" / name)
-    shutil.copyfile(config.CLEAN / "records.csv", SITE / "data" / "records.csv")
+    # The full CSV is too large for a single file on Cloudflare Pages (25 MB
+    # limit), so it is served zipped. The zip holds records.csv unchanged.
+    with zipfile.ZipFile(SITE / "data" / "records-csv.zip", "w", zipfile.ZIP_DEFLATED, compresslevel=9) as z:
+        z.write(config.CLEAN / "records.csv", "records.csv")
 
     def dump(path, obj):
         with open(path, "w", encoding="utf-8") as f:
@@ -167,11 +187,13 @@ def run() -> int:
     # ---- Static (pre-script) content for the default Qatar view ----------
     q = qatar_totals(rows)
     stats = "".join([
+        stat_html("University gifts and contracts reported", big_money(q["university_total"]),
+                  f'from {q["university_n"]:,} reports', q["university_total"]),
         stat_html("FARA registrants", f'{q["registrants"]:,}', "Qatar, all years"),
         stat_html("Foreign principals", f'{q["principals"]:,}', "Qatar, all years"),
         stat_html("Lobbying filings", f'{q["filings"]:,}', "Qatar, all years"),
-        stat_html("Lobbying income reported", money(q["income"]),
-                  f'from {q["income_n"]:,} filings'),
+        stat_html("Lobbying income reported", big_money(q["income"]),
+                  f'from {q["income_n"]:,} filings', q["income"]),
     ])
     qatar = sorted((r for r in rows if r["cc"] == "QA" and not r["sup"]),
                    key=lambda r: (-(r["year"] or 0), r["id"]))
@@ -180,9 +202,9 @@ def run() -> int:
         static_rows = '<tr><td colspan="8" class="muted">No records.</td></tr>'
     names = {cc: m["name"] for cc, m in config.FEATURED.items()}
     conn_rows = "".join(
-        f'<tr><td>{esc(c["name"])}<div class="sub">{esc(c["source"])} registrant</div></td>'
+        f'<tr><td>{esc(c["name"])}<div class="sub">{esc("Institution reporting under Section 117" if c["source"] == "Section 117" else c["source"] + " registrant")}</div></td>'
         f'<td>{esc(", ".join(names.get(x, x) for x in c["cc"]))}</td>'
-        f'<td class="yr">{esc("featured countries only" if c["all"] is None else str(len(c["cc"])) + " of " + str(c["all"]))}</td>'
+        f'<td class="yr">{esc("not known for lobbying filings" if c["all"] is None else str(len(c["cc"])) + " of " + str(c["all"]))}</td>'
         f'<td>{c["n"]:,} records</td><td><span class="tag tag-derived">derived</span></td></tr>'
         for c in conn_small[:STATIC_CONN]) or (
         '<tr><td colspan="5" class="muted">No registrant has records in more than one featured country.</td></tr>')
@@ -200,6 +222,8 @@ def run() -> int:
         parts.append(f"The FARA files were downloaded on {fetched('fara')}.")
     if fetched("lda"):
         parts.append(f"The lobbying filings were downloaded on {fetched('lda')}.")
+    if fetched("sec117"):
+        parts.append(f"The Department of Education file was downloaded on {fetched('sec117')}.")
     fara_rows = [r for r in rows if r["t"] == "fara"]
     partial = sum(1 for r in fara_rows if r["conf"] == "partial")
     partial_note = (f"{partial:,} of {len(fara_rows):,} FARA rows are marked partial for this reason."
@@ -221,16 +245,16 @@ def run() -> int:
     description = cfg.get("meta_description", "")
     jsonld = {
         "@context": "https://schema.org", "@type": "Dataset",
-        "name": f"{brand}: foreign agent registrations and lobbying filings in the United States",
+        "name": f"{brand}: foreign principals in United States disclosure records",
         "description": description, "dateModified": retrieved,
         "isAccessibleForFree": True,
-        "isBasedOn": ["https://efile.fara.gov/", "https://lda.gov/"],
+        "isBasedOn": ["https://efile.fara.gov/", "https://lda.gov/", "https://fsapartners.ed.gov/"],
         "creator": {"@type": "Organization", "name": brand},
     }
     if site_url:
         jsonld["url"] = site_url + "/"
         jsonld["distribution"] = [{"@type": "DataDownload", "encodingFormat": "text/csv",
-                                   "contentUrl": site_url + "/data/records.csv"}]
+                                   "contentUrl": site_url + "/data/records-csv.zip"}]
 
     version = short_hash(json.dumps([summary.get("generated_at"), len(rows)]) +
                          (WEB / "app.js").read_text() + (WEB / "style.css").read_text(), 8)
@@ -271,6 +295,10 @@ def run() -> int:
         "/data/*\n  Cache-Control: public, max-age=3600\n", encoding="utf-8")
 
     sizes = {p.name: p.stat().st_size for p in (SITE / "data").iterdir()}
+    too_big = {n: b for n, b in sizes.items() if b > 24 * 1024 * 1024}
+    if too_big:
+        print(f"[site] files over the 25 MB hosting limit: {too_big}", file=sys.stderr)
+        return 1
     write_json(config.REPORTS / "site_build.json", {
         "records": len(rows), "featured_records": len(featured),
         "other_records": len(other), "year_range": [year_min, year_max],
